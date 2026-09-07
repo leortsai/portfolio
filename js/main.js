@@ -208,12 +208,24 @@ if (document.getElementById('ascii-about')) {
    4. Active Nav Link
    ============================================ */
 const path = window.location.pathname;
-document.querySelectorAll('.nav-links a').forEach(a => {
-  const href = a.getAttribute('href');
-  if (path.endsWith(href) || (path === '/' && href === 'index.html') || (path.endsWith('index.html') && href === 'index.html')) {
-    a.classList.add('active');
-  }
-});
+const navLinks = [...document.querySelectorAll('.nav-links a')];
+
+// 比對前先去掉 hash：Work 指向 index.html#work，帶著 hash 比會永遠不相等
+const pointsHere = a => {
+  const file = a.getAttribute('href').split('#')[0];
+  if (!file) return true;                       // 純錨點 = 指向本頁
+  if (file === 'index.html') return path === '/' || path.endsWith('index.html');
+  return path.endsWith(file);
+};
+
+const here = navLinks.filter(pointsHere);
+/*
+ * 同一頁可能被兩個項目指到（About 是 about.html，Contact 是 about.html#contact）。
+ * 這時候只有「沒有 hash」的那個才代表整頁，有 hash 的是頁內區塊，不該一起亮。
+ * 只有在沒有任何無 hash 的連結時（首頁的 Work 就是這種），才輪到有 hash 的。
+ */
+const whole = here.filter(a => !a.getAttribute('href').includes('#'));
+(whole.length ? whole : here).forEach(a => a.classList.add('active'));
 
 /* ============================================
    5. Stats 數字 counter（滾到才跑）
@@ -270,9 +282,19 @@ if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
    * Lenis 接管捲動之後，瀏覽器原生的 hash 跳位會變成瞬間位移，
    * 跟整站的慣性手感對不起來。offset 是為了讓目標不被固定的 nav 蓋住。
    */
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
+  /*
+   * 除了純錨點，也要接手「指向目前這一頁 + hash」的連結。
+   * nav 的 Work 是 index.html#work——在首頁點它，瀏覽器會把整頁重新載入一次
+   * （Lava Lamp 重啟、字型重繪），使用者只是想捲到作品區而已。
+   */
+  const here = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('a[href*="#"]').forEach(a => {
+    const raw = a.getAttribute('href');
+    const [file, hash] = raw.split('#');
+    if (!hash) return;
+    if (file && file !== here) return;   // 指向別頁，讓瀏覽器正常導航
     a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+      const target = document.getElementById(hash);
       if (!target) return;
       e.preventDefault();
       lenis.scrollTo(target, { offset: -80 });
