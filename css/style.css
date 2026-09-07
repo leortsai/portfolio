@@ -440,12 +440,20 @@ footer {
   flex-wrap: wrap;
 }
 
+/* 膠囊元件的垂直置中。
+   line-height: normal 會套用字型自己的 line gap，而 GT Walsheim 把那段
+   空間分配得並不對稱——量出來 .work-card-tag 上下差 3px、.skill-tag 差 4px。
+   改成 inline-flex + 明確 line-height，行框高度由我們決定，
+   文字就會真的落在框的正中間。padding 同步加大，維持原本的膠囊高度。 */
 .work-card-tag {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
   font-size: var(--fs-2);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
   border: 1px solid rgba(255,255,255,0.3);
-  padding: 4px 12px;
+  padding: 7px 14px;
   border-radius: 100px;
   color: rgba(255,255,255,0.7);
 }
@@ -854,6 +862,7 @@ footer {
 }
 
 .case-link {
+  line-height: 1;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -864,7 +873,7 @@ footer {
   text-decoration: none;
   border: 1px solid var(--line-strong);
   border-radius: 100px;
-  padding: 10px 18px;
+  padding: 12px 18px;
   transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
 
@@ -976,11 +985,14 @@ footer {
 .about-skills-label-2 { margin-top: 28px; }
 
 .skill-tag {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
   font-size: var(--fs-2);
   letter-spacing: var(--ls-label);
   border: 1px solid var(--line);
   border-radius: 100px;
-  padding: 6px 16px;
+  padding: 9px 16px;
   color: var(--ink-mid);
   transition: all 0.2s;
 }
