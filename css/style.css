@@ -450,23 +450,6 @@ footer {
   color: rgba(255,255,255,0.7);
 }
 
-.work-card.coming-soon {
-  background: #E8E7E4;
-  cursor: default;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.work-card.coming-soon .coming-label {
-  font-size: var(--fs-2);
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  /* 原本是 --ink-light(#8A8A8A) 疊在 #E8E7E4 上，對比只有 2.6:1，小字讀不到。
-     改用 --ink-mid 後是 7.7:1。 */
-  color: var(--ink-mid);
-}
-
 /* ============================================
    Case Study Pages
    ============================================ */

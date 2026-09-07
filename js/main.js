@@ -96,56 +96,105 @@ function generateASCII(imgSrc, targetId, opts = {}) {
       return;
     }
 
-    // 波動版本：每個字元包一個 span
+    /*
+     * 波動版本。
+     *
+     * 這裡的關鍵是「不要在動畫迴圈裡量位置」。
+     * 舊版每一幀對全部 8,214 個 span 各做兩次 getBoundingClientRect()，
+     * 而且讀完馬上寫 style——讀寫交錯會強制瀏覽器重算整份 layout，
+     * 一幀就是八千多次強制重排，主執行緒直接被鎖死。
+     *
+     * 字元是等寬字型排成的規則網格，所以位置用「行列 × 格子大小」就能算出來，
+     * 量一次就夠。滑鼠只影響半徑內的格子，也就不必掃全部字元。
+     */
     el.innerHTML = '';
-    const spans = [];
-    rows.forEach((row, ri) => {
-      row.split('').forEach((ch, ci) => {
+    const grid = [];
+    rows.forEach(row => {
+      const line = [];
+      for (const ch of row) {
         const span = document.createElement('span');
         span.textContent = ch;
         span.style.display = 'inline-block';
-        span.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-        span.dataset.row = ri;
-        span.dataset.col = ci;
         el.appendChild(span);
-        spans.push(span);
-      });
+        line.push(span);
+      }
+      grid.push(line);
       el.appendChild(document.createTextNode('\n'));
     });
 
-    // 波動邏輯
     const container = el.closest('.ascii-container') || el.parentElement;
-    let mouseX = -999, mouseY = -999;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const RADIUS = 80;
+    const maxRow = grid.length - 1;
+    let cellW = 0, cellH = 0, originX = 0, originY = 0;
+
+    // 量一次：等寬字型，每個格子大小都相同
+    const measure = () => {
+      const cRect = container.getBoundingClientRect();
+      const f = grid[0][0].getBoundingClientRect();
+      cellW = f.width;
+      cellH = f.height;
+      originX = f.left - cRect.left + cellW / 2;
+      originY = f.top - cRect.top + cellH / 2;
+    };
+    measure();
+    new ResizeObserver(measure).observe(container);
+
+    let mouseX = -9999, mouseY = -9999;
     container.addEventListener('mousemove', e => {
       const rect = container.getBoundingClientRect();
       mouseX = e.clientX - rect.left;
       mouseY = e.clientY - rect.top;
     });
-    container.addEventListener('mouseleave', () => { mouseX = -999; mouseY = -999; });
+    container.addEventListener('mouseleave', () => { mouseX = -9999; mouseY = -9999; });
+
+    let dirty = [];      // 上一幀被推開的，下一幀要復原
+    let frameId = 0;
 
     function animateRipple() {
-      spans.forEach(span => {
-        const rect = span.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        const sx = rect.left - containerRect.left + rect.width / 2;
-        const sy = rect.top - containerRect.top + rect.height / 2;
-        const dist = Math.sqrt((sx - mouseX) ** 2 + (sy - mouseY) ** 2);
-        const radius = 80;
-        if (dist < radius) {
-          const force = (1 - dist / radius) * 6;
-          const angle = Math.atan2(sy - mouseY, sx - mouseX);
-          const dx = Math.cos(angle) * force;
-          const dy = Math.sin(angle) * force;
-          span.style.transform = `translate(${dx}px, ${dy}px)`;
-          span.style.opacity = 0.4 + (dist / radius) * 0.6;
-        } else {
-          span.style.transform = 'translate(0,0)';
-          span.style.opacity = '';
+      frameId = requestAnimationFrame(animateRipple);
+
+      for (let i = 0; i < dirty.length; i++) {
+        dirty[i].style.transform = '';
+        dirty[i].style.opacity = '';
+      }
+      dirty.length = 0;
+
+      if (mouseX < -9000 || !cellW) return;   // 滑鼠不在上面就完全不做事
+
+      // 只掃半徑覆蓋得到的那一塊網格
+      const c0 = Math.max(0, Math.floor((mouseX - originX - RADIUS) / cellW));
+      const c1 = Math.ceil((mouseX - originX + RADIUS) / cellW);
+      const r0 = Math.max(0, Math.floor((mouseY - originY - RADIUS) / cellH));
+      const r1 = Math.min(maxRow, Math.ceil((mouseY - originY + RADIUS) / cellH));
+
+      for (let r = r0; r <= r1; r++) {
+        const line = grid[r];
+        if (!line) continue;
+        const sy = originY + r * cellH;
+        const dy = sy - mouseY;
+        const end = Math.min(c1, line.length - 1);
+        for (let c = c0; c <= end; c++) {
+          const sx = originX + c * cellW;
+          const dx = sx - mouseX;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist >= RADIUS) continue;
+          const force = (1 - dist / RADIUS) * 6;
+          const ang = Math.atan2(dy, dx);
+          const span = line[c];
+          span.style.transform = 'translate(' + (Math.cos(ang) * force).toFixed(2) + 'px,' + (Math.sin(ang) * force).toFixed(2) + 'px)';
+          span.style.opacity = (0.4 + (dist / RADIUS) * 0.6).toFixed(2);
+          dirty.push(span);
         }
-      });
-      requestAnimationFrame(animateRipple);
+      }
     }
-    animateRipple();
+
+    // 捲出畫面就停，沒必要在看不到的地方燒 CPU
+    new IntersectionObserver(([e]) => {
+      cancelAnimationFrame(frameId);
+      if (e.isIntersecting) animateRipple();
+    }, { threshold: 0 }).observe(container);
   };
   img.src = imgSrc;
 }
