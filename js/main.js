@@ -1,0 +1,250 @@
+/* ============================================
+   1. Custom Cursor
+   ============================================ */
+const cursor = document.querySelector('.cursor');
+const ring = document.querySelector('.cursor-ring');
+if (cursor && ring) {
+  let mx = 0, my = 0, rx = 0, ry = 0, onDark = null;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function anim() {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+
+    /*
+     * 游標本身是純黑的，壓在深色區塊上會消失。
+     * 用 hit test 判斷腳下是不是深色，而不是綁定特定區塊——
+     * 之後任何地方加上 .theme-dark 都會自動生效。
+     * 游標元素自己是 pointer-events: none，不會打到自己。
+     */
+    const hit = document.elementFromPoint(mx, my);
+    const dark = !!(hit && hit.closest('.theme-dark'));
+    if (dark !== onDark) {
+      onDark = dark;
+      document.body.classList.toggle('on-dark', dark);
+    }
+
+    requestAnimationFrame(anim);
+  })();
+}
+
+/* ============================================
+   2. Reveal on Scroll
+   ============================================ */
+const reveals = document.querySelectorAll('.reveal');
+if (reveals.length) {
+  /*
+   * 延遲以「在同一個容器裡排第幾個」計算，不是整頁的第幾個。
+   * 舊做法用全頁索引，case 頁有二十幾個 .reveal，捲到後段時
+   * 最後一個要等將近兩秒才浮現——而且那個等待跟捲動位置無關。
+   * 依容器分組，等於每個區塊各自從頭開始跑自己的節奏。
+   */
+  const STEP = 0.07;   // 每階間隔
+  const CAP  = 5;      // 最多疊到第 5 階，一組太多時尾端不會等太久
+
+  reveals.forEach(el => {
+    const siblings = [...el.parentElement.children].filter(n => n.classList.contains('reveal'));
+    const i = siblings.indexOf(el);
+    el.style.transitionDelay = (Math.min(i, CAP) * STEP) + 's';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => obs.observe(el));
+}
+
+/* ============================================
+   3. ASCII Art 生成 + 波動效果
+   ============================================ */
+function generateASCII(imgSrc, targetId, opts = {}) {
+  const { cols = 120, fontSize = 7, ripple = false } = opts;
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    const ratio = img.height / img.width;
+    canvas.width = cols;
+    canvas.height = Math.floor(cols * ratio * 0.45);
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    const chars = '@#S%?*+;:,. ';
+    let rows = [];
+    for (let y = 0; y < canvas.height; y++) {
+      let row = '';
+      for (let x = 0; x < canvas.width; x++) {
+        const i = (y * canvas.width + x) * 4;
+        const brightness = (data[i] * 0.299 + data[i+1] * 0.587 + data[i+2] * 0.114) / 255;
+        const idx = Math.floor(brightness * (chars.length - 1));
+        row += chars[idx];
+      }
+      rows.push(row);
+    }
+
+    const el = document.getElementById(targetId);
+    if (!el) return;
+
+    if (!ripple) {
+      el.textContent = rows.join('\n');
+      return;
+    }
+
+    // 波動版本：每個字元包一個 span
+    el.innerHTML = '';
+    const spans = [];
+    rows.forEach((row, ri) => {
+      row.split('').forEach((ch, ci) => {
+        const span = document.createElement('span');
+        span.textContent = ch;
+        span.style.display = 'inline-block';
+        span.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        span.dataset.row = ri;
+        span.dataset.col = ci;
+        el.appendChild(span);
+        spans.push(span);
+      });
+      el.appendChild(document.createTextNode('\n'));
+    });
+
+    // 波動邏輯
+    const container = el.closest('.ascii-container') || el.parentElement;
+    let mouseX = -999, mouseY = -999;
+    container.addEventListener('mousemove', e => {
+      const rect = container.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+    container.addEventListener('mouseleave', () => { mouseX = -999; mouseY = -999; });
+
+    function animateRipple() {
+      spans.forEach(span => {
+        const rect = span.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const sx = rect.left - containerRect.left + rect.width / 2;
+        const sy = rect.top - containerRect.top + rect.height / 2;
+        const dist = Math.sqrt((sx - mouseX) ** 2 + (sy - mouseY) ** 2);
+        const radius = 80;
+        if (dist < radius) {
+          const force = (1 - dist / radius) * 6;
+          const angle = Math.atan2(sy - mouseY, sx - mouseX);
+          const dx = Math.cos(angle) * force;
+          const dy = Math.sin(angle) * force;
+          span.style.transform = `translate(${dx}px, ${dy}px)`;
+          span.style.opacity = 0.4 + (dist / radius) * 0.6;
+        } else {
+          span.style.transform = 'translate(0,0)';
+          span.style.opacity = '';
+        }
+      });
+      requestAnimationFrame(animateRipple);
+    }
+    animateRipple();
+  };
+  img.src = imgSrc;
+}
+
+// 執行：About 頁 ASCII（110 欄 + 滑鼠波動效果）
+if (document.getElementById('ascii-about')) {
+  generateASCII('assets/images/photo.jpg', 'ascii-about', { cols: 110, ripple: true });
+}
+
+/* ============================================
+   4. Active Nav Link
+   ============================================ */
+const path = window.location.pathname;
+document.querySelectorAll('.nav-links a').forEach(a => {
+  const href = a.getAttribute('href');
+  if (path.endsWith(href) || (path === '/' && href === 'index.html') || (path.endsWith('index.html') && href === 'index.html')) {
+    a.classList.add('active');
+  }
+});
+
+/* ============================================
+   5. Stats 數字 counter（滾到才跑）
+   ============================================ */
+const statNums = document.querySelectorAll('.stat-num');
+if (statNums.length) {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DURATION = 1400;
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+
+  // 「100+」拆成數字 100 與後綴 "+"，只有數字部分要跑
+  const run = el => {
+    const m = el.textContent.trim().match(/^(\d+)(.*)$/);
+    if (!m) return;
+    const target = Number(m[1]), suffix = m[2];
+    if (reduced) return;               // 直接留最終值，不做動畫
+
+    el.textContent = '0' + suffix;
+    let t0 = null;
+    const frame = now => {
+      if (t0 === null) t0 = now;
+      const p = Math.min((now - t0) / DURATION, 1);
+      el.textContent = Math.round(target * easeOut(p)) + suffix;
+      if (p < 1) requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  };
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { run(e.target); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+
+  statNums.forEach(el => obs.observe(el));
+}
+
+
+/* ============================================
+   6. Lenis 慣性滾動
+   CSS 的 scroll-behavior: smooth 已經拿掉——兩者同時存在會打架。
+   觸控裝置維持原生捲動（Lenis 預設就不接管 touch），手感比較對。
+   ============================================ */
+if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const lenis = new Lenis({ duration: 1.1 });
+
+  (function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  })();
+
+  /*
+   * 站內錨點要交回給 Lenis 處理。
+   * Lenis 接管捲動之後，瀏覽器原生的 hash 跳位會變成瞬間位移，
+   * 跟整站的慣性手感對不起來。offset 是為了讓目標不被固定的 nav 蓋住。
+   */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target, { offset: -80 });
+    });
+  });
+}
+
+
+/* ============================================
+   7. nav 壓在深色 Hero 上時反白
+   哪些 Hero 要觸發由 HTML 的 data-invert-nav 決定，不寫死 class 名稱。
+   case 頁的 Hero 只有左半邊是深的，nav 橫跨整個寬度，所以那頁不掛這個屬性。
+   ============================================ */
+const navBar = document.querySelector('nav');
+const invertSource = document.querySelector('[data-invert-nav]');
+
+if (navBar && invertSource) {
+  // 觀察區域從視窗頂端往下縮一個 nav 的高度：
+  // 深色區的底部還在 nav 下方時，就算「壓在深色上」。
+  new IntersectionObserver(
+    ([e]) => navBar.classList.toggle('theme-dark', e.isIntersecting),
+    { rootMargin: '-76px 0px 0px 0px', threshold: 0 }
+  ).observe(invertSource);
+}

@@ -1,0 +1,19 @@
+# ── macOS ──
+.DS_Store
+**/.DS_Store
+
+# ── 內部文件：不能公開 ──
+# CLAUDE.md 裡的「內容紅線」列出了前雇主的公司名稱。
+# 網站文案已經刻意把它們匿名化成「產業共同模式」，
+# 這份檔案一旦跟著推上公開 repo，那個匿名化就等於白做了。
+CLAUDE.md
+PROMPTS.md
+Orgnzm-DESIGN.md
+
+# ── 開發過程產物 ──
+_backup/
+.claude/
+
+# ── 憑證：永遠不要進版控 ──
+.env
+*.token
