@@ -521,7 +521,7 @@ footer {
 
 .case-meta {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   border-bottom: 1px solid var(--line);
 }
 
@@ -842,6 +842,27 @@ footer {
 /* 表格在窄螢幕自己捲，頁面不跟著橫向捲 */
 .case-table-scroll { overflow-x: auto; }
 
+/* meta bar 裡的連結：直排、比正文的 case-link 緊湊 */
+.case-meta-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.case-meta-links a {
+  font-size: var(--fs-2);
+  line-height: 1;
+  letter-spacing: var(--ls-cjk);
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.case-meta-links a:hover { color: var(--accent); border-color: var(--accent); }
+
 /* 聲明 / 限制 / 註記——語氣要比內文輕，但不能看不見 */
 .case-note {
   font-size: var(--fs-2);
@@ -1110,16 +1131,23 @@ footer {
 
 /* Hero 內部的 .hero-inner 已經是 position: relative，
    這裡只要把流體壓到它下面即可 */
+/* 流體改滿版：原本只佔右側 62%，滑鼠在左邊文字區時根本碰不到 canvas，
+   磁吸等於形同虛設。 */
 #hero-lava {
   position: absolute;
-  right: 0;
-  top: 0;
-  width: 62%;
-  height: 100%;
+  inset: 0;
   z-index: 0;
 }
 
-.hero-inner { z-index: 2; }
+/* 文字層不吃滑鼠事件，讓磁吸在整個 Hero 都有效；
+   實際要點的連結再各自收回來。 */
+.hero-inner {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-inner a,
+.hero-inner button { pointer-events: auto; }
 
 /* 文字與流體之間的遮罩。
    桌機從左側壓深，讓大字站在乾淨的黑上；
@@ -1303,6 +1331,7 @@ body.on-dark .cursor-ring { border-color: var(--paper); }
   .case-hero { grid-template-columns: 1fr; }
   .case-hero-right { height: 300px; }
   .case-meta { grid-template-columns: 1fr 1fr; }
+  .case-meta-item:last-child { grid-column: 1 / -1; }
   .case-section { grid-template-columns: 1fr; gap: 32px; }
   .case-section-label { position: static; }
   .case-content { padding: 0 24px; }

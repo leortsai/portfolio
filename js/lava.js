@@ -340,8 +340,8 @@ class LavaScene {
 
 const CONFIG = {
   top: "#3D8BFF", bottom: "#0A2E7A", sheen: "#CFE2FF",
-  blobs: 11, scale: 6, viscosity: 7, speed: 6,
-  glow: 14, gloss: 12, wander: 16, magnet: 14, sizePercent: 55,
+  blobs: 11, scale: 6, viscosity: 7, speed: 5,
+  glow: 14, gloss: 12, wander: 16, magnet: 19, sizePercent: 55,
 };
 
 const host = document.getElementById("hero-lava");
