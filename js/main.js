@@ -51,11 +51,19 @@ if (reveals.length) {
     el.style.transitionDelay = (Math.min(i, CAP) * STEP) + 's';
   });
 
+  /*
+   * 門檻用 rootMargin 而不是 threshold。
+   * 原本是 threshold: 0.12，要求元素有 12% 進入視窗——但 Acer 那頁的
+   * 「The Problem」區塊高 9,129px，12% 就是 1,095px，比視窗還高，
+   * 條件永遠無法滿足，整個區塊就卡在 opacity: 0 永遠不出現。
+   * 改成 threshold 0 + 底部內縮 12% 視窗高：元素頂端進到畫面 88% 的位置就觸發，
+   * 觸發時機的手感一樣，但跟元素本身多高完全無關。
+   */
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
 
   reveals.forEach(el => obs.observe(el));
 }
