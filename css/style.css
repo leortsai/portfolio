@@ -1023,44 +1023,69 @@ footer {
   color: var(--blue);
 }
 
-.about-experience {
-  padding: 60px;
+/* ── 經歷／接案／學歷的共用時間軸 ──
+   左欄年份、右欄內容，每筆之間用細線分隔。
+   區塊標題沿用首頁那套 .section-header / .section-title / .section-index。 */
+.about-track {
+  padding: 72px 60px;
   border-top: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 60px;
-  align-items: baseline;
 }
 
-.about-exp-label {
-  font-size: var(--fs-1);
+.about-track .section-header { margin-bottom: 0; }
+
+.track-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 40px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.track-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.track-period {
+  font-size: var(--fs-2);
+  line-height: var(--lh-lead);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
   color: var(--ink-light);
+  white-space: nowrap;
 }
 
-.about-exp-role {
+.track-role {
   font-family: 'GT Walsheim Trial', sans-serif;
   font-size: var(--fs-4);
   font-weight: 500;
   letter-spacing: var(--ls-display);
-  margin-bottom: 6px;
   line-height: var(--lh-lead);
+  margin-bottom: 4px;
 }
 
-.about-exp-company {
+.track-sub {
   font-size: var(--fs-2);
-  color: var(--blue);
-  letter-spacing: var(--ls-label);
-  margin-bottom: 12px;
+  letter-spacing: var(--ls-cjk);
+  color: var(--accent);
+  margin-bottom: 10px;
 }
 
-.about-exp-desc {
+.track-desc {
   font-size: var(--fs-3);
   line-height: var(--lh-cjk);
-  color: var(--ink-mid);
   letter-spacing: var(--ls-cjk);
+  color: var(--ink-mid);
 }
+
+/* 接案那一軌的條列：一年可能有好幾個案子 */
+.track-list {
+  list-style: none;
+  font-size: var(--fs-3);
+  line-height: var(--lh-cjk);
+  letter-spacing: var(--ls-cjk);
+  color: var(--ink-mid);
+}
+
+.track-list li + li { margin-top: 6px; }
+.track-list .track-note { color: var(--ink-light); }
 
 .about-contact {
   padding: 120px 60px;
@@ -1341,7 +1366,8 @@ body.on-dark .cursor-ring { border-color: var(--paper); }
   .about-left { display: none; }
   .about-right { padding: 40px 24px; }
   .about-hero { padding: 120px 24px 60px; }
-  .about-experience { grid-template-columns: 1fr; padding: 40px 24px; }
+  .about-track { padding: 48px 24px; }
+  .track-item { grid-template-columns: 1fr; gap: 10px; }
   .about-contact { padding: 80px 24px; }
   .contact-btns { flex-direction: column; align-items: center; }
   footer { padding: 32px 24px; flex-direction: column; gap: 16px; }
