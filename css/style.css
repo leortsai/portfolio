@@ -410,20 +410,20 @@ footer {
 .work-card img.fit-left { object-position: left center; }
 .work-card img.zoom-5   { --zoom: 1.05; }
 
-.work-card-meta { padding: 16px 2px 0; }
+.work-card-meta { padding: 28px 2px 0; }
 
 .work-card-head {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 14px;
+  margin-bottom: 12px;
 }
 
 .work-card-num {
   font-size: var(--fs-1);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--ink-light);
+  color: var(--ink-mid);
 }
 
 /* 專案類型：讓招募方不點進去也知道這是什麼性質的案子 */
@@ -441,7 +441,7 @@ footer {
   color: var(--ink);
   letter-spacing: var(--ls-display);
   line-height: var(--lh-title);
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 
 .work-card:hover .work-card-title { color: var(--accent); }
@@ -462,7 +462,7 @@ footer {
   border: 1px solid var(--line-strong);
   padding: 7px 14px;
   border-radius: 100px;
-  color: var(--ink-mid);
+  color: var(--ink);
 }
 
 /* 並排的兩張 */
