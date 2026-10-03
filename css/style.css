@@ -1354,6 +1354,15 @@ body.on-dark .cursor-ring { border-color: var(--paper); }
   .marquee-track { animation: none; }
 }
 
+/* 觸控裝置沒有實體游標可以跟：那顆點和圓圈只會停在最後一次觸碰的位置，
+   而 body 的 cursor:none 在這裡也沒有意義。用 pointer 偵測而不是寬度，
+   這樣視窗縮窄的桌機仍然保有自製游標。 */
+@media (hover: none), (pointer: coarse) {
+  .cursor, .cursor-ring { display: none; }
+  body, .work-card { cursor: auto; }
+  a, button { cursor: pointer; }
+}
+
 /* ============================================
    Responsive
    ============================================ */
@@ -1371,20 +1380,34 @@ body.on-dark .cursor-ring { border-color: var(--paper); }
   }
   .hero-scroll { left: 24px; bottom: 24px; }
   .hero-meta { right: 24px; bottom: 24px; gap: 16px; }
-  .hero-inner { padding-bottom: 100px; }
 
-  .hero-inner { padding: 40px 24px; }
+  /* 原本寫成 padding-bottom:100px 之後又接一條 padding:40px 24px，
+     後面的簡寫會把 100px 洗掉，CTA 只剩 3.5px 就撞到 Scroll to explore。
+     合併成一條，順便把上方留白加大，讓 eyebrow 和大字離 nav 遠一點。 */
+  .hero-inner { padding: 72px 24px 100px; }
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
+
+  /* max-width: min(520px, 36vw) 是給寬螢幕收行用的；
+     375px 寬時 36vw 只有 135px，整段會被壓成九行。手機不設上限。 */
+  .hero-desc { max-width: 100%; }
   #work { padding: 80px 24px; }
   .work-pair { grid-template-columns: 1fr; gap: 56px; }
   .stats-bar { grid-template-columns: 1fr; }
   .stats-note { padding: 16px 24px 0; }
   .stat { border-right: none; border-bottom: 1px solid var(--line); padding: 24px; }
   .case-hero { grid-template-columns: 1fr; }
-  .case-hero-right { height: 300px; }
-  .case-meta { flex-wrap: wrap; }
-  .case-meta-item { flex: 1 1 50%; }
-  .case-meta-item:last-child { flex-basis: 100%; }
+  /* 固定 300px 搭 object-fit: cover，2880×1506 的截圖左右各被裁掉 99px
+     ——「差異模式」和右邊那一欄整個看不到。手機改用圖片原比例。 */
+  .case-hero-right { height: auto; }
+  .case-hero-right img { position: static; height: auto; object-fit: contain; }
+  /* 一列一項：兩欄時 Role 這種長值會被擠成一行兩三個字，斷得很怪。 */
+  .case-meta { flex-direction: column; }
+  .case-meta-item {
+    padding: 20px 24px;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .case-meta-item:last-child { border-bottom: none; }
   .case-section { grid-template-columns: 1fr; gap: 32px; }
   .case-section-label { position: static; }
   .case-content { padding: 0 24px; }

@@ -362,6 +362,15 @@ if (host) {
   }
 
   if (scene) {
+    /*
+     * port 過來的 bindEvents() 會把 canvas 設成 touch-action: none
+     * ——那是為了讓滑鼠磁吸吃到所有指標事件。桌機沒差，
+     * 但 canvas 是 inset:0 鋪滿整個 Hero，手機上等於整屏吃掉垂直滑動，
+     * 使用者滑不過 Hero，到不了 Work。磁吸本來就只有滑鼠用得到，
+     * 這裡把垂直捲動還給瀏覽器。不動 END PORT 以上的原始碼。
+     */
+    scene.renderer.domElement.style.touchAction = "pan-y";
+
     const fit = () => scene.setSize(host.clientWidth, host.clientHeight);
     fit();
     new ResizeObserver(fit).observe(host);

@@ -3,7 +3,10 @@
    ============================================ */
 const cursor = document.querySelector('.cursor');
 const ring = document.querySelector('.cursor-ring');
-if (cursor && ring) {
+/* 觸控裝置沒有游標可以跟：這條 rAF 迴圈每幀都會做一次 elementFromPoint，
+   畫出來的圓圈卻只會卡在最後一次觸碰的位置。直接不啟動。 */
+const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+if (cursor && ring && finePointer) {
   let mx = 0, my = 0, rx = 0, ry = 0, onDark = null;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
   (function anim() {
