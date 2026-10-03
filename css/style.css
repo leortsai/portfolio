@@ -241,7 +241,9 @@ footer {
    ============================================ */
 .hero {
   position: relative;
-  min-height: 100vh;
+  /* 72vh 而不是滿版：招募方掃作品集時，第一件作品越早進畫面越好。
+     滿版 Hero 要捲 1.6 屏才看得到第一張作品。 */
+  min-height: 72vh;
   display: flex;
   align-items: center;
   padding-top: 85px;
@@ -343,13 +345,13 @@ footer {
 /* ============================================
    Home — Work Grid
    ============================================ */
-#work { padding: 120px 60px; }
+#work { padding: 72px 60px 120px; }
 
 .work-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
   padding-bottom: 32px;
   border-bottom: 1px solid var(--line);
 }
@@ -371,16 +373,24 @@ footer {
 
 .work-grid {
   display: grid;
-  gap: 12px;
+  gap: 56px;
 }
 
+/* ── 作品卡 ──
+   專案名稱與分類移到圖片外面，永遠看得見。
+   原本放在 .work-card-overlay 裡、opacity 0、要 hover 才出現——
+   招募方掃首頁時看到的是四張沒有標題的圖，手機沒有 hover 更是永遠看不到。 */
 .work-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: none;
+}
+
+.work-card-media {
   position: relative;
   overflow: hidden;
   border-radius: 16px;
-  display: block;
-  text-decoration: none;
-  cursor: none;
 }
 
 .work-card img {
@@ -395,44 +405,46 @@ footer {
 
 .work-card:hover img { transform: scale(calc(var(--zoom) * 1.03)); }
 
-/* object-fit: cover 會裁掉溢出的那一邊，每張圖要保留的重點不同。
-   Michelin 是直式全頁截圖（0.68）塞進寬卡片 → 裁上下，要對齊頂端；
-   III Awards 是橫式截圖（1.74）比卡片更寬 → 裁左右，要對齊左緣。 */
+/* object-fit: cover 會裁掉溢出的那一邊，每張圖要保留的重點不同。 */
 .work-card img.fit-top  { object-position: center top; }
 .work-card img.fit-left { object-position: left center; }
 .work-card img.zoom-5   { --zoom: 1.05; }
 
-.work-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 40px;
-}
+.work-card-meta { padding: 16px 2px 0; }
 
-.work-card:hover .work-card-overlay { opacity: 1; }
+.work-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
 
 .work-card-num {
   font-size: var(--fs-1);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 8px;
+  color: var(--ink-light);
+}
+
+/* 專案類型：讓招募方不點進去也知道這是什麼性質的案子 */
+.work-card-kind {
+  font-size: var(--fs-1);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .work-card-title {
   font-family: 'GT Walsheim Trial', sans-serif;
   font-weight: 500;
   font-size: var(--fs-5);
-  color: white;
+  color: var(--ink);
   letter-spacing: var(--ls-display);
-  margin-bottom: 12px;
   line-height: var(--lh-title);
+  margin-bottom: 12px;
 }
+
+.work-card:hover .work-card-title { color: var(--accent); }
 
 .work-card-tags {
   display: flex;
@@ -440,11 +452,6 @@ footer {
   flex-wrap: wrap;
 }
 
-/* 膠囊元件的垂直置中。
-   line-height: normal 會套用字型自己的 line gap，而 GT Walsheim 把那段
-   空間分配得並不對稱——量出來 .work-card-tag 上下差 3px、.skill-tag 差 4px。
-   改成 inline-flex + 明確 line-height，行框高度由我們決定，
-   文字就會真的落在框的正中間。padding 同步加大，維持原本的膠囊高度。 */
 .work-card-tag {
   line-height: 1;
   display: inline-flex;
@@ -452,10 +459,17 @@ footer {
   font-size: var(--fs-2);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid var(--line-strong);
   padding: 7px 14px;
   border-radius: 100px;
-  color: rgba(255,255,255,0.7);
+  color: var(--ink-mid);
+}
+
+/* 並排的兩張 */
+.work-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 /* ============================================
@@ -1351,6 +1365,7 @@ body.on-dark .cursor-ring { border-color: var(--paper); }
   .hero-inner { padding: 40px 24px; }
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
   #work { padding: 80px 24px; }
+  .work-pair { grid-template-columns: 1fr; gap: 56px; }
   .stats-bar { grid-template-columns: 1fr; }
   .stat { border-right: none; border-bottom: 1px solid var(--line); padding: 24px; }
   .case-hero { grid-template-columns: 1fr; }
