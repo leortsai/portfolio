@@ -342,6 +342,15 @@ footer {
   margin-top: 4px;
 }
 
+/* 數據下方的小字說明：避免 800+ 被誤讀成 UI 專案數或獨立工作室客戶數 */
+.stats-note {
+  font-size: var(--fs-1);
+  line-height: var(--lh-cjk);
+  letter-spacing: var(--ls-cjk);
+  color: var(--ink-light);
+  padding: 16px 60px 0;
+}
+
 /* ============================================
    Home — Work Grid
    ============================================ */
@@ -533,13 +542,15 @@ footer {
   object-fit: cover;
 }
 
+/* 用 flex 不用固定欄數：各案例的 meta 項數不同（Acer 5 項、III Design 3 項），
+   寫死 repeat(5,1fr) 會在項數少時留下空欄。 */
 .case-meta {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   border-bottom: 1px solid var(--line);
 }
 
 .case-meta-item {
+  flex: 1;
   padding: 28px 40px;
   border-right: 1px solid var(--line);
 }
@@ -1367,11 +1378,13 @@ body.on-dark .cursor-ring { border-color: var(--paper); }
   #work { padding: 80px 24px; }
   .work-pair { grid-template-columns: 1fr; gap: 56px; }
   .stats-bar { grid-template-columns: 1fr; }
+  .stats-note { padding: 16px 24px 0; }
   .stat { border-right: none; border-bottom: 1px solid var(--line); padding: 24px; }
   .case-hero { grid-template-columns: 1fr; }
   .case-hero-right { height: 300px; }
-  .case-meta { grid-template-columns: 1fr 1fr; }
-  .case-meta-item:last-child { grid-column: 1 / -1; }
+  .case-meta { flex-wrap: wrap; }
+  .case-meta-item { flex: 1 1 50%; }
+  .case-meta-item:last-child { flex-basis: 100%; }
   .case-section { grid-template-columns: 1fr; gap: 32px; }
   .case-section-label { position: static; }
   .case-content { padding: 0 24px; }
