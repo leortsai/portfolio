@@ -1156,6 +1156,9 @@ footer {
 
 .track-item:last-child { border-bottom: none; padding-bottom: 0; }
 
+/* 接案那一軌沒有年份，不需要左邊的時間欄 */
+.track-item.full { grid-template-columns: 1fr; }
+
 .track-period {
   font-size: var(--fs-2);
   line-height: var(--lh-lead);
