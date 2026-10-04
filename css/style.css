@@ -669,6 +669,7 @@ footer {
 
 .case-img {
   width: 100%;
+  height: auto;   /* 必須：HTML 有 width/height 屬性，沒有這行會被撐成屬性值的高度 */
   border-radius: 8px;
   display: block;
   margin-bottom: 12px;
@@ -684,6 +685,7 @@ footer {
 
 .case-img-full {
   width: calc(100% + 60px);
+  height: auto;   /* 必須：HTML 有 width/height 屬性，沒有這行會被撐成屬性值的高度 */
   margin-left: -60px;
   border-radius: 8px;
   display: block;
