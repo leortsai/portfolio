@@ -293,3 +293,21 @@ if (navBar && invertSource) {
     { rootMargin: '-76px 0px 0px 0px', threshold: 0 }
   ).observe(invertSource);
 }
+
+/* ============================================
+   7. 圖片提前載入
+   原生 loading="lazy" 要等圖快進畫面才開始抓，案例頁一路往下捲
+   會一直看到空白再跳出圖。這裡提前 1.5 個螢幕高度就把 lazy 拿掉，
+   讓瀏覽器立刻開始下載。JS 失效時仍然退回原生 lazy，不會壞。
+   ============================================ */
+const lazyImgs = document.querySelectorAll('img[loading="lazy"]');
+if (lazyImgs.length && 'IntersectionObserver' in window) {
+  const warm = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.removeAttribute('loading');   // 立刻開始下載
+      obs.unobserve(e.target);
+    });
+  }, { rootMargin: '150% 0px' });
+  lazyImgs.forEach(img => warm.observe(img));
+}
