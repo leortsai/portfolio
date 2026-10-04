@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Michelin Guide Redesign — Fuyu Tsai | UI Designer</title>
+  <title>Michelin Guide Redesign — Fuyu Tsai | UI/UX Designer</title>
+  <meta name="description" content="Michelin Guide 概念重設計 — 餐廳搜尋、列表、詳細頁與三步驟訂位流程。Fuyu Tsai UI/UX Case Study。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -25,9 +26,9 @@
 <!-- CASE HERO -->
 <section class="case-hero">
   <div class="case-hero-left theme-dark reveal">
-    <div class="case-hero-num">Case Study 03</div>
+    <div class="case-hero-num">Case Study 02</div>
     <h1 class="case-hero-title">Michelin Guide<br>Redesign</h1>
-    <p class="case-hero-desc">自主進行的介面重構練習。在保留米其林品牌調性的前提下，重新梳理資訊層級、列表與訂位流程的畫面設計。</p>
+    <p class="case-hero-desc">在保留米其林高端品牌調性的前提下，讓使用者不必離開平台就能完成找餐廳到訂位。</p>
   </div>
   <div class="case-hero-right">
     <img src="assets/images/Michelin Guide/Michelin Guide.jpg" alt="Michelin Guide">
@@ -52,164 +53,93 @@
     <div class="case-meta-label">Tools</div>
     <div class="case-meta-value">Figma / FigJam</div>
   </div>
+  <div class="case-meta-item">
+    <div class="case-meta-label">Live</div>
+    <div class="case-meta-value"><a href="https://www.figma.com/proto/nYqGLZ3htsfceenq535lKO/Michelin-Guide-Redesign?node-id=13-46&amp;page-id=0%3A1&amp;t=6Scw4HtXJJTX0Dl7-1" target="_blank" rel="noopener">Figma 原型</a></div>
+  </div>
 </div>
 
 <!-- CONTENT -->
 <div class="case-content">
 
-  <!-- 01 專案概述 -->
-  <div class="case-section reveal">
+  <!-- 01 問題 -->
+  <div class="case-section reveal" id="problem">
     <div class="case-section-label">
       <div class="case-section-num">01</div>
-      <div class="case-section-title">專案概述</div>
+      <div class="case-section-title">問題</div>
     </div>
     <div class="case-section-body">
-      <p>本專案以米其林指南網站的餐廳功能為範圍，重新整理首頁、餐廳列表、餐廳詳細頁與訂位流程。在保留品牌調性的前提下，集中呈現評論、價格、位置與可訂時段，減少查找資訊時在不同服務之間切換的需求。</p>
-      <img src="assets/images/Michelin Guide/Sitemap&amp;User Flow.jpg" alt="Sitemap & User Flow" class="case-img-full">
-      <p class="case-img-caption">Sitemap & User Flow</p>
+      <p>對照 The Fork、OpenTable、食べログ 後發現，使用者在米其林指南找到感興趣的餐廳後，必須跳到 Google Maps 查評論、價格與位置，訂位動機在過程中被削弱：</p>
+      <ol class="case-list numbered">
+        <li><strong>搜尋缺乏即時性</strong>　不抓取位置、不顯示今日可訂狀態。</li>
+        <li><strong>資訊不完整</strong>　缺少評論、價格與地圖，逼使用者跳出平台。</li>
+        <li><strong>探索體驗太冷</strong>　缺乏情境引導與主題特輯，無法激發訂位意願。</li>
+      </ol>
     </div>
   </div>
 
-  <!-- 02 研究階段 -->
-  <div class="case-section reveal">
+  <!-- 02 UI 視覺與設計 -->
+  <div class="case-section reveal" id="design">
     <div class="case-section-label">
       <div class="case-section-num">02</div>
-      <div class="case-section-title">研究階段</div>
+      <div class="case-section-title">UI 視覺與設計</div>
     </div>
     <div class="case-section-body">
-      <p>透過實際使用米其林指南網站，並對照競品 The Fork、OpenTable、食べログ進行比較分析，歸納出以下觀察：</p>
-      <div class="decision-grid">
-        <div class="decision-item">
-          <div class="decision-item-title">OpenTable</div>
-          <div class="decision-item-text">提供即時定位與當日可訂功能，並整合 AI 自然語言搜尋。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">食べログ</div>
-          <div class="decision-item-text">提供情境模式選擇（約會、聚餐、商務）與主題特輯。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">The Fork</div>
-          <div class="decision-item-text">提供優惠時段與地區 Top 100 推薦。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">Michelin（現況）</div>
-          <div class="decision-item-text">瀏覽體驗較為靜態，缺乏即時性與情境引導。</div>
-        </div>
-      </div>
-    </div>
-  </div>
+      <ul class="case-list">
+        <li><strong>品牌系統</strong>　保留米其林主色 #BF0000、金色 #C9A84C、深黑 #1A1A1A；標題 Playfair Display、內文 Inter。</li>
+        <li><strong>首頁搜尋器</strong>　毛玻璃效果融入 Hero Banner，以金色細線分隔三個欄位。</li>
+        <li><strong>餐廳詳細頁</strong>　直接顯示今日可訂時段，補齊即時性與資訊完整度。</li>
+        <li><strong>範圍</strong>　限縮在餐廳功能流程，不涉及飯店與文章頁面。</li>
+      </ul>
 
-  <!-- 03 問題定義 -->
-  <div class="case-section reveal">
-    <div class="case-section-label">
-      <div class="case-section-num">03</div>
-      <div class="case-section-title">問題定義</div>
-    </div>
-    <div class="case-section-body">
-      <div class="case-callout">
-        <p>在操作餐廳搜尋與訂位流程時，我觀察到評論、價格與位置資訊需要跨服務查找，增加從瀏覽餐廳到完成訂位之間的操作斷點。</p>
-      </div>
-      <div class="pain-point">
-        <div class="pain-point-label">P1 — 搜尋即時性</div>
-        <div class="pain-point-text">不抓取使用者位置、不顯示今日可訂狀態，搜尋器缺乏即時性。</div>
-      </div>
-      <div class="pain-point">
-        <div class="pain-point-label">P2 — 資訊完整度</div>
-        <div class="pain-point-text">缺少評論、價格、地圖，逼使用者跳出平台。</div>
-      </div>
-      <div class="pain-point">
-        <div class="pain-point-label">P3 — 探索體驗</div>
-        <div class="pain-point-text">缺少情境引導與主題分類，餐廳探索主要依賴既有篩選條件。</div>
-      </div>
-    </div>
-  </div>
+      <img src="assets/images/Michelin Guide/Sitemap&User Flow.jpg" alt="Sitemap 與 User Flow" class="case-img-full">
+      <p class="case-img-caption">Sitemap 與 User Flow</p>
 
-  <!-- 04 設計流程 -->
-  <div class="case-section reveal">
-    <div class="case-section-label">
-      <div class="case-section-num">04</div>
-      <div class="case-section-title">設計流程</div>
-    </div>
-    <div class="case-section-body">
-      <p>以 FigJam 建立 Sitemap，再依 User Flow、Wireframe 推進至高保真 UI。</p>
-      <div class="case-img-grid cols-2">
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Wireframe/01 - 首頁 Wireframe.png" alt="首頁 Wireframe" class="case-img">
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Wireframe/02 - 餐廳列表頁 Wireframe.png" alt="餐廳列表 Wireframe" class="case-img">
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Wireframe/03 - 餐廳詳細頁 Wireframe.png" alt="餐廳詳細 Wireframe" class="case-img">
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Wireframe/04 - 訂位流程 Wireframe.png" alt="訂位流程 Wireframe" class="case-img">
-      </div>
       <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Wireframe/Design System.png" alt="Design System" class="case-img-full">
       <p class="case-img-caption">Design System</p>
+
+      <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/01 - 首頁 UI.png" alt="首頁 UI" class="case-img-full">
+      <p class="case-img-caption">首頁 — 毛玻璃搜尋器融入 Hero Banner</p>
+
+      <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/02 - 餐廳列表頁 UI.png" alt="餐廳列表頁 UI" class="case-img-full">
+      <p class="case-img-caption">餐廳列表頁</p>
+
+      <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/03 - 餐廳詳細頁 UI.png" alt="餐廳詳細頁 UI" class="case-img-full">
+      <p class="case-img-caption">餐廳詳細頁 — 直接顯示今日可訂時段</p>
     </div>
   </div>
 
-  <!-- 05 設計決策 -->
-  <div class="case-section reveal">
+  <!-- 03 互動與原型 -->
+  <div class="case-section reveal" id="prototype">
     <div class="case-section-label">
-      <div class="case-section-num">05</div>
-      <div class="case-section-title">設計決策</div>
+      <div class="case-section-num">03</div>
+      <div class="case-section-title">互動與原型</div>
     </div>
     <div class="case-section-body">
-      <div class="decision-grid">
-        <div class="decision-item">
-          <div class="decision-item-title">品牌系統</div>
-          <div class="decision-item-text">保留米其林核心識別：主色 #BF0000、強調金色 #C9A84C、深黑 #1A1A1A。Playfair Display 標題字型呼應高端歐式質感，內文 Inter 確保易讀性。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">Glassmorphism 搜尋器</div>
-          <div class="decision-item-text">首頁搜尋器採用毛玻璃效果，讓搜尋器與 Hero Banner 自然融合，以金色細線分隔三個輸入欄位，強化品牌細節。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">左右分欄訂位流程</div>
-          <div class="decision-item-text">訂位流程採左側餐廳摘要、右側表單的雙欄版面，讓使用者填寫資料時仍能看到所選餐廳資訊，降低認知負擔。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">今日可訂時段</div>
-          <div class="decision-item-text">餐廳詳細頁直接顯示今日可訂時段，以紅色選取狀態搭配發光陰影效果明確標示，此設計回應 P1 與 P2 的資訊呈現問題。</div>
-        </div>
+      <p>訂位流程分三步驟，採左側餐廳摘要、右側表單的雙欄版面，讓使用者填寫時仍能看到所選餐廳，降低認知負擔。</p>
+
+      <div class="case-links">
+        <a href="https://www.figma.com/proto/nYqGLZ3htsfceenq535lKO/Michelin-Guide-Redesign?node-id=13-46&amp;page-id=0%3A1&amp;t=6Scw4HtXJJTX0Dl7-1" target="_blank" rel="noopener" class="case-link case-link-primary">Figma 原型</a>
       </div>
-      <p>本次優先處理從餐廳搜尋到訂位的流程，範圍包含首頁、列表、詳細頁與訂位畫面；飯店與文章頁面不在此輪設計範圍。</p>
+
+      <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/04 - 訂位流程 UI.png" alt="訂位流程 步驟一" class="case-img-full">
+      <p class="case-img-caption">訂位流程 — 步驟一</p>
+
+      <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/04 - 訂位流程 UI｜步驟二.png" alt="訂位流程 步驟二" class="case-img-full">
+      <p class="case-img-caption">訂位流程 — 步驟二</p>
+
+      <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/04 - 訂位流程 UI｜步驟三.png" alt="訂位流程 步驟三" class="case-img-full">
+      <p class="case-img-caption">訂位流程 — 步驟三</p>
     </div>
   </div>
 
-  <!-- 06 成果展示 -->
-  <div class="case-section reveal">
-    <div class="case-section-label">
-      <div class="case-section-num">06</div>
-      <div class="case-section-title">成果展示</div>
-    </div>
-    <div class="case-section-body">
-      <div class="browser-frame case-img-full">
-        <div class="browser-frame-bar"><span></span><span></span><span></span></div>
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/01 - 首頁 UI.png" alt="首頁 UI">
-      </div>
-      <p class="case-img-caption">首頁 — Glassmorphism 搜尋器 + Hero Banner</p>
-      <div class="browser-frame case-img-full">
-        <div class="browser-frame-bar"><span></span><span></span><span></span></div>
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/02 - 餐廳列表頁 UI.png" alt="餐廳列表頁 UI">
-      </div>
-      <p class="case-img-caption">餐廳列表頁 — 情境篩選 + 即時可訂狀態</p>
-      <div class="browser-frame case-img-full">
-        <div class="browser-frame-bar"><span></span><span></span><span></span></div>
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/03 - 餐廳詳細頁 UI.png" alt="餐廳詳細頁 UI">
-      </div>
-      <p class="case-img-caption">餐廳詳細頁 — 今日可訂時段整合</p>
-      <div class="case-img-grid cols-3">
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/04 - 訂位流程 UI.png" alt="訂位流程步驟一" class="case-img">
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/04 - 訂位流程 UI｜步驟二.png" alt="訂位流程步驟二" class="case-img">
-        <img src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/04 - 訂位流程 UI｜步驟三.png" alt="訂位流程步驟三" class="case-img">
-      </div>
-      <p class="case-img-caption">訂位流程三步驟 — 左右分欄設計</p>
-    </div>
-  </div>
-
-</div><!-- /case-content -->
+</div>
 
 <!-- NEXT PROJECT -->
-<a href="case-iii-design.html" class="next-project theme-dark">
+<a href="case-iii-awards.html" class="next-project theme-dark">
   <div>
     <div class="next-project-label">Next Project</div>
-    <div class="next-project-title">III Design Studio</div>
+    <div class="next-project-title">III Awards Agency</div>
   </div>
   <div class="next-project-arrow">→</div>
 </a>

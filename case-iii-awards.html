@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>III Awards Agency — Fuyu Tsai | UI Designer</title>
+  <title>III Awards Agency — Fuyu Tsai | UI/UX Designer</title>
+  <meta name="description" content="III Awards Agency — 為國際獎項顧問服務建立獨立品牌與四頁響應式網站。Fuyu Tsai UI/UX Case Study。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -25,9 +26,9 @@
 <!-- CASE HERO -->
 <section class="case-hero">
   <div class="case-hero-left theme-dark reveal">
-    <div class="case-hero-num">Case Study 02</div>
+    <div class="case-hero-num">Case Study 03</div>
     <h1 class="case-hero-title">III Awards<br>Agency</h1>
-    <p class="case-hero-desc">一個真的上線的網站。從品牌識別、資訊架構、響應式 UI 到前端實作全部自己來，後台用 Notion 建客戶資料庫、n8n 跑截止日自動通知。</p>
+    <p class="case-hero-desc">為國際獎項顧問服務建立獨立品牌與四頁響應式網站。</p>
   </div>
   <div class="case-hero-right">
     <img src="assets/images/III Awards Agency/網站截圖首頁Hero.png" alt="III Awards Agency 網站首頁">
@@ -38,7 +39,7 @@
 <div class="case-meta">
   <div class="case-meta-item">
     <div class="case-meta-label">Role</div>
-    <div class="case-meta-value">UI Design / Web Design<br>Brand System / Front-end</div>
+    <div class="case-meta-value">Brand / UI Designer</div>
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Year</div>
@@ -46,7 +47,7 @@
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Type</div>
-    <div class="case-meta-value">Real-world Web<br>已上線</div>
+    <div class="case-meta-value">0 → 1 Brand &amp; Web<br>已上線</div>
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Tools</div>
@@ -61,206 +62,79 @@
 <!-- CONTENT -->
 <div class="case-content">
 
-  <!-- 01 專案概述 -->
-  <div class="case-section reveal">
+  <!-- 01 問題 -->
+  <div class="case-section reveal" id="problem">
     <div class="case-section-label">
-      <div class="case-section-num">01 — Overview</div>
-      <div class="case-section-title">專案概述</div>
+      <div class="case-section-num">01</div>
+      <div class="case-section-title">問題</div>
     </div>
     <div class="case-section-body">
-      <div class="case-callout">
-        <p>為 III Awards Agency 建立品牌識別與四頁響應式網站，並以 Notion 管理客戶與獎項資料、以 n8n 建立截止日通知流程。</p>
-      </div>
-      <div class="decision-grid">
-        <div class="decision-item">
-          <div class="decision-item-title">48+</div>
-          <div class="decision-item-text">可代辦獎項</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">5</div>
-          <div class="decision-item-text">服務步驟設計</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">4</div>
-          <div class="decision-item-text">頁面網站交付</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">0 → 1</div>
-          <div class="decision-item-text">品牌從無到有</div>
-        </div>
-      </div>
+      <ol class="case-list numbered">
+        <li><strong>市場缺口</strong>　台灣現有的獎項代辦服務都附屬於設計媒體，只是導覽列裡的一個分項，沒有獨立品牌與設計專業的展示。</li>
+        <li><strong>使用者困境</strong>　每個獎項的截止日、費用、評審邏輯與送件格式都不同，客戶光是判斷「該申請哪個獎」就是一道高牆。</li>
+        <li><strong>定位衝突</strong>　設計服務與獎項服務放在同一個網站，會讓客戶不清楚主要業務，因此建立母品牌 III Design Studio 與子品牌 III Awards Agency。</li>
+      </ol>
     </div>
   </div>
 
-  <!-- 02 問題定義 -->
-  <div class="case-section reveal">
+  <!-- 02 UI 視覺與設計 -->
+  <div class="case-section reveal" id="design">
     <div class="case-section-label">
-      <div class="case-section-num">02 — Problem</div>
-      <div class="case-section-title">兩個層次的問題</div>
+      <div class="case-section-num">02</div>
+      <div class="case-section-title">UI 視覺與設計</div>
     </div>
     <div class="case-section-body">
-      <p><strong>業主層面：服務定位衝突。</strong>獎項代辦涵蓋的資訊層面——獎項介紹、申請流程、得獎作品展示——跟設計服務本身關聯性低。兩者放在同一個網站，客戶的第一個問題會是：「你到底主要是做設計、還是做獎項代辦？」</p>
-      <p>解法是建立清晰的母品牌 / 子品牌架構：III Design Studio 主打設計服務，III Awards Agency 作為獨立子品牌，專注服務有獎項申請需求的客戶。兩者各自清晰，又互相支撐。</p>
-      <p><strong>用戶層面：獎項世界的資訊複雜度。</strong>根據過去處理 800+ 件國際獎項作品的實務經驗，客戶的背景與需求差異很大，但可以歸納成五種類型：</p>
-      <div class="pain-point">
-        <div class="pain-point-label">零經驗新手</div>
-        <div class="pain-point-text">從未申請過，不知從何開始——需要選獎策略規劃，從入門行銷獎（如 MUSE）建立資歷，再逐步進攻高難度獎項。</div>
-      </div>
-      <div class="pain-point">
-        <div class="pain-point-label">有經驗想外包</div>
-        <div class="pain-point-text">自己報名過，但每個獎流程不同、細節繁瑣——把複雜流程交給專業處理，省時間、降低出錯風險。</div>
-      </div>
-      <div class="pain-point">
-        <div class="pain-point-label">換代辦</div>
-        <div class="pain-point-text">前一家代辦成果不理想，想重新規劃——重建信任，需要感受到明確的專業度才願意再次委託。</div>
-      </div>
-      <div class="pain-point">
-        <div class="pain-point-label">指定高難度獎</div>
-        <div class="pain-point-text">直接鎖定 iF、紅點、K-Design、四大工業獎——需要精準的申請策略，提高入圍機率。</div>
-      </div>
-      <div class="pain-point" style="margin-bottom: 32px;">
-        <div class="pain-point-label">政府標案</div>
-        <div class="pain-point-text">需要獎項 KPI，承辦人員不熟悉流程——需要完整代辦，對方不需要任何獎項先備知識。</div>
-      </div>
-      <p>這五種客戶背後有一個共同的核心困難：<strong>每個獎項的截止日期、費用結構、評審邏輯、送件格式、語言要求都不同，光是搞清楚「我應該申請哪個獎、怎麼申請」，就已經是一道高牆。</strong>代辦的核心價值不是「幫你送件」，而是幫你在複雜的獎項世界裡找到最適合你的路——<strong>導航，而不只是執行。</strong></p>
-    </div>
-  </div>
+      <ul class="case-list">
+        <li><strong>視覺方向</strong>　競品全走白底媒體風，改以深色星空建立差異；純藍 #0000FF 為唯一強調色。</li>
+        <li><strong>品牌圖形</strong>　波浪圖形貫穿 Logo 與網站。</li>
+        <li><strong>資訊架構</strong>　四頁各回答一個使用者問題——首頁「你們能幫我什麼」、獎項介紹「哪個獎適合我」、得獎作品「你們真的有成果嗎」、聯絡我們「怎麼開始」。</li>
+      </ul>
 
-  <!-- 03 研究洞察 -->
-  <div class="case-section reveal">
-    <div class="case-section-label">
-      <div class="case-section-num">03 — Research</div>
-      <div class="case-section-title">客戶需求與資訊整理</div>
-    </div>
-    <div class="case-section-body">
-      <p>獎項資訊分散在不同網站，參賽資格、分類、截止日期與費用各有規則。網站需要讓不同需求的客戶找到適合的獎項、理解申請流程，並清楚知道如何開始諮詢。</p>
-      <div class="pain-point">
-        <div class="pain-point-label">獎項資訊的混亂本身就是問題</div>
-        <div class="pain-point-text">客戶光是理解「我的作品適合申請哪個獎」就已很困難。代辦的核心價值是「幫你導航」——這個洞察直接影響了服務設計和 Notion 資料庫的建立邏輯。</div>
-      </div>
-    </div>
-  </div>
+      <img src="assets/images/III Awards Agency/III Awards Agency.png" alt="III Awards Agency 品牌識別" class="case-img-full">
+      <p class="case-img-caption">品牌識別 — 波浪圖形與純藍強調色</p>
 
-  <!-- 04 視覺策略 -->
-  <div class="case-section reveal">
-    <div class="case-section-label">
-      <div class="case-section-num">04 — Strategy</div>
-      <div class="case-section-title">為什麼是這個視覺方向</div>
-    </div>
-    <div class="case-section-body">
-      <div class="case-callout">
-        <p>「不走頒獎典禮的金光閃閃，也不走一般代辦的服務公司感。走的是導航者——帶你在眾多獎項裡找到屬於你的位置。」</p>
-      </div>
-      <div class="decision-grid">
-        <div class="decision-item">
-          <div class="decision-item-title">深色星空的邏輯</div>
-          <div class="decision-item-text">星空代表廣闊的獎項宇宙，每個品牌的作品都是其中一顆星。深色背景延伸星空概念，讓純藍強調色與獎項資訊形成清楚的視覺層級。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">Hero 粒子動效的敘事</div>
-          <div class="decision-item-text">品牌識別的波浪圖形以粒子形式呈現——爆散再聚合，直接把品牌語言帶進互動體驗。不是裝飾，是敘事：混沌中有秩序，就像代辦幫你在複雜的獎項世界找到方向。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">純藍 #0000FF 的選擇</div>
-          <div class="decision-item-text">在全暗的畫面裡，純藍成為唯一的強調色——清晰、精準、有力量，對應「讓你的作品被看見」的核心訴求。金色容易落入頒獎典禮的既定印象，純藍更能傳達品牌希望呈現的精準感。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">品牌圖形</div>
-          <div class="decision-item-text">波浪圖形貫穿識別系統，從 Logo 到網站動效一以貫之，讓「在混沌中導航」的概念有一致的視覺載體。</div>
-        </div>
-      </div>
-      <img src="assets/images/III Awards Agency/III Awards Agency.png" alt="III Awards Agency 品牌視覺" class="case-img-full">
-      <p class="case-img-caption">III Awards Agency — 品牌視覺</p>
-    </div>
-  </div>
-
-  <!-- 05 執行與交付 -->
-  <div class="case-section reveal">
-    <div class="case-section-label">
-      <div class="case-section-num">05 — Execution</div>
-      <div class="case-section-title">設計決策與交付物</div>
-    </div>
-    <div class="case-section-body">
-      <p><strong>資訊架構：為什麼是這四頁。</strong>網站的四頁結構，每一頁對應一個明確的用戶問題。沒有多餘的頁面，也沒有缺漏——部落格、行銷內容等擴充頁面，等服務規模到位後再加入，現階段加進來只會稀釋焦點。</p>
-      <div class="decision-grid">
-        <div class="decision-item">
-          <div class="decision-item-title">P01 — 首頁</div>
-          <div class="decision-item-text">「你們是誰？能幫我什麼？」——建立第一印象，快速傳達服務定位。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">P02 — 獎項介紹</div>
-          <div class="decision-item-text">「有哪些獎？哪個適合我？」——解決資訊複雜度，降低選獎的認知負擔。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">P03 — 得獎作品</div>
-          <div class="decision-item-text">「你們真的有做出成果嗎？」——用過去案例建立信任，尤其針對換代辦的客戶。</div>
-        </div>
-        <div class="decision-item">
-          <div class="decision-item-title">P04 — 聯絡我們</div>
-          <div class="decision-item-text">「我想進一步了解，怎麼開始？」——降低諮詢門檻，讓有意願的人馬上能行動。</div>
-        </div>
-      </div>
       <div class="case-img-grid cols-2">
         <img src="assets/images/III Awards Agency/首頁截圖.png" alt="首頁" class="case-img">
         <img src="assets/images/III Awards Agency/獎項介紹截圖.png" alt="獎項介紹" class="case-img">
-        <img src="assets/images/III Awards Agency/獲獎作品截圖.jpg" alt="得獎作品" class="case-img">
+        <img src="assets/images/III Awards Agency/獲獎作品截圖.jpg" alt="獲獎作品" class="case-img">
         <img src="assets/images/III Awards Agency/聯絡我們截圖.png" alt="聯絡我們" class="case-img">
       </div>
-      <p class="case-img-caption">網站四頁 — 首頁 / 獎項介紹 / 得獎作品 / 聯絡我們</p>
-
-      <p><strong>服務流程：五步驟的設計邏輯。</strong>五步驟流程直接來自實務操作的真實節奏，不是憑空規劃：</p>
-      <div class="pain-point">
-        <div class="pain-point-label">01 免費諮詢 — Free</div>
-        <div class="pain-point-text">了解作品類型與目標，提供選獎建議。這步免費是刻意的：免費諮詢能有效降低第一次接觸的心理阻力，尤其對零經驗的新手客戶。</div>
-      </div>
-      <div class="pain-point">
-        <div class="pain-point-label">02 策略規劃 — Strategy</div>
-        <div class="pain-point-text">確認申請獎項與時程，簽訂合作合約。把選獎策略放在送件之前，是這個服務最核心的差異——先確認這個獎對這個客戶值不值得投。</div>
-      </div>
-      <div class="pain-point">
-        <div class="pain-point-label">03 文件製作 — Execution</div>
-        <div class="pain-point-text">撰寫申請描述、整理視覺素材。每個獎的語言要求、字數限制、評審邏輯都不同，這步是最耗費專業判斷的環節。</div>
-      </div>
-      <div class="pain-point">
-        <div class="pain-point-label">04 代為送件 — Submission</div>
-        <div class="pain-point-text">全程代辦上傳、繳費，即時回報送件狀態。解決「流程繁瑣、容易出錯」的核心痛點，讓客戶完全不需要介入操作。</div>
-      </div>
-      <div class="pain-point" style="margin-bottom: 32px;">
-        <div class="pain-point-label">05 獲獎後續 — Award</div>
-        <div class="pain-point-text">協助授權標章使用，獲獎行銷規劃視需求轉介合作窗口執行。這個環節是服務未來需要深化的部分。</div>
-      </div>
-      <img src="assets/images/III Awards Agency/網站截圖服務流程五步驟.png" alt="服務流程五步驟" class="case-img-full">
-      <p class="case-img-caption">網站服務流程 — 五步驟</p>
-
-      <p><strong>系統設計：Notion + n8n。</strong>網站之外，同步建立了支撐服務運作的後端系統。Notion 獎項資料庫（48+ 筆）結構化管理所有獎項的截止日期、費用、類別、申請連結，讓選獎策略的規劃有據可查。n8n 自動化流程每日掃描 Notion 的截止日欄位，距截止 7 天內自動觸發 Email 通知，確保任何一個案子都不會錯過送件時間。</p>
-      <img src="assets/images/III Awards Agency/系統架構圖Notion+n8n.png" alt="系統架構圖" class="case-img-full">
-      <p class="case-img-caption">n8n 自動化流程實際截圖</p>
-      <img src="assets/images/III Awards Agency/Notion Dashboard.png" alt="Notion Dashboard" class="case-img-full">
-      <p class="case-img-caption">Notion 獎項資料庫截圖</p>
+      <p class="case-img-caption">四頁各回答一個使用者問題</p>
     </div>
   </div>
 
-  <!-- 06 反思 -->
-  <div class="case-section reveal">
+  <!-- 03 互動與原型 -->
+  <div class="case-section reveal" id="prototype">
     <div class="case-section-label">
-      <div class="case-section-num">06 — Reflection</div>
-      <div class="case-section-title">學到什麼，如果重做會改什麼</div>
+      <div class="case-section-num">03</div>
+      <div class="case-section-title">互動與原型</div>
     </div>
     <div class="case-section-body">
-      <div class="pain-point">
-        <div class="pain-point-label">如果重做</div>
-        <div class="pain-point-text">Mobile-first 的優先順序應該更早確立，而不是桌面版完成後再做響應式修補。得獎作品頁的展示邏輯（按獎項 / 按客戶 / 按年份）也應該在設計前先做好 IA 決策。</div>
+      <ul class="case-list">
+        <li>Hero 以粒子動效呈現品牌波浪圖形，爆散再聚合，對應「在混沌中導航」的品牌概念。</li>
+        <li>服務流程設計為五步驟：免費諮詢 → 策略規劃 → 文件製作 → 代為送件 → 獲獎後續。</li>
+        <li>網站透過 AI 工具輔助實作並上線。</li>
+      </ul>
+
+      <div class="case-links">
+        <a href="https://iiiawardsagency.github.io" target="_blank" rel="noopener" class="case-link case-link-primary">查看上線網站</a>
       </div>
+
+      <img src="assets/images/III Awards Agency/網站截圖首頁Hero.png" alt="首頁 Hero 粒子動效" class="case-img-full">
+      <p class="case-img-caption">Hero — 粒子動效呈現品牌波浪圖形</p>
+
+      <img src="assets/images/III Awards Agency/網站截圖服務流程五步驟.png" alt="服務流程五步驟" class="case-img-full">
+      <p class="case-img-caption">服務流程 — 五步驟</p>
     </div>
   </div>
 
-</div><!-- /case-content -->
+</div>
 
 <!-- NEXT PROJECT -->
-<a href="case-michelin.html" class="next-project theme-dark">
+<a href="case-iii-design.html" class="next-project theme-dark">
   <div>
     <div class="next-project-label">Next Project</div>
-    <div class="next-project-title">Michelin Guide Redesign</div>
+    <div class="next-project-title">III Design Studio</div>
   </div>
   <div class="next-project-arrow">→</div>
 </a>

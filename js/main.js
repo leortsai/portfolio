@@ -239,44 +239,7 @@ const whole = here.filter(a => !a.getAttribute('href').includes('#'));
 (whole.length ? whole : here).forEach(a => a.classList.add('active'));
 
 /* ============================================
-   5. Stats 數字 counter（滾到才跑）
-   ============================================ */
-const statNums = document.querySelectorAll('.stat-num');
-if (statNums.length) {
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const DURATION = 1400;
-  const easeOut = t => 1 - Math.pow(1 - t, 3);
-
-  // 「100+」拆成數字 100 與後綴 "+"，只有數字部分要跑
-  const run = el => {
-    const m = el.textContent.trim().match(/^(\d+)(.*)$/);
-    if (!m) return;
-    const target = Number(m[1]), suffix = m[2];
-    if (reduced) return;               // 直接留最終值，不做動畫
-
-    el.textContent = '0' + suffix;
-    let t0 = null;
-    const frame = now => {
-      if (t0 === null) t0 = now;
-      const p = Math.min((now - t0) / DURATION, 1);
-      el.textContent = Math.round(target * easeOut(p)) + suffix;
-      if (p < 1) requestAnimationFrame(frame);
-    };
-    requestAnimationFrame(frame);
-  };
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { run(e.target); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.5 });
-
-  statNums.forEach(el => obs.observe(el));
-}
-
-
-/* ============================================
-   6. Lenis 慣性滾動
+   5. Lenis 慣性滾動
    CSS 的 scroll-behavior: smooth 已經拿掉——兩者同時存在會打架。
    觸控裝置維持原生捲動（Lenis 預設就不接管 touch），手感比較對。
    ============================================ */
@@ -315,7 +278,7 @@ if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
 
 /* ============================================
-   7. nav 壓在深色 Hero 上時反白
+   6. nav 壓在深色 Hero 上時反白
    哪些 Hero 要觸發由 HTML 的 data-invert-nav 決定，不寫死 class 名稱。
    case 頁的 Hero 只有左半邊是深的，nav 橫跨整個寬度，所以那頁不掛這個屬性。
    ============================================ */
