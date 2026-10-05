@@ -137,6 +137,30 @@ body {
 body:has(a:hover) .cursor-ring { width: 56px; height: 56px; }
 body:has(a:hover) .cursor { transform: translate(-50%, -50%) scale(0); }
 
+/* 作品卡片上的游標：放大成藍色實心圓並顯示「View case」。
+   必須寫在上面那條 a:hover 之後才蓋得過它的 56px。
+   純 CSS 擴充，不動 main.js 的游標追蹤。 */
+body:has(.work-card:hover) .cursor-ring {
+  width: 88px;
+  height: 88px;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+body:has(.work-card:hover) .cursor-ring::after {
+  content: "View case";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'GT Walsheim Trial', sans-serif;
+  font-size: 12px;
+  letter-spacing: var(--ls-label);
+  color: var(--paper);
+  white-space: nowrap;
+}
+
 /* ============================================
    Nav
    ============================================ */
@@ -1445,6 +1469,7 @@ body.on-dark .cursor-ring { border-color: var(--paper); }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
+  .work-card:active { transform: none; }
 }
 
 /* 觸控裝置沒有實體游標可以跟：那顆點和圓圈只會停在最後一次觸碰的位置，
@@ -1452,6 +1477,9 @@ body.on-dark .cursor-ring { border-color: var(--paper); }
    這樣視窗縮窄的桌機仍然保有自製游標。 */
 @media (hover: none), (pointer: coarse) {
   .cursor, .cursor-ring { display: none; }
+  /* 觸控沒有 hover，用按壓縮放給出回饋 */
+  .work-card:active { transform: scale(0.98); }
+  .work-card { transition: transform 0.15s cubic-bezier(.16,1,.3,1); }
   body, .work-card { cursor: auto; }
   a, button { cursor: pointer; }
 }
