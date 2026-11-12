@@ -26,7 +26,7 @@
 <!-- CASE HERO -->
 <section class="case-hero">
   <div class="case-hero-left theme-dark reveal">
-    <div class="case-hero-num">Case Study 01</div>
+    <div class="case-hero-num">Case Study 02</div>
     <h1 class="case-hero-title">Acer 官網<br>Redesign</h1>
     <p class="case-hero-desc">讓規格表成為主角。這不是一次讓 Acer 看起來更好看的 Redesign，而是重新以 PC 買家的真實決策方式來設計官網。</p>
   </div>
@@ -63,83 +63,265 @@
   </div>
 </div>
 
+<!-- 0 摘要 -->
+<div class="case-summary reveal">
+  <div class="case-summary-inner">
+    <p><strong>問題</strong>：</p>
+    <ol class="case-list numbered">
+      <li>Acer 官網將 Copilot+ PC、依用途、依系列和依特色並列為四個筆電瀏覽入口。同一款筆電可能同時出現在多個入口的商品列表中。對只知道自己要拿筆電做什麼、還沒鎖定型號的使用者來說，切換入口找候選機型時，得先辨認哪些型號已經看過，再比較新看到的選項。</li>
+      <li>官網沒有價格，需要跳到商城才看得到。</li>
+      <li>比較功能最多 3 台，且比較表常有空白欄位，這讓消費者很難獲取資訊做出是否要購買的判斷。</li>
+    </ol>
+    <p><strong>做法</strong>：把四個入口整合成「用途在前、系列在後」的單一入口；價格回到官網；比較改成浮出視窗，預設顯示七項主要規格（依問卷排序的六項，加上電池續航），並提供差異模式。</p>
+    <p><strong>結果</strong>：以 Figma 原型與 HTML demo 進行 5 人非主持式測試，4 位認為比較功能有幫助；也發現處理器差異仍不好懂，列為後續改善方向。</p>
+  </div>
+</div>
+
 <!-- CONTENT -->
 <div class="case-content">
 
-  <!-- 01 問題 -->
-  <div class="case-section reveal" id="problem">
+  <!-- 01 背景與問題 -->
+  <div class="case-section reveal" id="background">
     <div class="case-section-label">
       <div class="case-section-num">01</div>
-      <div class="case-section-title">問題</div>
+      <h2 class="case-section-title">背景與問題</h2>
     </div>
     <div class="case-section-body">
       <p class="case-note">概念性專案，與 Acer 官方無關。Product imagery and specifications © Acer Inc., used for conceptual purposes only.</p>
 
-      <p>在官網挑筆電時，我和身邊的朋友都卡在同一個地方：比較頁列出一長串規格，卻看不到價格，最後只能自己開好幾個分頁對照。後來規劃 UI 案例時，我選了這個親身遇過的問題。為了確認這不只是個人經驗，我以問卷（n=5）、啟發式評估與 5 家競品對照，歸納出阻礙購買決策的三個斷點：</p>
+      <p>幫家人買電腦時，我在 Acer 官網遇到幾個疑問：官網和商城是分開的，在官網看中一台，還要到商城重新找一次；官網的商品有規格卻沒有價錢。我接著瀏覽了 Apple、Microsoft Surface、Dell、Asus 的官網，發現要同時做到規格透明、視覺系統一致並不容易，所以決定以 Acer 做概念 Redesign。</p>
+
+      <p>我以 Nielsen 十大可用性原則檢視官網的選購流程，整理出三個問題：</p>
 
       <ol class="case-list numbered">
-        <li><strong>比較功能比不到決策要用的東西</strong>　比較頁列出 50+ 項規格卻沒有價格，重量排在第 11 組且經常缺值；而價格是 5/5 受訪者在產品頁最先找的資訊。</li>
-        <li><strong>四套分類互相打架</strong>　頂層導覽同時存在系列、特色、用途、活動四種分類，使用者必須先猜對 Acer 的內部邏輯才找得到產品。</li>
-        <li><strong>購買旅程被切成兩個網站</strong>　同一台機器在 acer.com 與 store.acer.com 各有一頁，查規格與下單必須跨站完成。</li>
+        <li><strong>價格不在官網，要跨站才能決定</strong>　筆電列表和比較頁都沒有價格，只有「購買」、「銷售據點」的按鈕連到商城。比較 3 台，就要開 3 次商城頁面，或自己搜尋型號。</li>
       </ol>
+      <img loading="lazy" decoding="async" width="1200" height="5166" src="assets/images/Acer Redesign/figma/acer-now-list-no-price.webp" alt="Acer 官網筆電列表，卡片只有規格與「購買」按鈕，沒有價格" class="case-img-full">
+      <p class="case-img-caption">筆電列表頁沒有價格，只有連到商城的按鈕</p>
+      <div class="case-img-grid cols-2">
+        <img loading="lazy" decoding="async" width="1760" height="1792" src="assets/images/Acer Redesign/舊站截圖/官網-雙域名同機型對照.webp" alt="acer.com 的同一台機器產品頁" class="case-img">
+        <img loading="lazy" decoding="async" width="2400" height="1759" src="assets/images/Acer Redesign/舊站截圖/商城-雙域名同機型對照.webp" alt="store.acer.com 的同一台機器產品頁" class="case-img">
+      </div>
+      <p class="case-img-caption">同一台機器在 acer.com 與 store.acer.com 各有一頁</p>
 
-      <img src="assets/images/Acer Redesign/舊站截圖/Acer 比較頁的標註截圖.webp" alt="Acer 舊站比較頁標註" class="case-img-full" width="1245" height="4815" loading="lazy" decoding="async">
-      <p class="case-img-caption">現行比較頁 50+ 項規格，沒有價格</p>
-
-      <img src="assets/images/Acer Redesign/舊站截圖/用途與特色-mega menu 四套分類.webp" alt="Acer 頂層導覽的四套分類" class="case-img-full" width="2346" height="1648" loading="lazy" decoding="async">
+      <ol class="case-list numbered" start="2">
+        <li><strong>從不同入口找筆電，會看到部分相同的機型</strong>　Acer 官網的「筆記型電腦」選單下有四個入口：Copilot+ PCs、依用途、依系列和依特色。以想找輕薄筆電的人來說，「輕薄筆電」和「極致輕薄｜Swift」看起來都可以點，但兩邊的機型有重疊。還沒鎖定型號的人切換入口時，得再確認哪些機型已經看過。
+          <p>這四個入口都會帶到商城。我是從頁尾才找到官網自己的筆電列表，而列表上方又把「Copilot+ PC」「AI 電腦」這類技術標籤，和「電競」「專業使用者」這類使用情境或對象並排在一起。</p>
+        </li>
+      </ol>
+      <img loading="lazy" decoding="async" width="2346" height="1648" src="assets/images/Acer Redesign/舊站截圖/用途與特色-mega menu 四套分類.webp" alt="Acer 頂層導覽同時列出依用途、依特色、主打活動與依筆電系列四種分類" class="case-img-full">
       <p class="case-img-caption">頂層導覽同時存在系列、特色、用途、活動四種分類</p>
+      <div class="case-img-grid cols-3">
+        <img loading="lazy" decoding="async" width="2400" height="963" src="assets/images/Acer Redesign/figma/acer-now-nav-overlap-1.webp" alt="分類選單展開，依用途入口的機型列表" class="case-img">
+        <img loading="lazy" decoding="async" width="2400" height="860" src="assets/images/Acer Redesign/figma/acer-now-nav-overlap-2.webp" alt="分類選單展開，依特色入口的機型列表" class="case-img">
+        <img loading="lazy" decoding="async" width="2400" height="929" src="assets/images/Acer Redesign/figma/acer-now-nav-overlap-3.webp" alt="分類選單展開，依系列入口的機型列表" class="case-img">
+      </div>
+      <p class="case-img-caption">不同入口的機型有重疊</p>
 
-      <img src="assets/images/Acer Redesign/舊站截圖/官網-雙域名同機型對照.webp" alt="acer.com 的同一台機器產品頁" class="case-img-full" width="1760" height="1792" loading="lazy" decoding="async">
-      <p class="case-img-caption">acer.com 的產品頁</p>
+      <ol class="case-list numbered" start="3">
+        <li><strong>想換一台比較，得回列表重找</strong>　官網一次最多可以比較三台筆電。開啟比較頁後，如果想換掉其中一台，就得回到產品列表重新找。比較表裡也有不少欄位留白，看不出是機型沒有這項功能，還是官網沒有提供資料。表格也沒有列出價格，想把價格和規格一起衡量時，得另外查。</li>
+      </ol>
+      <img loading="lazy" decoding="async" width="2400" height="1470" src="assets/images/Acer Redesign/figma/acer-now-compare-blanks.webp" alt="Acer 比較表有多個空白欄位，且沒有價格列" class="case-img-full">
+      <p class="case-img-caption">比較表有空白欄位，也沒有價格</p>
 
-      <img src="assets/images/Acer Redesign/舊站截圖/商城-雙域名同機型對照.webp" alt="store.acer.com 的同一台機器產品頁" class="case-img-full" width="2400" height="1759" loading="lazy" decoding="async">
-      <p class="case-img-caption">store.acer.com 的同一台機器另有一頁——查規格與下單必須跨站完成</p>
+      <p><strong>專案限制</strong>：獨立完成的概念專案，沒有 Acer 的真實流量與銷售數據，商品資料取自官網公開資訊。網站沒有上線，無法取得轉換率等實際成效，只能透過原型測試觀察使用者的反應。</p>
     </div>
   </div>
 
-  <!-- 02 UI 視覺與設計 -->
-  <div class="case-section reveal" id="design">
+  <!-- 02 使用者 -->
+  <div class="case-section reveal" id="users">
     <div class="case-section-label">
       <div class="case-section-num">02</div>
-      <div class="case-section-title">UI 視覺與設計</div>
+      <h2 class="case-section-title">使用者</h2>
+    </div>
+    <div class="case-section-body">
+      <p>Acer 官網把筆電分成商用、學生、日常家用、電競等用途。我以這個分類為基礎，再對照問卷前 6 題（過去的選購經驗），整理出三類使用者，並以測試任務對應的「商務攜帶」作為主要 persona。</p>
+      <ul class="case-list">
+        <li><strong>學生</strong>　價格、重量、耐用性，以及續航，因為常要帶去學校用一整天</li>
+        <li><strong>商務人士</strong>　價格、重量、功能，以及續航、保固與售後服務</li>
+        <li><strong>遊戲玩家</strong>　功能、價格，以及顯示卡、螢幕更新率、散熱</li>
+      </ul>
+      <h3 class="case-subhead">主要 persona：要買工作用、方便攜帶筆電的上班族</h3>
+      <ul class="case-list">
+        <li><strong>想做的事</strong>　在預算內，挑一台輕、夠用的工作筆電</li>
+        <li><strong>最在意</strong>　價格、儲存空間（5 位受訪者中各有 4 位選擇）</li>
+        <li><strong>最猶豫的地方</strong>　價格，以及看不懂處理器或晶片版本的差異（各 2 位）</li>
+        <li><strong>會去哪裡找資料</strong>　實體門市、官網、Google 交叉比對，官網只是其中一站</li>
+        <li><strong>在 Acer 官網找筆電、比規格和查價格</strong>　同一款筆電可能出現在不同入口的商品列表裡，換個入口瀏覽時，容易看到剛剛看過的機型。找到幾台想比較的筆電後，一次最多能比三台，有些規格欄位還是空白。比較表也沒有價格，得逐台到商城查。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 03 研究與發現 -->
+  <div class="case-section reveal" id="research">
+    <div class="case-section-label">
+      <div class="case-section-num">03</div>
+      <h2 class="case-section-title">研究與發現</h2>
+    </div>
+    <div class="case-section-body">
+      <p>我以 Google 表單結合 Figma 原型進行問卷與非主持式測試，共 5 位受訪者。問卷分成兩部分：前 6 題了解過去的選購經驗，後 14 題請受訪者操作我的原型（結果見第 8 段）。前 6 題的發現：</p>
+      <ul class="case-list">
+        <li>5 位中有 4 位最在意價格，4 位在意儲存空間</li>
+        <li>最讓人猶豫的是價格，以及看不懂處理器、晶片版本的差異</li>
+        <li>買筆電前，使用者會到實體門市試用，也會透過 Google 搜尋，比對品牌官網與電商平台上的資訊。在 Acer 官網，規格可以集中在一張表比較，價格則要到商城逐台查。想判斷哪一台在預算內、規格又符合需求，就得自己把兩邊的資訊交叉比對。</li>
+      </ul>
+
+      <h3 class="case-subhead">競品比較（2026 年 11 月查證）</h3>
+      <div class="case-table-scroll">
+        <table class="case-table">
+          <caption class="sr-only">五個品牌官網的主要入口、價格揭露與比較功能對照</caption>
+          <thead>
+            <tr><th scope="col">品牌</th><th scope="col">主要入口</th><th scope="col">官網看得到價格嗎</th><th scope="col">比較功能</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Apple</th><td>系列（MacBook Neo、Air、Pro），名稱本身就說明用途</td><td>看得到，購買頁標示起價（例：MacBook Air NT$42,900 起），在官網直接購買</td><td>一次比 3 台，含價格</td></tr>
+            <tr><th scope="row">ASUS</th><td>用途在前（家用、商用、電競等），點進去再依系列分組，每個系列都附用途說明</td><td>看得到，列表直接顯示售價，也有價格篩選</td><td>最多 4 台</td></tr>
+            <tr><th scope="row">Dell</th><td>系列為主，另有「所有筆記型電腦／個人家用／學生」分頁</td><td>看得到，列表顯示起始價格，可直接購買；產品頁附「您適合哪一款處理器？」說明</td><td>有</td></tr>
+            <tr><th scope="row">Microsoft Surface</th><td>產品名稱（Surface Laptop、Surface Pro）</td><td>看不到，購買導向 momo、PChome 等零售商</td><td>有「比較 Surface 型號」頁</td></tr>
+            <tr><th scope="row">Acer（現況）</th><td>四個平行入口</td><td>看不到，價格在商城</td><td>最多 3 台，表格常有空白</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="case-list">
+        <li>以系列為主入口的 Apple 和 Surface，產品線都很少；產品線多的 ASUS，採用「用途在前、系列在後」。</li>
+        <li>四個品牌中有三個（Apple、ASUS、Dell）在官網就看得到價格。</li>
+        <li>Dell 在產品頁直接說明怎麼挑處理器，正好對應受訪者「看不懂處理器」的困擾。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 04 設計決策 -->
+  <div class="case-section reveal" id="decisions">
+    <div class="case-section-label">
+      <div class="case-section-num">04</div>
+      <h2 class="case-section-title">設計決策</h2>
+    </div>
+    <div class="case-section-body">
+      <ol class="case-list numbered">
+        <li><strong>先依用途找筆電，再用系列篩選</strong>　Acer 原本把用途、系列、特色和 Copilot+ PC 並列為四個入口，同一台筆電可能出現在不同列表。對還沒鎖定機型的人來說，光是決定從哪個入口開始，就多了一步。
+          <p>Apple 的 MacBook 只有 Air、Pro 和 Neo 三個系列，顧客可以先比較三者的定位，再決定要看哪個系列。Acer 和 ASUS 的筆電系列更多。如果顧客只知道自己要拿筆電做什麼，從系列開始找，就得先弄清楚哪些系列符合需求。</p>
+          <p>因此，我把用途設為 Acer 筆電的主要入口。顧客可以先依需求找到一批候選機型，熟悉 Acer 產品線的人也可以在同一份列表裡用系列篩選。</p>
+        </li>
+        <li><strong>價格回到官網</strong>　列表、比較與產品頁都直接顯示價格，不用再跨站。</li>
+        <li><strong>比較表做成浮出視窗</strong>　留在原頁面就能比較，不會失去原本的列表；並提供差異模式，可以清楚看到筆電規格的不同。</li>
+        <li><strong>預設七項規格</strong>　比較視窗預設顯示價格、儲存空間、處理器、重量、記憶體、顯示器、電池續航。前六項依問卷三題（最在意的資訊、想比較的項目、產品頁最注意的資訊）的提及次數加總排序：價格 13、儲存空間 9、處理器 9、重量 6、記憶體 5、顯示器 5。電池續航被提到 4 次排第七，但對「方便攜帶」的主要使用者來說，能不能撐一整天是關鍵條件，所以一起放進預設。外觀被提到 7 次，但不是規格，所以不列入。</li>
+      </ol>
+
+      <ul class="case-list">
+        <li><strong>資訊架構</strong>　四套分類收斂為以「用途」為唯一頂層分類，系列與特色降級為篩選器；篩選條件從 13 組零件規格精簡為用途、價格、重量。</li>
+        <li><strong>色彩語意</strong>　Acer Green 只代表「可行動」；品牌綠在白底對比僅 2.4:1，文字改用 green-700（4.96:1）通過 WCAG AA。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 05 介面設計與設計系統 -->
+  <div class="case-section reveal" id="design">
+    <div class="case-section-label">
+      <div class="case-section-num">05</div>
+      <h2 class="case-section-title">介面設計與設計系統</h2>
     </div>
     <div class="case-section-body">
       <ul class="case-list">
-        <li><strong>資訊架構</strong>　四套分類收斂為以「用途」為唯一頂層分類，系列與特色降級為篩選器；篩選條件從 13 組零件規格精簡為用途、價格、重量。</li>
         <li><strong>設計系統</strong>　token-based 三層架構（Primitive → Semantic → Component），Figma 樣式與 CSS 變數一對一對應（text/primary 即 --text-primary）。</li>
-        <li><strong>色彩語意</strong>　Acer Green 只代表「可行動」；品牌綠在白底對比僅 2.4:1，文字改用 green-700（4.96:1）通過 WCAG AA。</li>
         <li><strong>響應式</strong>　篩選改為 bottom sheet、購買列移至拇指熱區、比較改為雙欄橫向滑動。</li>
       </ul>
 
-      <img loading="lazy" decoding="async" width="2286" height="2623" src="assets/images/Acer Redesign/Figma Hi-FI/Laptops List — Desktop 1440.webp" alt="筆電列表頁 Desktop 1440" class="case-img-full">
+      <img loading="lazy" decoding="async" width="2286" height="2623" src="assets/images/Acer Redesign/Figma Hi-FI/Laptops List — Desktop 1440.webp" alt="改版後的筆電列表頁，卡片直接顯示價格與重量" class="case-img-full">
       <p class="case-img-caption">筆電列表頁 — Desktop 1440</p>
 
-      <img loading="lazy" decoding="async" width="2400" height="1950" src="assets/images/Acer Redesign/Token 三層/Acer Redesign — Design Token 三層架構.webp" alt="Design Token 三層架構" class="case-img-full">
+      <img loading="lazy" decoding="async" width="2400" height="1950" src="assets/images/Acer Redesign/Token 三層/Acer Redesign — Design Token 三層架構.webp" alt="Design Token 三層架構：Primitive、Semantic 與 Component 三層的對應關係" class="case-img-full">
       <p class="case-img-caption">Design Token 三層架構：Primitive → Semantic → Component</p>
 
       <div class="case-img-grid cols-3">
-        <img loading="lazy" decoding="async" width="750" height="4398" src="assets/images/Acer Redesign/Figma Hi-FI/Home — Mobile 375.webp" alt="首頁 Mobile 375" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="3150" src="assets/images/Acer Redesign/Figma Hi-FI/Laptops List — Mobile 375.webp" alt="筆電列表頁 Mobile 375" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="5954" src="assets/images/Acer Redesign/Figma Hi-FI/Product Detail — Mobile 375.webp" alt="產品詳細頁 Mobile 375" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="4398" src="assets/images/Acer Redesign/Figma Hi-FI/Home — Mobile 375.webp" alt="首頁手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="3150" src="assets/images/Acer Redesign/Figma Hi-FI/Laptops List — Mobile 375.webp" alt="筆電列表頁手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="5954" src="assets/images/Acer Redesign/Figma Hi-FI/Product Detail — Mobile 375.webp" alt="產品詳細頁手機版" class="case-img">
       </div>
       <p class="case-img-caption">手機版三頁 — Mobile 375</p>
 
-      <img loading="lazy" decoding="async" width="2400" height="983" src="assets/images/Acer Redesign/五個決策的對應畫面（局部裁切）/Decision 01 — 規格不是附錄，是主文.webp" alt="規格不是附錄，是主文" class="case-img-full">
+      <img loading="lazy" decoding="async" width="2400" height="983" src="assets/images/Acer Redesign/五個決策的對應畫面（局部裁切）/Decision 01 — 規格不是附錄，是主文.webp" alt="產品卡片把規格提升為主要資訊，不再收在附錄" class="case-img-full">
       <p class="case-img-caption">規格不是附錄，是主文</p>
+
+      <h3 class="case-subhead">元件與狀態</h3>
+      <img loading="lazy" decoding="async" width="2320" height="1978" src="assets/images/Acer Redesign/figma/acer-states-light-dark.webp" alt="元件狀態總表：同一組元件在淺色與深色模式下的預設、hover、focus、按下、停用與載入狀態" class="case-img-full">
+      <p class="case-img-caption">狀態總表 — 同一組元件，只切換變數模式</p>
+
+      <img loading="lazy" decoding="async" width="1440" height="3290" src="assets/images/Acer Redesign/figma/acer-components-v2.webp" alt="元件總表：按鈕、比較勾選、比較列、差異模式開關、比較表儲存格與骨架卡片" class="case-img-full">
+      <p class="case-img-caption">元件總表</p>
+
+      <img loading="lazy" decoding="async" width="1358" height="1115" src="assets/images/Acer Redesign/figma/acer-token-contrast-matrix.webp" alt="Semantic Token 對比驗證矩陣：20 組前景與背景配對在淺色與深色模式下的對比值" class="case-img-full">
+      <p class="case-img-caption">Semantic Token 對比驗證矩陣 — 20 組配對、兩種模式共 40 項檢查</p>
+
+      <h3 class="case-subhead">深色模式</h3>
+      <div class="case-img-grid cols-2">
+        <img loading="lazy" decoding="async" width="2400" height="1337" src="assets/images/Acer Redesign/figma/acer-compare-overlay-dark.webp" alt="深色模式的比較視窗，差異模式開啟" class="case-img">
+        <img loading="lazy" decoding="async" width="2400" height="157" src="assets/images/Acer Redesign/figma/acer-compare-bar-dark.webp" alt="深色模式的比較列" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="1624" src="assets/images/Acer Redesign/figma/acer-compare-overlay-mobile-dark.webp" alt="深色模式的手機版比較視窗" class="case-img">
+        <img loading="lazy" decoding="async" width="814" height="192" src="assets/images/Acer Redesign/figma/acer-compare-bar-mobile-dark.webp" alt="深色模式的手機版比較列" class="case-img">
+      </div>
+      <p class="case-img-caption">深色模式不用另外畫一套，切換變數模式就完成</p>
+
+      <h3 class="case-subhead">手機版比較</h3>
+      <div class="case-img-grid cols-2">
+        <img loading="lazy" decoding="async" width="814" height="192" src="assets/images/Acer Redesign/figma/acer-compare-bar-mobile.webp" alt="手機版比較列，顯示已選機型與開始比較按鈕" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="1624" src="assets/images/Acer Redesign/figma/acer-compare-overlay-mobile.webp" alt="手機版比較視窗，差異模式開啟" class="case-img">
+      </div>
+      <p class="case-img-caption">手機版比較列與比較視窗</p>
+
+      <p>我把比較流程用到的元件整理成一套：主要與次要按鈕、卡片上的「比較」勾選、比較列的已選機型、差異模式開關、比較表儲存格、提示框、無結果畫面與載入中的骨架卡片。每個元件都有預設、hover、focus、按下、停用、載入等狀態；用不到的狀態也寫明原因，例如次要按鈕不送出資料，所以沒有載入狀態。</p>
+      <p>顏色分成兩層：底層是色票，上層是依用途命名的語意 token，例如 text/tertiary、compare/better-bg。元件只用語意 token，所以深色模式不用另外畫一套，切換變數模式就完成。每個 token 在淺色與深色模式下都先算過對比，20 組前景與背景配對、兩種模式共 40 項檢查，全部達到 WCAG 2.2 AA。</p>
     </div>
   </div>
 
-  <!-- 03 互動與原型 -->
+  <!-- 06 無障礙設計 -->
+  <div class="case-section reveal alt-zone" id="accessibility">
+    <div class="case-section-label">
+      <div class="case-section-num">06</div>
+      <h2 class="case-section-title">無障礙設計</h2>
+    </div>
+    <div class="case-section-body">
+      <p>我用自動檢查把 19 個畫面（含手機版與深色模式）共 794 段文字的對比掃過一遍，主要問題有五類：</p>
+      <ul class="case-list">
+        <li><strong>主要按鈕</strong>　修改前 - 白字放在品牌綠 #83B81A 上只有 2.38:1。修改後 - 保留品牌綠，把文字改成黑色 #0D0D0D，對比提高到 8.18:1。</li>
+        <li><strong>灰色文字</strong>　修改前 - 比較表的列標題 #888888 只有 3.54:1。修改後 - 改為 #6B6B6B，提高到 5.33:1。</li>
+        <li><strong>差異模式開關</strong>　修改前 - 開啟時白色圓鈕在綠色軌道上只有 2.38:1，看不出是開還是關。修改後 - 軌道改成深綠 #4A7D15，提高到 4.96:1。</li>
+        <li><strong>移除按鈕</strong>　修改前 - 比較列的「×」只有 1.99:1，點擊範圍也只有 10×20px。修改後 - 改成 5.06:1、24×24px。</li>
+        <li><strong>星等</strong>　原本手機版只用金色星星呈現評分，星星與背景的對比度只有 2.11:1。我補上數字評分，若使用者看不清星星，也能藉由分數去做比較。</li>
+      </ul>
+
+      <img loading="lazy" decoding="async" width="1440" height="1552" src="assets/images/Acer Redesign/figma/acer-a11y-before-after.webp" alt="對比修正前後對照：主要按鈕、灰色文字、差異模式開關與移除按鈕的修改前後數值" class="case-img-full">
+      <p class="case-img-caption">Decision 06 — 對比修正 Before／After</p>
+
+      <img loading="lazy" decoding="async" width="2400" height="865" src="assets/images/Acer Redesign/figma/acer-a11y-color-variants.webp" alt="無障礙驅動的色彩變體：品牌綠在不同深度下的對比值" class="case-img-full">
+      <p class="case-img-caption">無障礙驅動的色彩變體</p>
+
+      <p>修正時我直接調整語意 token，所有畫面同時更新，深色模式也一起成立。修正後這 794 段文字全部達到 AA（壓在產品照片上的文字不在這次檢查範圍）。</p>
+
+      <p>設計稿修正後，我也把同樣的修正做進 HTML demo，再用 axe 與 Lighthouse 檢查實際網頁：修正前列表頁有 1 項 axe 違規（55 個元素），Lighthouse 無障礙 97 分；修正後首頁、列表頁與產品詳細頁皆為 0 違規、100 分，並在 320、375、768、1440px 四種寬度都能正常顯示。</p>
+
+      <img loading="lazy" decoding="async" width="2108" height="1199" src="assets/images/Acer Redesign/figma/acer-a11y-01.webp" alt="比較視窗的無障礙標註：焦點順序 1 至 12、標題層級與對比數值" class="case-img-full">
+      <p class="case-img-caption">A11y 01 — 比較視窗 Desktop：焦點順序、語意、對比</p>
+
+      <img loading="lazy" decoding="async" width="2108" height="1377" src="assets/images/Acer Redesign/figma/acer-a11y-02.webp" alt="比較列、卡片與手機版的無障礙標註：焦點順序、語意與點擊範圍" class="case-img-full">
+      <p class="case-img-caption">A11y 02 — 比較列、卡片與手機版：焦點順序、語意、點擊範圍</p>
+
+      <p>我在交接稿上標出比較列和比較視窗的 Tab 順序。使用者按下「開始比較」後，焦點會移到視窗內的「關閉」按鈕。視窗開啟期間，按 Tab 只會在視窗內切換。按 Esc 關閉後，焦點會回到原本的「開始比較」按鈕。手機版的比較表可以左右捲動，這個區域也能用鍵盤操作。</p>
+
+      <p>在差異模式中，我用底色、粗體和勾號標出表現較好的數值，讓使用者即使分不清底色，也能辨認差異。交接稿也標註了標題層級、表格的欄標題與列標題，以及差異模式開關的 role="switch"，供工程師實作。</p>
+    </div>
+  </div>
+
+  <!-- 07 互動與原型 -->
   <div class="case-section reveal" id="prototype">
     <div class="case-section-label">
-      <div class="case-section-num">03</div>
-      <div class="case-section-title">互動與原型</div>
+      <div class="case-section-num">07</div>
+      <h2 class="case-section-title">互動與原型</h2>
     </div>
     <div class="case-section-body">
       <ul class="case-list">
         <li>比較功能做成就地開啟的 overlay：勾選 2–4 台後底部浮出比較列，表格只保留重量、記憶體、顯示器、處理器、儲存、售價六項，並標示較優值；關閉後回到原位置。</li>
         <li>產品詳細頁的 Sticky Buy Bar 跟隨捲動，同一網域完成購買。</li>
-        <li>以 Figma 原型進行 5 人非主持式遠端測試，依結果將卡片上的重量拆為獨立一列並提升字級。</li>
       </ul>
 
       <div class="case-links">
@@ -147,14 +329,48 @@
         <a href="https://www.figma.com/proto/HEWrjA0NJX4dI037WMmOZ3/ACER-Redesign---Wireframe?node-id=80-2&amp;p=f&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;starting-point-node-id=80%3A2" target="_blank" rel="noopener" class="case-link">Figma 原型</a>
       </div>
 
-      <img loading="lazy" decoding="async" width="2400" height="157" src="assets/images/Acer Redesign/Figma Hi-FI/Compare Bar — Visible Ready.webp" alt="Compare Bar" class="case-img-full">
+      <img loading="lazy" decoding="async" width="2400" height="157" src="assets/images/Acer Redesign/Figma Hi-FI/Compare Bar — Visible Ready.webp" alt="勾選後底部浮出的比較列，顯示已選機型" class="case-img-full">
       <p class="case-img-caption">勾選 2–4 台後，底部浮出比較列</p>
 
-      <img loading="lazy" decoding="async" width="2400" height="1255" src="assets/images/Acer Redesign/Figma Hi-FI/Compare Overlay — 差異模式 ON.webp" alt="Compare Overlay 差異模式" class="case-img-full">
+      <img loading="lazy" decoding="async" width="2400" height="1255" src="assets/images/Acer Redesign/Figma Hi-FI/Compare Overlay — 差異模式 ON.webp" alt="比較視窗開啟差異模式，只留下規格不同的那幾列" class="case-img-full">
       <p class="case-img-caption">Compare Overlay — 差異模式只留下不一樣的那幾列</p>
 
-      <img loading="lazy" decoding="async" width="2400" height="170" src="assets/images/Acer Redesign/Figma Hi-FI/Sticky Buy Bar — Product Detail.webp" alt="Sticky Buy Bar" class="case-img-full">
+      <img loading="lazy" decoding="async" width="2400" height="170" src="assets/images/Acer Redesign/Figma Hi-FI/Sticky Buy Bar — Product Detail.webp" alt="產品詳細頁底部跟隨捲動的購買列" class="case-img-full">
       <p class="case-img-caption">產品詳細頁的 Sticky Buy Bar 跟隨捲動</p>
+    </div>
+  </div>
+
+  <!-- 08 驗證與成果 -->
+  <div class="case-section reveal" id="results">
+    <div class="case-section-label">
+      <div class="case-section-num">08</div>
+      <h2 class="case-section-title">驗證與成果</h2>
+    </div>
+    <div class="case-section-body">
+      <p>問卷後 14 題請受訪者在原型中完成「找兩台工作用、方便攜帶的筆電並比較」等任務：</p>
+      <ul class="case-list">
+        <li>5 位中有 4 位在找筆電時沒有卡住，1 位表示「有一點」</li>
+        <li>4 位認為比較功能有幫助，1 位覺得普通；有受訪者提到，處理器型號不同時，新手無從判斷優劣</li>
+        <li>5 位在產品頁最注意的資訊都包含價格</li>
+        <li>2 位提到文字太小、無法放大，看起來很吃力</li>
+        <li>有受訪者建議「篩選欄位直接加入主要用途」</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 09 反思 -->
+  <div class="case-section reveal" id="reflection">
+    <div class="case-section-label">
+      <div class="case-section-num">09</div>
+      <h2 class="case-section-title">反思</h2>
+    </div>
+    <div class="case-section-body">
+      <h3 class="case-subhead">做完後學到什麼</h3>
+      <p>我原本以為，把重要規格放在一起比較，就能讓使用者更容易選擇。但受訪者看不懂處理器差異，這讓我發現，資訊更容易找到，不代表更容易理解。比較介面還需要幫助使用者把規格連結到自己的使用需求。</p>
+      <p>這次原型只完成部分頁面，也限制了測試能回答的問題。我能觀察局部操作是否順暢，但還無法確認使用者從篩選、比較到選定產品，是否都能順利完成。</p>
+      <h3 class="case-subhead">如果重做會改什麼</h3>
+      <p>我會先用低保真原型串起一條完整的選購流程，提早測試，再細化視覺與互動。處理器資訊則會保留完整型號，搭配經查證的用途說明，協助不熟悉規格的人理解差異。</p>
+      <p>測試時，除了觀察是否完成操作，我也會請受測者說明「為什麼選這台、它如何符合你的需求」，確認介面是否真正幫助他們做出判斷。另外，測試後我依主要使用者的攜帶需求，把電池續航補進比較視窗的預設規格，下一輪測試會確認七項是否過多。</p>
     </div>
   </div>
 
