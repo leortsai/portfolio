@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Michelin Guide Redesign — Fuyu Tsai | UI/UX Designer</title>
+  <title>Michelin Guide Website Redesign — Fuyu Tsai | UI/UX Designer</title>
   <meta name="description" content="Michelin Guide 概念重設計 — 餐廳搜尋、列表、詳細頁與三步驟訂位流程。Fuyu Tsai UI/UX Case Study。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
@@ -26,8 +26,8 @@
 <!-- CASE HERO -->
 <section class="case-hero">
   <div class="case-hero-left theme-dark reveal">
-    <div class="case-hero-num">Case Study 02</div>
-    <h1 class="case-hero-title">Michelin Guide<br>Redesign</h1>
+    <div class="case-hero-num">Case Study 03</div>
+    <h1 class="case-hero-title">Michelin Guide<br>Website Redesign</h1>
     <p class="case-hero-desc">在保留米其林高端品牌調性的前提下，讓使用者不必離開平台就能完成找餐廳到訂位。</p>
   </div>
   <div class="case-hero-right">
@@ -39,7 +39,7 @@
 <div class="case-meta">
   <div class="case-meta-item">
     <div class="case-meta-label">Role</div>
-    <div class="case-meta-value">UI / Visual Design</div>
+    <div class="case-meta-value">UI/UX Designer</div>
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Year</div>
@@ -51,7 +51,7 @@
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Tools</div>
-    <div class="case-meta-value">Figma / FigJam</div>
+    <div class="case-meta-value">Figma｜AI 協作：對比檢測、元件整理與 Auto Layout 重建、文字校稿。研究、設計決策與視覺皆由我完成。</div>
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Live</div>
@@ -59,62 +59,181 @@
   </div>
 </div>
 
+<!-- 0 摘要 -->
+<div class="case-summary reveal">
+  <div class="case-summary-inner">
+    <p class="case-note">概念性專案，與米其林指南官方無關。Restaurant imagery and brand assets © MICHELIN, used for conceptual purposes only.</p>
+    <p><strong>問題</strong>：米其林指南收錄眾多星級餐廳，官網也有地圖與「線上訂位」篩選，但列表不會依所在位置顯示距離，想找附近的餐廳、查路線和評論，還是得跳到 Google Maps；想訂位時，「可供訂位」只代表餐廳有串接訂位系統，常常點進去選好時間，才發現今日已經客滿。</p>
+    <p><strong>做法</strong>：在站內依所在位置列出附近餐廳與距離，加入今日可訂時段與三步驟訂位；並依 WCAG 2.2 AA 標準製作文字對比、建立包含所有狀態的元件，延伸到手機版。</p>
+    <p><strong>結果</strong>：使用者不用離開平台，就能從找附近餐廳一路完成訂位；桌機和手機版的文字對比全部符合無障礙設計。</p>
+  </div>
+</div>
+
 <!-- CONTENT -->
 <div class="case-content">
 
-  <!-- 01 問題 -->
-  <div class="case-section reveal" id="problem">
+  <!-- 01 背景與問題 -->
+  <div class="case-section reveal" id="background">
     <div class="case-section-label">
       <div class="case-section-num">01</div>
-      <div class="case-section-title">問題</div>
+      <h2 class="case-section-title">背景與問題</h2>
     </div>
     <div class="case-section-body">
-      <p>每年米其林公布新名單，我和親友都會上指南網站看今年有哪些餐廳。但看到感興趣的餐廳後，總得跳到 Google Maps 查位置、價格和評論，來回幾次之後，想訂位的念頭也淡了。規劃 UI 案例時，我以這個經驗為起點，對照 The Fork、OpenTable、食べログ 如何讓使用者在同一個平台內從找餐廳一路走到訂位，整理出三個問題：</p>
-
+      <p>每年米其林公布新名單，我和親友都會上指南網站看今年有哪些餐廳。但看到感興趣的餐廳後，總得跳到 Google Maps 查路線和評論，來回幾次之後，想訂位的念頭也淡了。規劃 UI 案例時，我以這個經驗為起點，整理出三個問題：</p>
       <ol class="case-list numbered">
-        <li><strong>搜尋缺乏即時性</strong>　網站不會抓取所在位置，看不出餐廳離你多遠。</li>
-        <li><strong>資訊不完整</strong>　缺少評論、價格與地圖，逼使用者跳出平台。</li>
-        <li><strong>訂得到訂不到，要逐間點進去才知道</strong>　各餐廳串接的訂位系統不同，必須先點進單一餐廳、選好日期才知道有沒有位子，當日常顯示「沒有可用時間段」。平台沒有「現在訂得到」的入口。</li>
+        <li><strong>找不到周遭米其林餐廳</strong>　官網有地圖檢視，但餐廳列表不顯示距離，只能用城市搜尋附近有什麼餐廳。</li>
+        <li><strong>跳出平台</strong>　官網有營業時間和地圖，但沒有使用者評論，查路線也要開啟 Google 地圖。</li>
+        <li><strong>訂位困難</strong>　「線上訂位」篩選只標示餐廳有沒有串接訂位系統。例如 2026 年 11 月查詢時，頤宮標示「可供訂位」，當天卻顯示「沒有可用時間段」。</li>
       </ol>
+      <p>註：做這個專案期間，官網也陸續優化 UI 介面，方向與本案相近。本案著重官網目前還沒有的兩件事：依所在位置找附近餐廳，以及直接顯示今天訂得到的時段。</p>
+      <p><strong>專案限制</strong>：約 4 週、一人完成、沒有真實訂位資料。</p>
     </div>
   </div>
 
-  <!-- 02 UI 視覺與設計 -->
-  <div class="case-section reveal" id="design">
+  <!-- 02 使用者 -->
+  <div class="case-section reveal" id="users">
     <div class="case-section-label">
       <div class="case-section-num">02</div>
-      <div class="case-section-title">UI 視覺與設計</div>
+      <h2 class="case-section-title">使用者</h2>
+    </div>
+    <div class="case-section-body">
+      <p>米其林官方在<a href="https://guide.michelin.com/en/advertise" target="_blank" rel="noopener">招商頁</a>形容他們的受眾是「高參與度的一般消費者與餐飲業者，都是美食愛好者與老饕」。我以這句話為基礎，再結合自己和親友的使用經驗，把和訂位最相關的使用者分成三類：</p>
+      <ul class="case-list">
+        <li><strong>高端與商務饕客</strong>　找適合商務宴客、慶生、重要約會的餐廳，最看重三星與二星名單。</li>
+        <li><strong>美食愛好者</strong>　把指南當成美食聖經和插旗清單，不只看高價位餐廳，也很關注高性價比的必比登推介。</li>
+        <li><strong>觀光客與深度旅遊者</strong>　到陌生城市時，用米其林標籤降低踩雷風險，這也是指南當初創立的初衷。</li>
+      </ul>
+      <p>餐飲業者也是官方提到的受眾，但他們用指南來觀察市場，較少用到訂位，所以不在這次的設計範圍內。</p>
+      <p><strong>使用情境</strong>：使用者臨時有一場商務飯局，需要找一間高級餐廳。用米其林指南找到餐廳後，還得另外到 Google Maps 查路線和評論；要訂位時，許多餐廳標示「可供訂位」，點進去選好時間卻已經客滿。這時如果有「今日可訂時段」，就能直接看到今天還訂得到的餐廳。</p>
+    </div>
+  </div>
+
+  <!-- 03 研究與發現 -->
+  <div class="case-section reveal" id="research">
+    <div class="case-section-label">
+      <div class="case-section-num">03</div>
+      <h2 class="case-section-title">研究與發現</h2>
+    </div>
+    <div class="case-section-body">
+      <p>我比較了三個訂位平台的做法：OpenTable 搜尋時就能看到當日可訂時段，功能性最完整；食べログ 可以依情境找餐廳，例如約會、商務、家庭聚餐，更貼近使用者的真實需求；The Fork 透過平台訂位能拿到折扣，讓使用者有理由在平台上訂位。</p>
+      <p>這次設計借鏡了 OpenTable 的當日可訂時段，以及食べログ 的情境分類，首頁的「主題特輯」就是依約會、商務、家庭聚餐分類。The Fork 的優惠機制則沒有納入，因為這次我想專注在兩件事：抓取使用者位置，以及讓訂位更順暢。</p>
+      <img loading="lazy" decoding="async" width="1864" height="1472" src="assets/images/Michelin Guide/Sitemap&amp;User Flow.webp" alt="Sitemap 與 User Flow，從找餐廳到完成訂位的路徑" class="case-img-full">
+      <p class="case-img-caption">Sitemap 與 User Flow</p>
+    </div>
+  </div>
+
+  <!-- 04 設計決策 -->
+  <div class="case-section reveal" id="decisions">
+    <div class="case-section-label">
+      <div class="case-section-num">04</div>
+      <h2 class="case-section-title">設計決策</h2>
+    </div>
+    <div class="case-section-body">
+      <ol class="case-list numbered">
+        <li><strong>依所在位置找餐廳</strong>　使用者一進到首頁，網站就抓取所在地，依距離列出附近的米其林餐廳和必比登小吃，並標示距離。不管只是想知道附近有什麼，還是真的要訂位，都不用再跳到 Google Maps 自己對照位置。</li>
+        <li><strong>今日可訂時段</strong>　我自己和身邊親友實際操作時都發現，每間餐廳的訂位系統不同。有的標示「可供訂位」，點進去選好人數和時間，卻顯示沒有可用時段。所以選擇將各家餐廳今日可訂的時段統整起來，直接顯示在餐廳頁和首頁，讓使用者不用逐間點進各家餐廳的訂位系統。</li>
+        <li><strong>視覺</strong>　首頁搜尋器採用毛玻璃效果，讓搜尋器與 Hero Banner 自然融合，並以金色細線分隔三個輸入欄位，強化品牌細節。字型方面，標題用 Playfair Display 呼應高端歐式質感，內文用 Inter 確保易讀性。我原本想完整保留米其林目前的視覺調性，但做的過程中，覺得可以順應近年介面的趨勢做一些調整：毛玻璃質感、圓角矩形，以及更多留白，讓版面有呼吸感。</li>
+      </ol>
+
+      <img loading="lazy" decoding="async" width="1616" height="5455" src="assets/images/Michelin Guide/figma/michelin-process.webp" alt="四個頁面從 Wireframe 到完成稿的對照：首頁、餐廳列表頁、餐廳詳細頁與訂位流程" class="case-img-full">
+      <p class="case-img-caption">從 wireframe 到完成稿：版面架構維持不變，完成稿補上品牌視覺、今日可訂時段的狀態設計與無障礙修正。</p>
+    </div>
+  </div>
+
+  <!-- 05 介面設計與設計系統 -->
+  <div class="case-section reveal" id="design">
+    <div class="case-section-label">
+      <div class="case-section-num">05</div>
+      <h2 class="case-section-title">介面設計與設計系統</h2>
     </div>
     <div class="case-section-body">
       <ul class="case-list">
         <li><strong>品牌系統</strong>　保留米其林主色 #BF0000、金色 #C9A84C、深黑 #1A1A1A；標題 Playfair Display、內文 Inter。</li>
-        <li><strong>首頁搜尋器</strong>　毛玻璃效果融入 Hero Banner，以金色細線分隔三個欄位。</li>
-        <li><strong>餐廳詳細頁</strong>　直接顯示今日可訂時段，補齊即時性與資訊完整度。</li>
         <li><strong>範圍</strong>　限縮在餐廳功能流程，不涉及飯店與文章頁面。</li>
       </ul>
 
-      <img loading="lazy" decoding="async" width="1864" height="1472" src="assets/images/Michelin Guide/Sitemap&User Flow.webp" alt="Sitemap 與 User Flow" class="case-img-full">
-      <p class="case-img-caption">Sitemap 與 User Flow</p>
+      <img loading="lazy" decoding="async" width="2400" height="1767" src="assets/images/Michelin Guide/figma/michelin-design-system.webp" alt="Design System：色彩系統、字級層級與無障礙規則" class="case-img-full">
+      <p class="case-img-caption">Design System — 無障礙修正版</p>
 
-      <img loading="lazy" decoding="async" width="2400" height="1333" src="assets/images/Michelin Guide/Michelin Guide Redesign_Wireframe/Design System.webp" alt="Design System" class="case-img-full">
-      <p class="case-img-caption">Design System</p>
+      <img loading="lazy" decoding="async" width="1440" height="2747" src="assets/images/Michelin Guide/figma/michelin-tokens.webp" alt="Foundations Tokens：text、bg、border、action、status 等語意變數" class="case-img-full">
+      <p class="case-img-caption">Foundations — Tokens</p>
 
-      <img loading="lazy" decoding="async" width="2014" height="2979" src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/01 - 首頁 UI.webp" alt="首頁 UI" class="case-img-full">
-      <p class="case-img-caption">首頁 — 毛玻璃搜尋器融入 Hero Banner</p>
+      <img loading="lazy" decoding="async" width="2400" height="3501" src="assets/images/Michelin Guide/figma/michelin-components.webp" alt="元件總表：按鈕、時段、表單欄位、卡片與星級圖示的各種狀態" class="case-img-full">
+      <p class="case-img-caption">元件總表 — 每個元件都包含所有狀態並標註對比數值</p>
 
-      <img loading="lazy" decoding="async" width="2014" height="2979" src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/02 - 餐廳列表頁 UI.webp" alt="餐廳列表頁 UI" class="case-img-full">
-      <p class="case-img-caption">餐廳列表頁</p>
+      <h3 class="case-subhead">桌機 D01–D07</h3>
+      <div class="case-img-grid cols-2">
+        <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-d01-home.webp" alt="D01 首頁，依所在位置列出附近餐廳" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="1946" src="assets/images/Michelin Guide/figma/michelin-d02-list.webp" alt="D02 餐廳列表頁，左列表右地圖，顯示距離與今日可訂時段" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-d03-detail.webp" alt="D03 餐廳詳細頁，資訊卡、地圖、今日可訂時段與用餐評論" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-d04-step1.webp" alt="D04 訂位步驟一，選擇日期、時段與人數" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="1042" src="assets/images/Michelin Guide/figma/michelin-d05-step2.webp" alt="D05 訂位步驟二，填寫聯絡資料" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="972" src="assets/images/Michelin Guide/figma/michelin-d06-step3.webp" alt="D06 訂位步驟三，確認訂位資訊" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-d07-success.webp" alt="D07 訂位成功，顯示確認信資訊" class="case-img">
+      </div>
+      <p class="case-img-caption">桌機版 D01–D07</p>
 
-      <img loading="lazy" decoding="async" width="2014" height="2979" src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/03 - 餐廳詳細頁 UI.webp" alt="餐廳詳細頁 UI" class="case-img-full">
-      <p class="case-img-caption">餐廳詳細頁 — 直接顯示今日可訂時段</p>
+      <h3 class="case-subhead">手機 M01–M08</h3>
+      <div class="case-img-grid cols-3">
+        <img loading="lazy" decoding="async" width="750" height="4240" src="assets/images/Michelin Guide/figma/michelin-m01-home.webp" alt="M01 首頁手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="3306" src="assets/images/Michelin Guide/figma/michelin-m02-list.webp" alt="M02 餐廳列表頁手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="3648" src="assets/images/Michelin Guide/figma/michelin-m03-detail.webp" alt="M03 餐廳詳細頁手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="2242" src="assets/images/Michelin Guide/figma/michelin-m04-step1.webp" alt="M04 訂位步驟一手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="2428" src="assets/images/Michelin Guide/figma/michelin-m05-step2.webp" alt="M05 訂位步驟二手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="2200" src="assets/images/Michelin Guide/figma/michelin-m06-step3.webp" alt="M06 訂位步驟三手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="2270" src="assets/images/Michelin Guide/figma/michelin-m07-submitting.webp" alt="M07 送出中手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="1996" src="assets/images/Michelin Guide/figma/michelin-m08-success.webp" alt="M08 訂位成功手機版" class="case-img">
+      </div>
+      <p class="case-img-caption">手機版 M01–M08</p>
+
+      <p>我把訂位流程用到的按鈕、時段、表單欄位整理成元件，每個元件都包含預設、hover、focus、停用、錯誤等狀態，並標註對比數值。</p>
+      <p>臨時訂位大多在手機上完成，所以我把首頁、餐廳詳細頁和訂位三步驟做成 375px 的手機版。手機版沿用同一套元件與無障礙規則：按鈕、時段和選單的點擊範圍都至少 44px；可訂時段改成橫向滑動，讓已選時段保持在畫面中；照片卡片因為高度變矮，加強了底部漸層，讓文字對比維持在 4.5:1 以上。</p>
     </div>
   </div>
 
-  <!-- 03 互動與原型 -->
+  <!-- 06 無障礙設計 -->
+  <div class="case-section reveal alt-zone" id="accessibility">
+    <div class="case-section-label">
+      <div class="case-section-num">06</div>
+      <h2 class="case-section-title">無障礙設計</h2>
+    </div>
+    <div class="case-section-body">
+      <p>我檢查了設計稿初版，全部 262 個文字圖層的對比，有 50 處未達 WCAG 2.2 AA 標準：</p>
+      <ul class="case-list">
+        <li><strong>次要文字</strong>　灰色 #888888 在白底只有 3.54:1，共 42 處，改為 #6B6B6B，提升到 5.33:1。</li>
+        <li><strong>金色</strong>　品牌金 #C9A84C 在淺灰底只有 2.10:1。保留金色作為品牌色，但訂出使用規則：金色只放在深色底（7.62:1）或當作裝飾線；淺色底上的金色文字改用 #866D29（4.55:1）。</li>
+        <li><strong>毛玻璃搜尋列</strong>　提示文字壓在毛玻璃上只有 2.32:1，改為淺色後提升到 7.55:1；外框與背景的對比 4.23:1，原本就符合 UI 元件 3:1 的標準，所以維持不變。</li>
+        <li><strong>照片上的文字</strong>　主題特輯卡片的文字壓在照片上，最低只有 1.37:1。為符合無障礙設計，我將整張照片的遮罩加深到 60%，這樣做數值合格了，但照片變得太暗失去高級感。最後改成只在卡片下半部加一層漸層，照片上方維持原本的亮度。手機版卡片比較矮，再把漸層加強，桌機與手機的文字對比都提升到 5.5:1 以上。</li>
+        <li><strong>最小字級</strong>　照片版權文字從 6px 放大到 10px。</li>
+      </ul>
+
+      <h3 class="case-subhead">修正前後</h3>
+      <div class="case-img-grid cols-2">
+        <img loading="lazy" decoding="async" width="2400" height="3550" src="assets/images/Michelin Guide/figma/michelin-before-home.webp" alt="修正前的首頁，主題特輯卡片文字直接壓在照片上" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-d01-home.webp" alt="修正後的首頁，主題特輯卡片下半部加上漸層" class="case-img">
+      </div>
+      <p class="case-img-caption">首頁主題特輯：左為修正前，金色副標壓在亮照片上；右為修正後，卡片下半部加漸層</p>
+
+      <div class="case-img-grid cols-2">
+        <img loading="lazy" decoding="async" width="2400" height="3550" src="assets/images/Michelin Guide/figma/michelin-before-detail.webp" alt="修正前的餐廳詳細頁，評論只用金色星星表示評分" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-d03-detail.webp" alt="修正後的餐廳詳細頁，評分同時以數字呈現" class="case-img">
+      </div>
+      <p class="case-img-caption">用餐評論：左為修正前，只有金色星星；右為修正後，補上數字評分</p>
+
+      <p>修正後，我將這些規則寫進設計系統，之後新增的畫面都依照同一套標準。</p>
+
+      <img loading="lazy" decoding="async" width="2400" height="1787" src="assets/images/Michelin Guide/figma/michelin-a11y-annotations.webp" alt="無障礙標註：焦點順序、標題層級、圖片替代文字與 ARIA 語意說明" class="case-img-full">
+      <p class="case-img-caption">無障礙標註 — 焦點順序、標題層級、替代文字與 ARIA</p>
+
+      <p>除了修正對比，也製作了後續提供給工程的無障礙標註：Tab 鍵的焦點順序、標題層級、圖片替代文字，以及時段選擇與錯誤訊息的語意說明。例如時段列以 radio group 設計，按 Tab 只會停一次，組內用方向鍵切換，已滿的時段會被略過；電話欄位填錯時，錯誤訊息會即時被螢幕閱讀器唸出，送出時焦點自動移到第一個錯誤欄位。</p>
+    </div>
+  </div>
+
+  <!-- 07 互動與原型 -->
   <div class="case-section reveal" id="prototype">
     <div class="case-section-label">
-      <div class="case-section-num">03</div>
-      <div class="case-section-title">互動與原型</div>
+      <div class="case-section-num">07</div>
+      <h2 class="case-section-title">互動與原型</h2>
     </div>
     <div class="case-section-body">
       <p>訂位流程分三步驟，採左側餐廳摘要、右側表單的雙欄版面，讓使用者填寫時仍能看到所選餐廳，降低認知負擔。</p>
@@ -123,24 +242,58 @@
         <a href="https://www.figma.com/proto/nYqGLZ3htsfceenq535lKO/Michelin-Guide-Redesign?node-id=13-46&amp;page-id=0%3A1&amp;t=6Scw4HtXJJTX0Dl7-1" target="_blank" rel="noopener" class="case-link case-link-primary">Figma 原型</a>
       </div>
 
-      <img loading="lazy" decoding="async" width="2400" height="1793" src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/04 - 訂位流程 UI.webp" alt="訂位流程 步驟一" class="case-img-full">
-      <p class="case-img-caption">訂位流程 — 步驟一</p>
+      <h3 class="case-subhead">訂位流程的各種狀態</h3>
+      <p>除了正常流程，我也設計了訂位時會遇到的狀態。時段已滿時，以刪除線加上「已滿」文字表示，已選的時段加上勾選圖示；表單填錯時，欄位變成紅框，並說明如何修正；送出時，按鈕顯示「處理中…」並暫停點擊，避免重複訂位；完成後顯示訂位成功與確認信資訊；篩選後沒有結果時，提供一鍵清除篩選。每個狀態除了用顏色也用文字或圖示做表達。</p>
 
-      <img loading="lazy" decoding="async" width="2400" height="1793" src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/04 - 訂位流程 UI｜步驟二.webp" alt="訂位流程 步驟二" class="case-img-full">
-      <p class="case-img-caption">訂位流程 — 步驟二</p>
+      <div class="case-img-grid cols-2">
+        <img loading="lazy" decoding="async" width="1440" height="1066" src="assets/images/Michelin Guide/figma/michelin-state-error.webp" alt="表單填錯時，欄位變成紅框並說明如何修正" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="1009" src="assets/images/Michelin Guide/figma/michelin-state-submitting.webp" alt="送出中，按鈕顯示處理中並暫停點擊" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-d07-success.webp" alt="訂位成功，顯示確認信資訊" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="851" src="assets/images/Michelin Guide/figma/michelin-state-empty.webp" alt="篩選後沒有結果，提供一鍵清除篩選" class="case-img">
+      </div>
+      <p class="case-img-caption">錯誤、送出中、成功、無結果四個狀態</p>
 
-      <img loading="lazy" decoding="async" width="2400" height="1793" src="assets/images/Michelin Guide/Michelin Guide Redesign_Final/04 - 訂位流程 UI｜步驟三.webp" alt="訂位流程 步驟三" class="case-img-full">
-      <p class="case-img-caption">訂位流程 — 步驟三</p>
+      <h3 class="case-subhead">訂位流程操作示範（桌機／手機）</h3>
+      <div class="case-video-grid">
+        <figure class="case-video">
+          <video controls muted playsinline preload="none"
+                 poster="assets/images/Michelin Guide/figma/michelin-video-poster-desktop.webp"
+                 width="1920" height="1440">
+            <source src="assets/video/michelin-prototype-desktop.mp4" type="video/mp4">
+          </video>
+          <figcaption>桌機版</figcaption>
+        </figure>
+        <figure class="case-video">
+          <video controls muted playsinline preload="none"
+                 poster="assets/images/Michelin Guide/figma/michelin-video-poster-phone.webp"
+                 width="852" height="1718">
+            <source src="assets/video/michelin-prototype-phone.mp4" type="video/mp4">
+          </video>
+          <figcaption>手機版</figcaption>
+        </figure>
+      </div>
+      <p class="case-img-caption">從首頁找到附近餐廳，選擇今日可訂時段，完成三步驟訂位。</p>
+    </div>
+  </div>
+
+  <!-- 08 反思 -->
+  <div class="case-section reveal" id="reflection">
+    <div class="case-section-label">
+      <div class="case-section-num">08</div>
+      <h2 class="case-section-title">反思</h2>
+    </div>
+    <div class="case-section-body">
+      <p>這次專案還有幾個不足。第一，我沒有做使用者測試；重做的話，會先用原型找 3–5 人測試，驗證「今日可訂時段」是否真的解決問題。第二，一開始只做了桌機版，手機版是後來才補上的，但臨時訂位大多是用手機，重做會先從手機版開始設計。第三，一開始沒有把無障礙納入考量，做完才發現有 50 處文字對比不足。修正後我將對比規則寫進設計系統；重做的話，會在最初建立色彩系統時就先驗證是否有達到無障礙設計標準，而不是後續測試完發現不足又重做一次。</p>
     </div>
   </div>
 
 </div>
 
 <!-- NEXT PROJECT -->
-<a href="case-iii-awards.html" class="next-project theme-dark">
+<a href="case-iii-design.html" class="next-project theme-dark">
   <div>
     <div class="next-project-label">Next Project</div>
-    <div class="next-project-title">III Awards Agency</div>
+    <div class="next-project-title">III Design Studio</div>
   </div>
   <div class="next-project-arrow">→</div>
 </a>
