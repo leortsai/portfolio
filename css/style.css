@@ -929,14 +929,23 @@ footer {
   letter-spacing: var(--ls-label);
   font-size: var(--fs-1);
   border-bottom: 1px solid var(--line-strong);
-  white-space: nowrap;
 }
+
 
 .case-table td strong { font-weight: 500; color: var(--ink); }
 .case-table td em { font-style: normal; color: var(--ink-light); }
 
-/* 表格在窄螢幕自己捲，頁面不跟著橫向捲 */
-.case-table-scroll { overflow-x: auto; }
+/* 表格在窄螢幕自己捲，頁面不跟著橫向捲。
+   右側加一道漸層，讓「還有內容可以捲」看得出來；捲到底就淡出。 */
+.case-table-scroll {
+  overflow-x: auto;
+  background:
+    linear-gradient(to right, var(--bg) 30%, rgba(255, 255, 255, 0)) left center / 40px 100% no-repeat,
+    linear-gradient(to left,  var(--bg) 30%, rgba(255, 255, 255, 0)) right center / 40px 100% no-repeat,
+    radial-gradient(farthest-side at 0 50%, rgba(10, 10, 10, 0.16), rgba(10, 10, 10, 0)) left center / 16px 100% no-repeat,
+    radial-gradient(farthest-side at 100% 50%, rgba(10, 10, 10, 0.16), rgba(10, 10, 10, 0)) right center / 16px 100% no-repeat;
+  background-attachment: local, local, scroll, scroll;
+}
 
 /* meta bar 裡的連結：直排、比正文的 case-link 緊湊 */
 .case-meta-links {
@@ -1148,12 +1157,14 @@ footer {
   letter-spacing: var(--ls-cjk);
 }
 
+/* 注意：上面已經有一組 .case-table th/td，這組是後來疊上去的。
+   不設 white-space: nowrap——「官網看得到價格嗎」這種標題一旦不能換行，
+   表格就被撐到 1331px，比 780px 的正文欄寬，最後一欄整個看不到。 */
 .case-table th,
 .case-table td {
   text-align: left;
   padding: 12px 16px;
   border-bottom: 1px solid var(--line);
-  white-space: nowrap;
 }
 
 .case-table thead th {
