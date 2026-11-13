@@ -116,7 +116,7 @@ body {
   height: 8px;
   border-radius: 50%;
   background: var(--ink);
-  z-index: 9999;
+  z-index: 10002;   /* 必須高於 .lightbox 的 10000，否則面板打開就看不到滑鼠 */
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: transform 0.15s;
@@ -128,7 +128,7 @@ body {
   height: 32px;
   border-radius: 50%;
   border: 1px solid var(--ink);
-  z-index: 9998;
+  z-index: 10001;   /* 同上，要在 .lightbox 之上 */
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: width 0.4s cubic-bezier(.16,1,.3,1), height 0.4s cubic-bezier(.16,1,.3,1);
@@ -1662,29 +1662,31 @@ section[id] { scroll-margin-top: 104px; }
   outline-offset: 4px;
 }
 
-/* 沿用作品卡那套自訂游標：圓圈放大並顯示提示文字 */
-body:has(.zoomable:hover) .cursor-ring {
-  width: 72px;
-  height: 72px;
-  background: var(--ink);
-  border-color: var(--ink);
+/* 碰到可放大的圖：小圓點變成會發光的藍點。
+   不用作品卡那種塞文字的大圓——Lightbox 打開後同一顆點要繼續當滑鼠指示，
+   大圓會擋住圖片，小亮點在深色底上反而更好找。 */
+body:has(.zoomable:hover) .cursor,
+body:has(.lightbox:not([hidden])) .cursor {
+  width: 14px;
+  height: 14px;
+  background: var(--blue);
+  transform: translate(-50%, -50%) scale(1);
+  box-shadow:
+    0 0 0 4px rgba(11, 79, 217, 0.22),
+    0 0 14px 3px rgba(11, 79, 217, 0.85),
+    0 0 34px 10px rgba(11, 79, 217, 0.45);
 }
 
-body:has(.zoomable:hover) .cursor-ring::after {
-  content: "Zoom";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'GT Walsheim Trial', sans-serif;
-  font-size: 12px;
-  letter-spacing: var(--ls-label);
-  color: var(--paper);
-  text-transform: uppercase;
+body:has(.zoomable:hover) .cursor-ring,
+body:has(.lightbox:not([hidden])) .cursor-ring {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border-color: rgba(11, 79, 217, 0.55);
 }
 
-body:has(.zoomable:hover) .cursor { transform: translate(-50%, -50%) scale(0); }
+body:has(.zoomable:hover) .cursor-ring::after,
+body:has(.lightbox:not([hidden])) .cursor-ring::after { content: none; }
 
 .lightbox {
   position: fixed;
@@ -1762,6 +1764,9 @@ body:has(.zoomable:hover) .cursor { transform: translate(-50%, -50%) scale(0); }
 }
 
 .lightbox-close:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; }
+
+/* 面板打開時，滑到關閉鈕上也要維持藍點，不要被 a:hover 的 scale(0) 吃掉 */
+body:has(.lightbox:not([hidden])) .cursor { transform: translate(-50%, -50%) scale(1) !important; }
 
 @media (prefers-reduced-motion: reduce) {
   .zoomable { transition: none; }
