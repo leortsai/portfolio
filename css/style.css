@@ -311,8 +311,26 @@ footer {
   font-size: var(--fs-3);
   line-height: var(--lh-cjk);
   color: var(--ink-mid);
-  max-width: min(520px, 36vw);   /* 寬螢幕時第二句收成一行，窄螢幕自然折成兩行 */
+  /* 用 em 而不是固定 px：字級變動時每行字數維持穩定 */
+  max-width: 33em;
   letter-spacing: var(--ls-cjk);
+  line-break: strict;       /* 標點不落在行首行尾 */
+}
+
+/* 以逗號為界切成子句，每個子句是不可拆的單位。
+   中文沒有空白可當斷點，瀏覽器會在任何一字之間換行——
+   原本就斷在「響應式／設計；」中間。現在放不下就整個子句換到下一行。 */
+.hero-desc .ln {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) { .hero-desc { max-width: 25em; } }
+@media (max-width: 768px)  { .hero-desc { max-width: 100%; } }
+
+/* 小於 360px 時最長的子句也塞不下，只能讓它自己折 */
+@media (max-width: 359px) {
+  .hero-desc .ln { display: inline; white-space: normal; }
 }
 
 .hero-cta {
@@ -466,6 +484,9 @@ footer {
   border-radius: 16px;
   aspect-ratio: 16 / 10;   /* 四張都是 1:1 的 mockup，統一裁成同一個比例 */
 }
+
+/* 奇麗灣導覽圖是 2.16:1，用 16/10 會把兩側裁掉一大塊 */
+.work-card-media.is-wide { aspect-ratio: 2.16 / 1; }
 
 .work-card img {
   --zoom: 1;                     /* 每張圖的基礎縮放，hover 在這之上再疊 */
