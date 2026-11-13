@@ -190,6 +190,7 @@ nav {
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 48px;
   list-style: none;
 }
@@ -1663,29 +1664,32 @@ section[id] { scroll-margin-top: 104px; }
    滿版錯落選單
    ============================================ */
 
+/* 外觀必須和 .nav-links a 一模一樣，否則按鈕的 min-height 會把整列撐高、
+   其他連結被 flex 的 stretch 推到頂端。命中區改用絕對定位的覆蓋層給。 */
 .menu-trigger {
+  position: relative;
   font: inherit;
   font-size: var(--fs-2);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: inherit;
+  color: var(--ink-light);
   background: none;
   border: 0;
-  padding: 11px 2px;          /* 連同行高讓命中區 >= 44px */
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  padding: 0;
   cursor: none;
+  transition: color 0.2s;
 }
 
-.menu-trigger::after {
+.menu-trigger:hover { color: var(--ink); }
+
+.menu-trigger::before {      /* 只放大命中區，不影響版面 */
   content: "";
-  width: 14px;
-  height: 1px;
-  background: currentColor;
-  box-shadow: 0 4px 0 currentColor;
-  display: block;
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  top: 50%;
+  height: 44px;
+  transform: translateY(-50%);
 }
 
 .menu-trigger:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
@@ -1735,11 +1739,11 @@ section[id] { scroll-margin-top: 104px; }
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 120px 60px 40px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
-  align-content: start;
+  padding: 140px 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
 }
 
 /* 每一列：外層裁切，內層由下往上推進來 */
@@ -1755,12 +1759,28 @@ section[id] { scroll-margin-top: 104px; }
 }
 
 .menu-group-name {
+  display: block;
   font-family: 'GT Walsheim Trial', sans-serif;
   font-weight: 500;
-  font-size: clamp(30px, 4.4vw, 60px);
-  line-height: 1.02;
+  font-size: clamp(42px, 9vw, 124px);
+  line-height: 1.04;
   letter-spacing: var(--ls-display);
-  margin: 0 0 22px;
+  margin: 0;
+  color: var(--paper);
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+a.menu-group-name:hover,
+a.menu-group-name:focus-visible { opacity: 0.55; }
+a.menu-group-name:focus-visible { outline: 2px solid var(--paper); outline-offset: 6px; }
+
+.menu-row-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px 0;
+  min-height: 44px;
 }
 
 .menu-links { list-style: none; margin: 0; padding: 0; }
@@ -1818,13 +1838,12 @@ body:has(.menu-panel.is-open) .cursor { background: var(--paper); }
 body:has(.menu-panel.is-open) .cursor-ring { border-color: rgba(250, 255, 253, 0.6); }
 
 @media (max-width: 1024px) {
-  .menu-inner { grid-template-columns: 1fr; gap: 34px; padding: 100px 40px 32px; }
+  .menu-inner { padding: 120px 40px 32px; }
   .menu-foot { padding: 0 40px 36px; }
 }
 
 @media (max-width: 768px) {
-  .menu-inner { padding: 92px 24px 28px; gap: 28px; }
-  .menu-group-name { font-size: clamp(26px, 9vw, 40px); margin-bottom: 14px; }
+  .menu-inner { padding: 104px 24px 28px; }
   .menu-foot { padding: 0 24px 28px; }
   .menu-close { top: 12px; right: 12px; }
 }
