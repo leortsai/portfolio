@@ -7,7 +7,7 @@
   <meta name="description" content="Michelin Guide 概念重設計 — 餐廳搜尋、列表、詳細頁與三步驟訂位流程。Fuyu Tsai UI/UX Case Study。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20261113b">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
     <p class="case-hero-desc">在保留米其林高端品牌調性的前提下，讓使用者不必離開平台就能完成找餐廳到訂位。</p>
   </div>
   <div class="case-hero-right">
-    <img width="1399" height="1170" src="assets/images/Michelin Guide/Michelin Guide.webp" alt="Michelin Guide">
+    <img width="1254" height="1254" src="assets/images/mockups/michelin-guide-mockup.webp" alt="Michelin Guide Website Redesign 在螢幕上的情境圖">
   </div>
 </section>
 
@@ -47,11 +47,11 @@
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Type</div>
-    <div class="case-meta-value">UI / Visual Exploration<br>概念性專案</div>
+    <div class="case-meta-value">UI Redesign / Design System<br>概念性專案</div>
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Tools</div>
-    <div class="case-meta-value">Figma｜AI 協作：對比檢測、元件整理與 Auto Layout 重建、文字校稿。研究、設計決策與視覺皆由我完成。</div>
+    <div class="case-meta-value">Figma / FigJam / HTML（AI 工具輔助實作）</div>
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Live</div>
@@ -86,7 +86,7 @@
         <li><strong>訂位困難</strong>　「線上訂位」篩選只標示餐廳有沒有串接訂位系統。例如 2026 年 11 月查詢時，頤宮標示「可供訂位」，當天卻顯示「沒有可用時間段」。</li>
       </ol>
       <p>註：做這個專案期間，官網也陸續優化 UI 介面，方向與本案相近。本案著重官網目前還沒有的兩件事：依所在位置找附近餐廳，以及直接顯示今天訂得到的時段。</p>
-      <p><strong>專案限制</strong>：約 4 週、一人完成、沒有真實訂位資料。</p>
+      <p class="case-constraint"><strong>專案限制</strong>：約 4 週、一人完成、沒有真實訂位資料。</p>
     </div>
   </div>
 
@@ -135,8 +135,6 @@
         <li><strong>視覺</strong>　首頁搜尋器採用毛玻璃效果，讓搜尋器與 Hero Banner 自然融合，並以金色細線分隔三個輸入欄位，強化品牌細節。字型方面，標題用 Playfair Display 呼應高端歐式質感，內文用 Inter 確保易讀性。我原本想完整保留米其林目前的視覺調性，但做的過程中，覺得可以順應近年介面的趨勢做一些調整：毛玻璃質感、圓角矩形，以及更多留白，讓版面有呼吸感。</li>
       </ol>
 
-      <img loading="lazy" decoding="async" width="1616" height="5455" src="assets/images/Michelin Guide/figma/michelin-process.webp" alt="四個頁面從 Wireframe 到完成稿的對照：首頁、餐廳列表頁、餐廳詳細頁與訂位流程" class="case-img-full">
-      <p class="case-img-caption">從 wireframe 到完成稿：版面架構維持不變，完成稿補上品牌視覺、今日可訂時段的狀態設計與無障礙修正。</p>
     </div>
   </div>
 
@@ -152,6 +150,8 @@
         <li><strong>範圍</strong>　限縮在餐廳功能流程，不涉及飯店與文章頁面。</li>
       </ul>
 
+      <img loading="lazy" decoding="async" width="1616" height="5455" src="assets/images/Michelin Guide/figma/michelin-process.webp" alt="四個頁面從 Wireframe 到完成稿的對照：首頁、餐廳列表頁、餐廳詳細頁與訂位流程" class="case-img-full">
+      <p class="case-img-caption">從 wireframe 到完成稿：版面架構維持不變，完成稿補上品牌視覺、今日可訂時段的狀態設計與無障礙修正。</p>
       <img loading="lazy" decoding="async" width="2400" height="1767" src="assets/images/Michelin Guide/figma/michelin-design-system.webp" alt="Design System：色彩系統、字級層級與無障礙規則" class="case-img-full">
       <p class="case-img-caption">Design System — 無障礙修正版</p>
 
@@ -161,30 +161,30 @@
       <img loading="lazy" decoding="async" width="2400" height="3501" src="assets/images/Michelin Guide/figma/michelin-components.webp" alt="元件總表：按鈕、時段、表單欄位、卡片與星級圖示的各種狀態" class="case-img-full">
       <p class="case-img-caption">元件總表 — 每個元件都包含所有狀態並標註對比數值</p>
 
-      <h3 class="case-subhead">桌機 D01–D07</h3>
+      <h3 class="case-subhead">桌機版</h3>
       <div class="case-img-grid cols-2">
-        <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-d01-home.webp" alt="D01 首頁，依所在位置列出附近餐廳" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="1946" src="assets/images/Michelin Guide/figma/michelin-d02-list.webp" alt="D02 餐廳列表頁，左列表右地圖，顯示距離與今日可訂時段" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-d03-detail.webp" alt="D03 餐廳詳細頁，資訊卡、地圖、今日可訂時段與用餐評論" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-d04-step1.webp" alt="D04 訂位步驟一，選擇日期、時段與人數" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="1042" src="assets/images/Michelin Guide/figma/michelin-d05-step2.webp" alt="D05 訂位步驟二，填寫聯絡資料" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="972" src="assets/images/Michelin Guide/figma/michelin-d06-step3.webp" alt="D06 訂位步驟三，確認訂位資訊" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-d07-success.webp" alt="D07 訂位成功，顯示確認信資訊" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-home-desktop.webp" alt="首頁，依所在位置列出附近餐廳（桌機版）" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="1946" src="assets/images/Michelin Guide/figma/michelin-restaurant-list-desktop.webp" alt="餐廳列表頁，左列表右地圖，顯示距離與今日可訂時段（桌機版）" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-restaurant-detail-desktop.webp" alt="餐廳詳細頁，資訊卡、地圖、今日可訂時段與用餐評論（桌機版）" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-booking-step1-desktop.webp" alt="訂位步驟一，選擇日期、時段與人數（桌機版）" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="1042" src="assets/images/Michelin Guide/figma/michelin-booking-step2-desktop.webp" alt="訂位步驟二，填寫聯絡資料（桌機版）" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="972" src="assets/images/Michelin Guide/figma/michelin-booking-step3-desktop.webp" alt="訂位步驟三，確認訂位資訊（桌機版）" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-booking-success-desktop.webp" alt="訂位成功，顯示確認信資訊（桌機版）" class="case-img">
       </div>
-      <p class="case-img-caption">桌機版 D01–D07</p>
+      <p class="case-img-caption">桌機版七個畫面：首頁、餐廳列表、餐廳詳細與訂位三步驟到成功頁</p>
 
-      <h3 class="case-subhead">手機 M01–M08</h3>
+      <h3 class="case-subhead">手機版</h3>
       <div class="case-img-grid cols-3">
-        <img loading="lazy" decoding="async" width="750" height="4240" src="assets/images/Michelin Guide/figma/michelin-m01-home.webp" alt="M01 首頁手機版" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="3306" src="assets/images/Michelin Guide/figma/michelin-m02-list.webp" alt="M02 餐廳列表頁手機版" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="3648" src="assets/images/Michelin Guide/figma/michelin-m03-detail.webp" alt="M03 餐廳詳細頁手機版" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="2242" src="assets/images/Michelin Guide/figma/michelin-m04-step1.webp" alt="M04 訂位步驟一手機版" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="2428" src="assets/images/Michelin Guide/figma/michelin-m05-step2.webp" alt="M05 訂位步驟二手機版" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="2200" src="assets/images/Michelin Guide/figma/michelin-m06-step3.webp" alt="M06 訂位步驟三手機版" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="2270" src="assets/images/Michelin Guide/figma/michelin-m07-submitting.webp" alt="M07 送出中手機版" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="1996" src="assets/images/Michelin Guide/figma/michelin-m08-success.webp" alt="M08 訂位成功手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="4240" src="assets/images/Michelin Guide/figma/michelin-home-mobile.webp" alt="首頁手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="3306" src="assets/images/Michelin Guide/figma/michelin-restaurant-list-mobile.webp" alt="餐廳列表頁手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="3648" src="assets/images/Michelin Guide/figma/michelin-restaurant-detail-mobile.webp" alt="餐廳詳細頁手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="2242" src="assets/images/Michelin Guide/figma/michelin-booking-step1-mobile.webp" alt="訂位步驟一手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="2428" src="assets/images/Michelin Guide/figma/michelin-booking-step2-mobile.webp" alt="訂位步驟二手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="2200" src="assets/images/Michelin Guide/figma/michelin-booking-step3-mobile.webp" alt="訂位步驟三手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="2270" src="assets/images/Michelin Guide/figma/michelin-booking-submitting-mobile.webp" alt="送出中手機版" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="1996" src="assets/images/Michelin Guide/figma/michelin-booking-success-mobile.webp" alt="訂位成功手機版" class="case-img">
       </div>
-      <p class="case-img-caption">手機版 M01–M08</p>
+      <p class="case-img-caption">手機版八個畫面：首頁、餐廳列表、餐廳詳細與訂位三步驟、送出中到成功頁</p>
 
       <p>我把訂位流程用到的按鈕、時段、表單欄位整理成元件，每個元件都包含預設、hover、focus、停用、錯誤等狀態，並標註對比數值。</p>
       <p>臨時訂位大多在手機上完成，所以我把首頁、餐廳詳細頁和訂位三步驟做成 375px 的手機版。手機版沿用同一套元件與無障礙規則：按鈕、時段和選單的點擊範圍都至少 44px；可訂時段改成橫向滑動，讓已選時段保持在畫面中；照片卡片因為高度變矮，加強了底部漸層，讓文字對比維持在 4.5:1 以上。</p>
@@ -210,13 +210,13 @@
       <h3 class="case-subhead">修正前後</h3>
       <div class="case-img-grid cols-2">
         <img loading="lazy" decoding="async" width="2400" height="3550" src="assets/images/Michelin Guide/figma/michelin-before-home.webp" alt="修正前的首頁，主題特輯卡片文字直接壓在照片上" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-d01-home.webp" alt="修正後的首頁，主題特輯卡片下半部加上漸層" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-home-desktop.webp" alt="修正後的首頁，主題特輯卡片下半部加上漸層" class="case-img">
       </div>
       <p class="case-img-caption">首頁主題特輯：左為修正前，金色副標壓在亮照片上；右為修正後，卡片下半部加漸層</p>
 
       <div class="case-img-grid cols-2">
         <img loading="lazy" decoding="async" width="2400" height="3550" src="assets/images/Michelin Guide/figma/michelin-before-detail.webp" alt="修正前的餐廳詳細頁，評論只用金色星星表示評分" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-d03-detail.webp" alt="修正後的餐廳詳細頁，評分同時以數字呈現" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-restaurant-detail-desktop.webp" alt="修正後的餐廳詳細頁，評分同時以數字呈現" class="case-img">
       </div>
       <p class="case-img-caption">用餐評論：左為修正前，只有金色星星；右為修正後，補上數字評分</p>
 
@@ -248,7 +248,7 @@
       <div class="case-img-grid cols-2">
         <img loading="lazy" decoding="async" width="1440" height="1066" src="assets/images/Michelin Guide/figma/michelin-state-error.webp" alt="表單填錯時，欄位變成紅框並說明如何修正" class="case-img">
         <img loading="lazy" decoding="async" width="1440" height="1009" src="assets/images/Michelin Guide/figma/michelin-state-submitting.webp" alt="送出中，按鈕顯示處理中並暫停點擊" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-d07-success.webp" alt="訂位成功，顯示確認信資訊" class="case-img">
+        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-booking-success-desktop.webp" alt="訂位成功，顯示確認信資訊" class="case-img">
         <img loading="lazy" decoding="async" width="1440" height="851" src="assets/images/Michelin Guide/figma/michelin-state-empty.webp" alt="篩選後沒有結果，提供一鍵清除篩選" class="case-img">
       </div>
       <p class="case-img-caption">錯誤、送出中、成功、無結果四個狀態</p>
@@ -308,5 +308,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/lightbox.js?v=20261113b"></script>
 </body>
 </html>
