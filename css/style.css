@@ -1659,6 +1659,131 @@ section[id] { scroll-margin-top: 104px; }
    Responsive
    ============================================ */
 /* ============================================
+   品牌案例（III Design Studio）專用
+   ============================================ */
+
+/* 品牌關鍵字：沿用首頁作品卡標籤的形狀 */
+.brand-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.brand-keywords li {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-2);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  border: 1px solid var(--line-strong);
+  padding: 7px 14px;
+  border-radius: 100px;
+  color: var(--ink);
+}
+
+/* 價值三項 */
+.brand-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.brand-values li {
+  border-top: 1px solid var(--line-strong);
+  padding-top: 14px;
+  font-size: var(--fs-2);
+  line-height: var(--lh-cjk);
+  letter-spacing: var(--ls-cjk);
+  color: var(--ink-mid);
+}
+
+.brand-values strong {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* 色票：色塊＋HEX／CMYK／RGB 用文字排，不用圖，才不會被裁切也放得大 */
+.brand-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.brand-swatch-chip {
+  display: block;
+  height: 132px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+
+.brand-swatch-name {
+  font-size: var(--fs-1);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.brand-swatch dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+  font-size: var(--fs-1);
+  line-height: 1.6;
+  color: var(--ink-light);
+}
+
+.brand-swatch dt { letter-spacing: var(--ls-label); }
+.brand-swatch dd { margin: 0; font-variant-numeric: tabular-nums; color: var(--ink-mid); }
+
+/* 字型示範 */
+.type-specimens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 0 0 32px;
+}
+
+.type-specimen {
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  padding: 36px 28px 22px;
+}
+
+.type-specimen-sample {
+  font-family: 'GT Walsheim Trial', sans-serif;
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 1;
+  letter-spacing: var(--ls-display);
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.type-specimen-sample.is-medium  { font-weight: 500; }
+.type-specimen-sample.is-regular { font-weight: 400; }
+
+.type-specimen-label {
+  font-size: var(--fs-1);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+/* ============================================
    圖片放大檢視（Lightbox）
    ============================================ */
 
@@ -1797,6 +1922,8 @@ body:has(.lightbox:not([hidden])) .cursor { transform: translate(-50%, -50%) sca
   .case-content { padding: 0 40px; }
   .case-img-full { width: 100%; margin-left: 0; }
   .case-img-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+  .brand-values { grid-template-columns: 1fr; }
+  .brand-swatches { grid-template-columns: 1fr 1fr; }
   .case-hero { grid-template-columns: 1fr 1fr; }
   .lightbox-stage { padding: 64px 16px 12px; }
 }
@@ -1850,6 +1977,10 @@ body:has(.lightbox:not([hidden])) .cursor { transform: translate(-50%, -50%) sca
   .case-img-full { width: 100%; margin-left: 0; }
   .case-img-grid.cols-2, .case-img-grid.cols-3 { grid-template-columns: 1fr; }
   .case-video-grid { grid-template-columns: 1fr; }
+  .brand-values { grid-template-columns: 1fr; gap: 16px; }
+  .brand-swatches { grid-template-columns: 1fr 1fr; }
+  .type-specimens { grid-template-columns: 1fr; }
+  .brand-swatch-chip { height: 104px; }
   .zoomable:hover { transform: none; box-shadow: 0 24px 64px rgba(10,10,10,0.12); }
   .case-constraint { padding-left: 24px; }
   .case-summary { padding: 40px 24px; }
