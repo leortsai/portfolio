@@ -818,6 +818,7 @@ footer {
 .case-img-grid.cols-1 { grid-template-columns: 1fr; gap: 16px; }
 .case-img-grid.cols-2 { grid-template-columns: 1fr 1fr; }
 .case-img-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.case-img-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 
 .case-callout {
   border-left: 3px solid var(--blue);
@@ -1662,6 +1663,15 @@ section[id] { scroll-margin-top: 104px; }
    品牌案例（III Design Studio）專用
    ============================================ */
 
+/* 標誌變化一排五格。用 auto-fit 而不是寫死 5 欄：
+   正文欄只有 780px，硬排五格每格剩 150px，看不出 blur 與顆粒的差別。 */
+.brand-logo-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 /* 品牌關鍵字：沿用首頁作品卡標籤的形狀 */
 .brand-keywords {
   display: flex;
@@ -1922,6 +1932,7 @@ body:has(.lightbox:not([hidden])) .cursor { transform: translate(-50%, -50%) sca
   .case-content { padding: 0 40px; }
   .case-img-full { width: 100%; margin-left: 0; }
   .case-img-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+  .case-img-grid.cols-4 { grid-template-columns: 1fr 1fr; }
   .brand-values { grid-template-columns: 1fr; }
   .brand-swatches { grid-template-columns: 1fr 1fr; }
   .case-hero { grid-template-columns: 1fr 1fr; }
@@ -1975,7 +1986,8 @@ body:has(.lightbox:not([hidden])) .cursor { transform: translate(-50%, -50%) sca
   .case-section-label { position: static; }
   .case-content { padding: 0 24px; }
   .case-img-full { width: 100%; margin-left: 0; }
-  .case-img-grid.cols-2, .case-img-grid.cols-3 { grid-template-columns: 1fr; }
+  .case-img-grid.cols-2, .case-img-grid.cols-3, .case-img-grid.cols-4 { grid-template-columns: 1fr; }
+  .brand-logo-strip { grid-template-columns: 1fr 1fr; }
   .case-video-grid { grid-template-columns: 1fr; }
   .brand-values { grid-template-columns: 1fr; gap: 16px; }
   .brand-swatches { grid-template-columns: 1fr 1fr; }
