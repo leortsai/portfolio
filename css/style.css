@@ -1966,6 +1966,13 @@ body:has(.menu-panel.is-open) .cursor-ring { border-color: rgba(250, 255, 253, 0
   box-shadow: 0 24px 64px rgba(10, 10, 10, 0.12);
 }
 
+/* 標誌／字標類的圖不需要整個版面寬，縮小一點比較有呼吸感 */
+.vw-main.is-logo {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .vw-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
