@@ -472,11 +472,29 @@ footer {
   height: 100%;
   object-fit: cover;
   transform: scale(var(--zoom));
-  transition: transform 0.6s cubic-bezier(.16,1,.3,1);
+  filter: grayscale(1);
+  transition: transform 0.6s cubic-bezier(.16,1,.3,1),
+              filter 0.45s ease;
   display: block;
 }
 
 .work-card:hover img { transform: scale(calc(var(--zoom) * 1.03)); }
+
+/* 封面預設灰階，滑鼠移上去才上色。
+   只在真的有 hover 的裝置上灰階——觸控沒有 hover，
+   卡片一點就跳頁，灰階會變成永遠看不到原色。 */
+@media (hover: hover) and (pointer: fine) {
+  .work-card:hover img,
+  .work-card:focus-visible img { filter: grayscale(0); }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .work-card img { filter: grayscale(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card img { transition: none; }
+}
 
 /* object-fit: cover 會裁掉溢出的那一邊，每張圖要保留的重點不同。 */
 .work-card img.fit-top  { object-position: center top; }
