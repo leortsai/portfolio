@@ -1970,6 +1970,24 @@ body:has(.menu-panel.is-open) .cursor-ring { border-color: rgba(250, 255, 253, 0
   margin-top: 8px;
 }
 
+/* 一組圖共用一行圖說（例如兩張現場實景） */
+.vw-cap {
+  font-size: var(--fs-1);
+  letter-spacing: var(--ls-cjk);
+  line-height: var(--lh-cjk);
+  color: var(--ink-light);
+  margin: 8px 0 0;
+}
+
+/* 兩張並排、共用一行圖說 */
+.vw-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.vw-pair img { width: 100%; height: auto; display: block; border-radius: 6px; }
+
 .vw-note {
   font-size: var(--fs-1);
   letter-spacing: var(--ls-cjk);
@@ -2329,6 +2347,7 @@ body:has(.lightbox:not([hidden])) .cursor { transform: translate(-50%, -50%) sca
   .vw-content { padding: 0 24px 24px; }
   .vw-footnote { padding-left: 24px; padding-right: 24px; }
   .vw-grid { grid-template-columns: 1fr; gap: 16px; }
+  .vw-pair { grid-template-columns: 1fr; gap: 16px; }
   .vw-item { padding: 48px 0; }
   .brand-values { grid-template-columns: 1fr; gap: 16px; }
   .brand-swatches { grid-template-columns: 1fr 1fr; }
