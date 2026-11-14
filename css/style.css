@@ -1284,6 +1284,16 @@ footer {
   padding: 80px 60px;
 }
 
+/* 人像：ASCII 與照片兩層疊放，往下捲時 ASCII 淡出、照片由模糊浮現 */
+.about-portrait {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.about-portrait > * { grid-area: 1 / 1; }
+
 #ascii-about {
   font-family: 'Courier New', monospace;
   font-size: 6px;
@@ -1291,6 +1301,30 @@ footer {
   color: var(--ink);
   white-space: pre;
   opacity: 0.65;
+  --fade: 1;                       /* 1 = 全 ASCII，0 = 全照片 */
+  opacity: calc(0.65 * var(--fade));
+}
+
+.about-photo {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  --fade: 1;
+  opacity: calc(1 - var(--fade));
+  filter: blur(calc(8px * var(--fade)));
+  will-change: opacity, filter;
+}
+
+/* 沒有 JS 或開啟減少動態時，直接顯示照片 */
+html:not(.js) .about-photo,
+html:not(.js) #ascii-about { --fade: 0; }
+html:not(.js) #ascii-about { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .about-photo { --fade: 0 !important; filter: none; }
+  #ascii-about { display: none; }
 }
 
 .about-right { padding: 80px 60px; }
