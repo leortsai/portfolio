@@ -1405,47 +1405,39 @@ footer {
   padding: 80px 60px;
 }
 
-/* 人像：ASCII 與照片兩層疊放，往下捲時 ASCII 淡出、照片由模糊浮現 */
+/* 人像：黑白照片，進入畫面時由下往上揭開並從 1.08 沉降到 1。
+   只做一件事——先前 ASCII 與照片兩層疊放，兩者長寬比不同（0.89 對 0.66），
+   臉的位置對不上，交叉淡化看起來像兩張圖互換而不是同一張逐漸清晰。 */
 .about-portrait {
-  position: relative;
-  display: grid;
-  place-items: center;
+  margin: 0;
   width: 100%;
-}
-
-.about-portrait > * { grid-area: 1 / 1; }
-
-#ascii-about {
-  font-family: 'Courier New', monospace;
-  font-size: 6px;
-  line-height: 6px;
-  color: var(--ink);
-  white-space: pre;
-  opacity: 0.65;
-  --fade: 1;                       /* 1 = 全 ASCII，0 = 全照片 */
-  opacity: calc(0.65 * var(--fade));
+  max-width: 420px;
+  border-radius: 10px;
+  overflow: hidden;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 900ms var(--ease-out);
 }
 
 .about-photo {
   width: 100%;
-  max-width: 420px;
   height: auto;
   display: block;
-  border-radius: 10px;
-  --fade: 1;
-  opacity: calc(1 - var(--fade));
-  filter: blur(calc(8px * var(--fade)));
-  will-change: opacity, filter;
+  filter: grayscale(1);
+  transform: scale(1.08);
+  transform-origin: 50% 55%;
+  transition: transform 1100ms var(--ease-out);
 }
 
-/* 沒有 JS 或開啟減少動態時，直接顯示照片 */
-html:not(.js) .about-photo,
-html:not(.js) #ascii-about { --fade: 0; }
-html:not(.js) #ascii-about { display: none; }
+.about-portrait.is-in { clip-path: inset(0 0 0 0); }
+.about-portrait.is-in .about-photo { transform: scale(1); }
+
+/* 沒有 JS 或開啟減少動態時，直接完整顯示 */
+html:not(.js) .about-portrait { clip-path: none; }
+html:not(.js) .about-photo { transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-photo { --fade: 0 !important; filter: none; }
-  #ascii-about { display: none; }
+  .about-portrait { clip-path: none; transition: none; }
+  .about-photo { transform: none; transition: none; }
 }
 
 .about-right { padding: 80px 60px; }
