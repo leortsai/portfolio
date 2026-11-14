@@ -265,6 +265,26 @@ if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
    * nav 的 Work 是 index.html#work——在首頁點它，瀏覽器會把整頁重新載入一次
    * （Lava Lamp 重啟、字型重繪），使用者只是想捲到作品區而已。
    */
+  /*
+   * Lenis 每一幀都會把捲動位置寫回去，瀏覽器為了「把焦點元素捲進畫面」做的
+   * 捲動會立刻被蓋掉——用鍵盤 Tab 時，焦點會停在畫面外看不見的地方。
+   * 這裡接手：鍵盤造成的焦點（:focus-visible）若不在可視範圍內，就用 Lenis 捲過去。
+   * immediate:true 是因為這是輔助用的位移，不該有慣性動畫。
+   */
+  document.addEventListener('focusin', (e) => {
+    const el = e.target;
+    if (!el || typeof el.getBoundingClientRect !== 'function') return;
+    try { if (!el.matches(':focus-visible')) return; } catch (_) { /* 舊瀏覽器就一律處理 */ }
+
+    const NAV = 100;                       // 固定 nav 大約 74px，留點餘裕
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight;
+    if (r.top >= NAV && r.bottom <= vh - 24) return;   // 本來就看得到
+
+    const y = r.top + window.scrollY - Math.max(NAV, (vh - r.height) / 2);
+    lenis.scrollTo(Math.max(0, y), { immediate: true });
+  });
+
   const here = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('a[href*="#"]').forEach(a => {
     const raw = a.getAttribute('href');

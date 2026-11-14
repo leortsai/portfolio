@@ -108,6 +108,15 @@ body {
   overflow-x: hidden;
 }
 
+/* body 的 cursor:none 不會傳到連結和按鈕上——瀏覽器預設的
+   a:any-link{cursor:pointer} 比繼承值優先，手型游標會和自製的藍點同時出現。
+   這裡一次關掉；觸控裝置由下方 (hover:none),(pointer:coarse) 的區塊恢復。 */
+a,
+button,
+summary,
+[role="button"],
+[role="slider"] { cursor: none; }
+
 /* 動畫 token */
 :root {
   --dur-fast: 150ms;
@@ -1035,6 +1044,9 @@ footer {
 
 .next-project {
   /* 底色與文字色由 .theme-dark 提供 */
+  /* 沒寫 cursor:none 的話，瀏覽器預設的 a:any-link{cursor:pointer}
+     會讓手型游標和自製藍點同時出現 */
+  cursor: none;
   padding: 80px 60px;
   display: flex;
   align-items: center;
@@ -1818,7 +1830,7 @@ body.on-dark .cursor-ring { border-color: var(--paper); }
   .work-card:active { transform: scale(0.98); }
   .work-card { transition: transform 0.15s cubic-bezier(.16,1,.3,1); }
   body, .work-card { cursor: auto; }
-  a, button { cursor: pointer; }
+  a, button, .next-project { cursor: pointer; }
   .zoomable { cursor: zoom-in; }
   .lightbox-close { cursor: pointer; }
 }
@@ -3041,3 +3053,136 @@ body.alt {
 @media (max-width: 768px) {
   .track-item { padding-left: 24px; }
 }
+
+
+/* ============================================
+   404
+   ============================================ */
+.nf {
+  min-height: calc(100vh - 85px);
+  display: flex;
+  align-items: center;
+  padding: 120px 60px 80px;
+}
+.nf-inner { max-width: 620px; }
+.nf-code {
+  font-family: 'GT Walsheim Trial', sans-serif;
+  font-size: var(--fs-1);
+  letter-spacing: var(--ls-label);
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.nf-title {
+  font-family: 'GT Walsheim Trial', 'Noto Sans TC', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-7);
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-title);
+  margin-bottom: 20px;
+}
+.nf-dot { color: var(--accent); }
+.nf-desc {
+  font-size: var(--fs-3);
+  line-height: var(--lh-cjk);
+  color: var(--ink-mid);
+  margin-bottom: 40px;
+}
+.nf-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+}
+.nf-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--paper);
+  text-decoration: none;
+  font-size: var(--fs-2);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  transition: background var(--dur-base) var(--ease-out);
+}
+.nf-btn:hover { background: var(--carbon); }
+.nf-link {
+  font-size: var(--fs-2);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  text-decoration: none;
+  transition: color var(--dur-base) var(--ease-out);
+}
+.nf-link:hover { color: var(--fg); }
+.nf-btn:focus-visible,
+.nf-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 768px) {
+  .nf { padding: 100px 24px 60px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nf-btn, .nf-link { transition: none; }
+}
+
+
+/* ============================================
+   捲動揭開的外框
+   圖片進場會從 scale(1.08) 收到 1。縮放後的盒子仍然算進可捲動範圍，
+   768px 寬時正文欄剛好等於視窗寬，8% 的外擴會溢出 5px 造成水平捲動。
+   把縮放關在外框裡，圓角與陰影改掛在外框上，才不會被裁掉。
+   ============================================ */
+.zoom-btn,
+.reveal-frame {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(10, 10, 10, 0.12);
+}
+.zoom-btn > img,
+.reveal-frame > img { box-shadow: none; }
+
+.reveal-frame {
+  display: block;
+  width: 100%;
+  margin-bottom: 28px;
+}
+.reveal-frame > .vw-main { margin-bottom: 0; border-radius: 0; }
+.reveal-frame.is-logo { max-width: 620px; margin-left: auto; margin-right: auto; }
+.reveal-frame.is-logo > .vw-main { max-width: 100%; }
+
+/* 外框接手陰影後，hover 的放大陰影也要改掛在外框上 */
+.zoom-btn:hover > .zoomable { box-shadow: none; }
+.zoom-btn:hover { box-shadow: 0 32px 80px rgba(10, 10, 10, 0.22); }
+
+/* 320px：nav 三個連結用 48px 間距會撐到 369px。縮到 20px 就放得下。 */
+@media (max-width: 420px) {
+  .nav-links { gap: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zoom-btn { transition: none; }
+}
+
+/* 320px：--fs-8 的下限是 64px，「Prototyping.」整個字斷不開，
+   會把版面撐到 345px。窄螢幕改用 vw 跟著縮。 */
+@media (max-width: 420px) {
+  .about-hero-title { font-size: min(13.5vw, 64px); }
+}
+
+/* 減少動態：捲動淡入直接顯示（第 7 節第 10 項）。
+   motion.js 在這個情況下整支不跑，但 main.js 的 .reveal 仍然是 opacity:0 起步，
+   畫面外的區塊會一直等到捲進來才出現。這裡直接讓它們全部可見。 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* 內嵌 demo 的 iframe 會進 Tab 順序，但 iframe 本身畫不出 focus 外框，
+   改由外層容器在焦點進入時顯示。 */
+.case-embed:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* 焦點進到跨網域 iframe 之後，:focus-within 與 iframe:focus 都不成立，
+   由 js/ui.js 掛 .is-focus 來補。 */
+.case-embed.is-focus { outline: 2px solid var(--accent); outline-offset: 2px; }

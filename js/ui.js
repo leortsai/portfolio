@@ -32,3 +32,27 @@
     }
   });
 })();
+
+/* 內嵌 demo 的焦點框
+   iframe 進得了 Tab 順序，但焦點一旦進到跨網域的內層文件，
+   外層的 :focus-within 與 iframe:focus 都不會成立，CSS 畫不出框。
+   改用視窗 blur 時 document.activeElement 是不是這個 iframe 來判斷。 */
+(function () {
+  'use strict';
+  var frame = document.querySelector('.case-embed iframe');
+  if (!frame) return;
+  var wrap = frame.closest('.case-embed');
+
+  function on()  { wrap.classList.add('is-focus'); }
+  function off() { wrap.classList.remove('is-focus'); }
+
+  window.addEventListener('blur', function () {
+    if (document.activeElement === frame) on();
+  });
+  window.addEventListener('focus', off);
+  frame.addEventListener('focus', on);
+  frame.addEventListener('blur', off);
+  document.addEventListener('focusin', function (e) {
+    if (e.target !== frame) off();
+  });
+})();

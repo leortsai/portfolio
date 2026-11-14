@@ -115,6 +115,16 @@
     if (!items.length) return;
 
     items.forEach(function (el) {
+      /* Visual Work 的主圖沒有外框。1.08 的起始縮放會撐出水平捲動
+         （768px 寬時剛好溢出 5px），所以補一層會裁切的外框。
+         case 頁的圖本來就包在 .zoom-btn 裡，由 CSS 負責裁切。 */
+      if (el.tagName === 'IMG' && !el.parentElement.classList.contains('reveal-frame')) {
+        var fr = document.createElement('span');
+        fr.className = 'reveal-frame' + (el.classList.contains('is-logo') ? ' is-logo' : '');
+        el.parentNode.insertBefore(fr, el);
+        fr.appendChild(el);
+        el = fr;
+      }
       var img = el.tagName === 'IMG' ? el : el.querySelector('img');
       if (!img) return;
 
