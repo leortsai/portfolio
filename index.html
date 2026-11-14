@@ -7,25 +7,28 @@
   <meta name="description" content="蔡馥伃 Fuyu Tsai — UI/UX Designer。六年品牌與視覺設計背景，專注網站介面、設計系統與響應式設計。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261114o">
+  <link rel="stylesheet" href="css/style.css?v=20261114p">
   <script type="importmap">
   { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js" } }
   </script>
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+<a class="skip-link" href="#main">跳到主要內容</a>
 
 <div class="cursor"></div>
 <div class="cursor-ring"></div>
 
+<header>
 <nav>
-  <a href="index.html" class="nav-logo">Fuyu Tsai</a>
+  <a href="index.html" class="nav-logo" lang="en">Fuyu Tsai</a>
   <ul class="nav-links">
     <li><button type="button" class="menu-trigger" aria-expanded="false" aria-controls="site-menu">Work</button></li>
     <li><a href="about.html">About</a></li>
     <li><a href="about.html#contact">Contact</a></li>
   </ul>
 </nav>
+</header>
 
 <!-- 滿版選單 -->
 <div class="menu-panel" id="site-menu" role="dialog" aria-modal="true" aria-label="作品選單" hidden>
@@ -34,7 +37,7 @@
   <div class="menu-inner">
     <div class="menu-row" data-menu-row>
       <div class="menu-rise">
-        <a class="menu-row-link" href="index.html#work">
+        <a class="menu-row-link" href="index.html#work" lang="en">
           <span class="menu-group-label">01</span>
           <span class="menu-group-name">UI/UX</span>
         </a>
@@ -43,7 +46,7 @@
 
     <div class="menu-row" data-menu-row>
       <div class="menu-rise">
-        <a class="menu-row-link" href="case-iii-design.html">
+        <a class="menu-row-link" href="case-iii-design.html" lang="en">
           <span class="menu-group-label">02</span>
           <span class="menu-group-name">Brand Design</span>
         </a>
@@ -52,7 +55,7 @@
 
     <div class="menu-row" data-menu-row>
       <div class="menu-rise">
-        <a class="menu-row-link" href="visual-work.html">
+        <a class="menu-row-link" href="visual-work.html" lang="en">
           <span class="menu-group-label">03</span>
           <span class="menu-group-name">Visual Design</span>
         </a>
@@ -69,6 +72,7 @@
   </div>
 </div>
 
+<main id="main">
 <!-- HERO -->
 <section class="hero theme-dark" data-invert-nav>
   <div id="hero-lava" aria-hidden="true"></div>
@@ -97,7 +101,7 @@
 <!-- WORK -->
 <section id="work">
   <div class="work-header reveal">
-    <h2 class="work-header-title section-title">Selected<br>Work<svg class="section-dot" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg></h2>
+    <h2 class="work-header-title section-title" lang="en">Selected<br>Work<svg class="section-dot" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg></h2>
     <span class="work-header-index">01</span>
   </div>
   <div class="work-grid">
@@ -220,9 +224,11 @@
     </div>
   </div>
 </div>
+</main>
 
+<button type="button" class="to-top" aria-label="回到頁面頂端">&#8593;</button>
 <footer>
-  <div class="footer-left">Fuyu Tsai © 2026</div>
+  <div class="footer-left" lang="en">Fuyu Tsai © 2026</div>
   <div class="footer-right">
     <a href="mailto:fuyutsaii@gmail.com">Email</a>
     <a href="https://www.linkedin.com/in/leortsai" target="_blank" rel="noopener">LinkedIn</a>
@@ -231,7 +237,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
 <script src="js/main.js"></script>
-<script src="js/menu.js?v=20261114o"></script>
+<script src="js/ui.js?v=20261114p"></script>
+<script src="js/menu.js?v=20261114p"></script>
 <script type="module" src="js/lava.js"></script>
 </body>
 </html>

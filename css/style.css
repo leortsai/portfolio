@@ -40,7 +40,7 @@
   --bg:          var(--paper);
   --fg:          var(--carbon);
   --fg-mid:      #4A4A4A;
-  --fg-dim:      #8A8A8A;
+  --fg-dim:      #6B6B6B;   /* 原 #8A8A8A 在淺底只有 3.19:1，改後 4.93:1 */
   --line:        rgba(10,10,10,0.08);
   --line-strong: rgba(10,10,10,0.16);
   --accent:      var(--blue-core);
@@ -49,7 +49,7 @@
   /* ---------- 舊名別名（讓既有規則沿用，不必全站改名） ---------- */
   --ink:        var(--carbon);
   --ink-mid:    #4A4A4A;
-  --ink-light:  #8A8A8A;
+  --ink-light:  #6B6B6B;
   --blue:       var(--blue-core);
   --blue-light: rgba(11,79,217,0.08);
   --white:      #FFFFFF;
@@ -74,7 +74,7 @@
 
   --ink:        var(--paper);
   --ink-mid:    rgba(247,246,243,0.62);
-  --ink-light:  rgba(247,246,243,0.42);
+  --ink-light:  rgba(247,246,243,0.55);   /* 0.42 在深底只有 3.83:1，0.55 為 5.88:1 */
   --blue:       var(--blue-lift);
   --blue-light: rgba(61,139,255,0.14);
   /* --dark 不重新宣告：它是「深色」這個字面顏色（case-hero-left、next-project
@@ -106,6 +106,92 @@ body {
   cursor: none;
   overflow-x: hidden;
 }
+
+/* 動畫 token */
+:root {
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 400ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* 全站焦點外框。深淺底都要看得見，所以用 currentColor 再補一圈反差色。 */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* 跳到主要內容：只有 Tab 到才出現 */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10100;
+  transform: translateY(-200%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: var(--fs-2);
+  letter-spacing: var(--ls-cjk);
+  text-decoration: none;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+/* 導覽列與頁尾連結的命中區拉到 24px 以上，用覆蓋層給，不改變排版 */
+.nav-links a,
+.footer-right a { position: relative; }
+
+.nav-links a::before,
+.footer-right a::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  right: -8px;
+  top: 50%;
+  height: 24px;
+  transform: translateY(-50%);
+}
+
+/* 回到頂端 */
+.to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9000;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out),
+              visibility 0s linear var(--dur-base);
+}
+
+.to-top.is-on {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.to-top:hover { background: var(--ink); color: var(--paper); }
+
+@media (hover: none), (pointer: coarse) { .to-top { cursor: pointer; } }
+@media (prefers-reduced-motion: reduce) { .to-top, .skip-link { transition: none; } }
 
 /* ============================================
    Cursor
@@ -693,6 +779,7 @@ footer {
   border-right: 1px solid var(--line);
 }
 
+.case-meta-item:first-child { padding-left: 0; }
 .case-meta-item:last-child { border-right: none; }
 
 .case-meta-label {
@@ -2425,13 +2512,17 @@ body:has(.lightbox:not([hidden])) .cursor { transform: translate(-50%, -50%) sca
   .case-hero-right { height: auto; }
   .case-hero-right img { position: static; height: auto; object-fit: contain; }
   /* 一列一項：兩欄時 Role 這種長值會被擠成一行兩三個字，斷得很怪。 */
-  .case-meta { flex-direction: column; }
+  /* 手機改 2 欄並保留左右內距，上下兩列之間補分隔線 */
+  .case-meta { flex-wrap: wrap; }
   .case-meta-item {
+    flex: 0 0 50%;
     padding: 20px 24px;
-    border-right: none;
     border-bottom: 1px solid var(--line);
   }
-  .case-meta-item:last-child { border-bottom: none; }
+  .case-meta-item:nth-child(odd) { padding-left: 24px; }
+  .case-meta-item:first-child { padding-left: 24px; }
+  /* 2 欄時右欄不要右邊線，最後一列不要下邊線 */
+  .case-meta-item:nth-child(even) { border-right: none; }
   .case-section { grid-template-columns: 1fr; gap: 32px; }
   .case-section-label { position: static; }
   .case-content { padding: 0 24px; }
