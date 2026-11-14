@@ -2538,7 +2538,15 @@ body:has(.lightbox:not([hidden])) .cursor { transform: translate(-50%, -50%) sca
   .case-stats { grid-template-columns: 1fr; gap: 20px; }
   .case-table th, .case-table td { padding: 10px 12px; }
   .about-body { grid-template-columns: 1fr; }
-  .about-left { display: none; }
+  /* 這裡原本是 display:none —— 當時 .about-left 放的是 ASCII 人像，手機不顯示沒差。
+     現在裡面是真的照片，手機要看得到，改成疊在文字上方。 */
+  .about-left {
+    display: block;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding: 40px 24px;
+  }
+  .about-portrait { max-width: 100%; margin: 0 auto; }
   .about-right { padding: 40px 24px; }
   .about-hero { padding: 120px 24px 60px; }
   .about-track { padding: 48px 24px; }
