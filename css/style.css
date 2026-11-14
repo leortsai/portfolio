@@ -66,7 +66,8 @@
   --bg:          var(--carbon);
   --fg:          var(--paper);
   --fg-mid:      rgba(247,246,243,0.62);
-  --fg-dim:      rgba(247,246,243,0.42);
+  --fg-dim:      rgba(247,246,243,0.55);   /* 0.42 在 #0A0A0A 上只有 3.83:1；
+                                              case-hero-num 與 next-project-label 用它，0.55 為 5.89:1 */
   --line:        rgba(247,246,243,0.14);
   --line-strong: rgba(247,246,243,0.26);
   --accent:      var(--blue-lift);
@@ -2900,4 +2901,158 @@ a[target="_blank"]::after {
   .lightbox-prev,
   .lightbox-next,
   .video-toggle { cursor: pointer; }
+}
+
+
+/* ============================================
+   第 7-1 節：捲動動態需要的樣式
+   動畫本身在 js/motion.js，這裡只提供它需要的版面與狀態。
+   ============================================ */
+
+/* 2 段落編號翻動：數字要能從框外翻進來 */
+.case-section-num { overflow: hidden; }
+.num-roll { display: inline-block; }
+
+/* 10 首頁大標逐行：每行一個遮罩框 */
+.ln-rise { display: block; overflow: hidden; }
+.ln-inner { display: block; }
+
+/* 4 畫面橫向展示
+   桌機：固定區塊，往下捲時整條往左移（位移由 ScrollTrigger 控制）。
+   手機：改成原生左右滑動 + scroll-snap，不做固定。 */
+.htrack-wrap {
+  position: relative;
+  width: calc(100% + 60px);
+  margin: 0 0 12px -60px;
+  overflow: hidden;
+}
+.htrack {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  width: max-content;
+}
+.htrack > * {
+  flex: 0 0 auto;
+  width: auto;
+  height: 70vh;
+  margin: 0;
+}
+.htrack > .zoom-btn > img,
+.htrack > img {
+  width: auto;
+  height: 100%;
+  margin: 0;
+}
+.htrack-count {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 2;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  font-size: var(--fs-1);
+  letter-spacing: var(--ls-label);
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1024px) {
+  .htrack-wrap { width: 100%; margin-left: 0; }
+}
+@media (max-width: 768px) {
+  .htrack-wrap {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .htrack { gap: 12px; }
+  .htrack > * { width: 78vw; height: auto; scroll-snap-align: center; }
+  .htrack > .zoom-btn > img,
+  .htrack > img { width: 100%; height: auto; }
+  .htrack-count { display: none; }
+}
+
+/* 7 段落底色轉換
+   深灰字在兩種底色上都要 ≥ 4.5:1，所以 alt 狀態把 dim 灰再壓深一階。 */
+body { transition: background-color var(--dur-slow) var(--ease-out); }
+body.alt {
+  /* 重新定義 --bg 而不是只改 background：nav、htrack 計數這些
+     用 var(--bg) 的元素都在 body 底下，會一起跟著換，不會留下色差。 */
+  --bg:        #EFEEEA;
+  --fg-dim:    #666666;   /* #EFEEEA 上 4.95:1 */
+  --ink-light: #666666;
+  background: var(--bg);
+}
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+}
+
+/* 8 下一個專案：封面圖 + 標題逐字 */
+.next-project {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 36px;
+}
+.next-project-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+/* 封面用的是首頁那組正方形情境圖，3:1 會把畫面裁到只剩螢幕底座，
+   所以沿用首頁卡片的 16:10 取景，寬度收在 980px 不讓整塊過高。 */
+.next-project-cover {
+  display: block;
+  width: min(100%, 980px);
+  height: auto;   /* 必須：HTML 有 height 屬性，不歸 auto 的話 aspect-ratio 會被忽略 */
+  margin: 0 auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: 50% 42%;
+  border-radius: 12px;
+  transform-origin: 50% 50%;
+}
+.next-project-title .ch { display: inline-block; }
+.next-project:hover .next-project-cover { opacity: 0.92; }
+
+@media (max-width: 768px) {
+  .next-project { gap: 24px; }
+  .next-project-cover { aspect-ratio: 4 / 3; }
+}
+
+/* 12 About 經歷大事紀：左側直線 + 年份圓點 */
+.track-list { position: relative; }
+.track-rail {
+  position: absolute;
+  left: 3px;
+  top: 34px;
+  bottom: 34px;
+  width: 1px;
+  background: var(--line-strong);
+  transform-origin: 50% 0;
+}
+.track-item { position: relative; padding-left: 28px; }
+/* 絕對定位的 ::before 不會變成 grid item，不會多出一欄 */
+.track-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 34px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition: background var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+.track-item.is-on::before { background: var(--accent); transform: scale(1.4); }
+
+@media (prefers-reduced-motion: reduce) {
+  .track-item::before { transition: none; }
+}
+@media (max-width: 768px) {
+  .track-item { padding-left: 24px; }
 }

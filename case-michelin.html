@@ -7,7 +7,7 @@
   <meta name="description" content="Michelin Guide 概念重設計 — 餐廳搜尋、列表、詳細頁與三步驟訂位流程。Fuyu Tsai UI/UX Case Study。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261114t">
+  <link rel="stylesheet" href="css/style.css?v=20261114w">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -209,14 +209,17 @@
       <p class="case-img-caption">元件總表 — 每個元件都包含所有狀態並標註對比數值</p>
 
       <h3 class="case-subhead">桌機版</h3>
-      <div class="case-img-grid cols-2">
-        <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-home-desktop.webp" alt="首頁，依所在位置列出附近餐廳（桌機版）" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="1946" src="assets/images/Michelin Guide/figma/michelin-restaurant-list-desktop.webp" alt="餐廳列表頁，左列表右地圖，顯示距離與今日可訂時段（桌機版）" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-restaurant-detail-desktop.webp" alt="餐廳詳細頁，資訊卡、地圖、今日可訂時段與用餐評論（桌機版）" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-booking-step1-desktop.webp" alt="訂位步驟一，選擇日期、時段與人數（桌機版）" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="1042" src="assets/images/Michelin Guide/figma/michelin-booking-step2-desktop.webp" alt="訂位步驟二，填寫聯絡資料（桌機版）" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="972" src="assets/images/Michelin Guide/figma/michelin-booking-step3-desktop.webp" alt="訂位步驟三，確認訂位資訊（桌機版）" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-booking-success-desktop.webp" alt="訂位成功，顯示確認信資訊（桌機版）" class="case-img">
+      <div class="htrack-wrap" data-htrack>
+        <div class="htrack">
+          <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-home-desktop.webp" alt="首頁，依所在位置列出附近餐廳（桌機版）" class="case-img">
+          <img loading="lazy" decoding="async" width="1440" height="1946" src="assets/images/Michelin Guide/figma/michelin-restaurant-list-desktop.webp" alt="餐廳列表頁，左列表右地圖，顯示距離與今日可訂時段（桌機版）" class="case-img">
+          <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-restaurant-detail-desktop.webp" alt="餐廳詳細頁，資訊卡、地圖、今日可訂時段與用餐評論（桌機版）" class="case-img">
+          <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-booking-step1-desktop.webp" alt="訂位步驟一，選擇日期、時段與人數（桌機版）" class="case-img">
+          <img loading="lazy" decoding="async" width="1440" height="1042" src="assets/images/Michelin Guide/figma/michelin-booking-step2-desktop.webp" alt="訂位步驟二，填寫聯絡資料（桌機版）" class="case-img">
+          <img loading="lazy" decoding="async" width="1440" height="972" src="assets/images/Michelin Guide/figma/michelin-booking-step3-desktop.webp" alt="訂位步驟三，確認訂位資訊（桌機版）" class="case-img">
+          <img loading="lazy" decoding="async" width="1440" height="966" src="assets/images/Michelin Guide/figma/michelin-booking-success-desktop.webp" alt="訂位成功，顯示確認信資訊（桌機版）" class="case-img">
+        </div>
+        <p class="htrack-count" aria-hidden="true">01 / 07</p>
       </div>
       <p class="case-img-caption">桌機版七個畫面：首頁、餐廳列表、餐廳詳細與訂位三步驟到成功頁</p>
 
@@ -354,11 +357,14 @@
 
 <!-- NEXT PROJECT -->
 <a href="case-iii-design.html" class="next-project theme-dark">
-  <div>
-    <div class="next-project-label">Next Project</div>
-    <div class="next-project-title">III Design Studio</div>
+  <div class="next-project-head">
+    <div>
+      <div class="next-project-label">Next Project</div>
+      <div class="next-project-title">III Design Studio</div>
+    </div>
+    <div class="next-project-arrow" aria-hidden="true">→</div>
   </div>
-  <div class="next-project-arrow">→</div>
+  <img loading="lazy" decoding="async" width="1254" height="1254" src="assets/images/mockups/iii-design-studio-mockup.webp" alt="" aria-hidden="true" class="next-project-cover">
 </a>
 </main>
 
@@ -371,13 +377,16 @@
   </div>
 </footer>
 
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
-<script src="js/main.js"></script>
-<script src="js/ui.js?v=20261114r"></script>
-<script src="js/menu.js?v=20261114r"></script>
-<script src="js/toc.js?v=20261114t"></script>
-<script src="js/lightbox.js?v=20261114t"></script>
-<script src="js/compare.js?v=20261114t"></script>
-<script src="js/video.js?v=20261114t"></script>
+<script src="js/main.js?v=20261114u"></script>
+<script src="js/ui.js?v=20261114u"></script>
+<script src="js/menu.js?v=20261114u"></script>
+<script src="js/toc.js?v=20261114u"></script>
+<script src="js/lightbox.js?v=20261114u"></script>
+<script src="js/compare.js?v=20261114u"></script>
+<script src="js/video.js?v=20261114u"></script>
+<script defer src="js/motion.js?v=20261114u"></script>
 </body>
 </html>

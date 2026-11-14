@@ -246,6 +246,10 @@ const whole = here.filter(a => !a.getAttribute('href').includes('#'));
 if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const lenis = new Lenis({ duration: 1.1 });
 
+  /* 掛到 window：menu.js 鎖背景捲動、lightbox.js 開面板、ui.js 回到頂端、
+     motion.js 同步 ScrollTrigger，都要拿到同一個實例。 */
+  window.lenis = lenis;
+
   (function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);

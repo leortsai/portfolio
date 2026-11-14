@@ -22,6 +22,14 @@
       handle.setAttribute('aria-valuetext', '顯示修正後 ' + Math.round(pos) + '%');
     }
 
+    /* motion.js 的「進入畫面自動滑一次」要用同一個 setter */
+    frame._setCompare = set;
+
+    /* 自動示範還在跑的時候使用者就動手，要立刻把它停掉，不然會互相拉扯 */
+    function stopIntro() {
+      if (typeof frame._stopIntro === 'function') frame._stopIntro();
+    }
+
     function fromClientX(x) {
       var r = frame.getBoundingClientRect();
       if (!r.width) return;
@@ -36,6 +44,7 @@
     frame.addEventListener('pointerdown', function (e) {
       /* 讓放大按鈕之類的子元素自己處理 */
       if (e.target.closest && e.target.closest('button:not(.compare-handle)')) return;
+      stopIntro();
       dragging = true;
       frame.setPointerCapture(e.pointerId);
       fromClientX(e.clientX);
@@ -70,6 +79,7 @@
       else if (e.key === 'PageUp') next = pos + 10;
       if (next === null) return;
       e.preventDefault();
+      stopIntro();
       set(next);
     });
   });
