@@ -197,45 +197,8 @@
     });
   })();
 
-  /* ============================================================
-     10 首頁「Open to opportunities」與大標：以行為單位由下往上
-     ============================================================ */
-  (function homeHero() {
-    var hero = q('.hero-inner');
-    if (!hero) return;
-
-    /* 大標是 Fuyu<br>Tsai.，先把兩行各自包成一個 span 才能逐行動 */
-    var name = q('.hero-name', hero);
-    var nameLines = [];
-    if (name && !name.querySelector('.ln-rise')) {
-      own(name);
-      var parts = name.innerHTML.split(/<br\s*\/?>/i);
-      name.innerHTML = parts.map(function (p) {
-        return '<span class="ln-rise"><span class="ln-inner">' + p + '</span></span>';
-      }).join('');
-      nameLines = all('.ln-inner', name);
-    }
-
-    var seq = [];
-    var eyebrow = q('.hero-eyebrow', hero);
-    if (eyebrow) seq.push(own(eyebrow));
-    seq = seq.concat(nameLines);
-
-    var bottom = q('.hero-bottom', hero);
-    if (bottom) { own(bottom); seq = seq.concat(all('.hero-desc .ln', bottom)); }
-
-    var meta = all('.hero-meta > span');
-    seq = seq.concat(meta);
-
-    if (!seq.length) return;
-    gsap.from(seq, {
-      yPercent: 60, opacity: 0, duration: 0.8, ease: EASE, stagger: 0.08, delay: 0.2,
-      /* 遮罩只在動畫期間需要，留著會把「Fuyu」的 y 下伸部永久切掉 */
-      onComplete: function () {
-        all('.ln-rise', hero).forEach(function (e) { e.classList.add('is-done'); });
-      }
-    });
-  })();
+  /* 10 首頁 Hero 逐行進場已改成純 CSS（見 style.css 的 .rise）。
+     大標是 LCP 元素，掛在 GSAP 上等於要等三支 CDN 腳本下載完才顯示。 */
 
   /* ============================================================
      7 段落底色轉換（無障礙段落）
