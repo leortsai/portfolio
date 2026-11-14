@@ -525,6 +525,40 @@ footer {
 
 .work-card-meta { padding: 28px 2px 0; }
 
+/* 卡片特色：hover 與 focus 時出現。
+   用 grid-template-rows 0fr → 1fr 展開，才能在不知道行數的情況下做高度過場。 */
+.work-card-feature {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin: 0;
+  font-size: var(--fs-2);
+  line-height: var(--lh-cjk);
+  letter-spacing: var(--ls-cjk);
+  color: var(--ink-mid);
+  opacity: 0;
+  transition: grid-template-rows var(--dur-base, 250ms) var(--ease-out, cubic-bezier(.2,0,0,1)),
+              opacity var(--dur-base, 250ms) var(--ease-out, cubic-bezier(.2,0,0,1)),
+              margin var(--dur-base, 250ms) var(--ease-out, cubic-bezier(.2,0,0,1));
+}
+
+.work-card-feature > * { overflow: hidden; min-height: 0; }
+
+.work-card:hover .work-card-feature,
+.work-card:focus-visible .work-card-feature {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 12px;
+}
+
+/* 觸控裝置沒有 hover，直接顯示 */
+@media (hover: none), (pointer: coarse) {
+  .work-card-feature { grid-template-rows: 1fr; opacity: 1; margin-top: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card-feature { transition: none; }
+}
+
 .work-card-head {
   display: flex;
   align-items: center;
