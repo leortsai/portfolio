@@ -3140,7 +3140,13 @@ body.alt {
   box-shadow: 0 24px 64px rgba(10, 10, 10, 0.12);
 }
 .zoom-btn > img,
-.reveal-frame > img { box-shadow: none; }
+.reveal-frame > img {
+  box-shadow: none;
+  /* inline 元素會在下方留一條 line-height 的空隙，外框的圓角與陰影就比圖片高一截 */
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 .reveal-frame {
   display: block;

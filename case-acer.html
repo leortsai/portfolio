@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261115u">
+  <link rel="stylesheet" href="css/style.css?v=20261115z">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -281,6 +281,9 @@
         <li><strong>資訊架構</strong>　四套分類收斂為以「用途」為唯一頂層分類，系列與特色降級為篩選器；篩選條件從 13 組零件規格精簡為用途、價格、重量。</li>
         <li><strong>色彩語意</strong>　Acer Green 只代表「可行動」；品牌綠在白底對比僅 2.4:1，文字改用 green-700（4.96:1）通過 WCAG AA。</li>
       </ul>
+
+      <img loading="lazy" decoding="async" width="2400" height="983" src="assets/images/Acer Redesign/五個決策的對應畫面（局部裁切）/Decision 01 — 規格不是附錄，是主文.webp" alt="產品卡片把規格提升為主要資訊，不再收在附錄" class="case-img-full">
+      <p class="case-img-caption">卡片上直接列出重量、記憶體、顯示器與售價，不用再展開才看得到</p>
     </div>
   </div>
 
@@ -296,12 +299,35 @@
         <li><strong>響應式</strong>　篩選改為 bottom sheet、購買列移至拇指熱區、比較改為雙欄橫向滑動。</li>
       </ul>
 
-      <img loading="lazy" decoding="async" width="2286" height="2623" src="assets/images/Acer Redesign/Figma Hi-FI/Laptops List — Desktop 1440.webp" alt="改版後的筆電列表頁，卡片直接顯示價格與重量" class="case-img-full">
-      <p class="case-img-caption">筆電列表頁 — Desktop 1440</p>
-
-      <img loading="lazy" decoding="async" width="2400" height="1950" src="assets/images/Acer Redesign/Token 三層/Acer Redesign — Design Token 三層架構.webp" alt="Design Token 三層架構：Primitive、Semantic 與 Component 三層的對應關係" class="case-img-full">
+      <h3 class="case-subhead">設計系統與 Token</h3>
+      <img loading="lazy" decoding="async" width="2400" height="1560" src="assets/images/Acer Redesign/Token 三層/acer-design-token-layers.webp" alt="Design Token 三層架構：green-500、green-700、gray-900、gray-50 四個色票對應到 action/default、text/link、control/track-on、text/primary、surface/subtle 五個語意變數，再對應到購買 CTA、連結文字、差異模式開關、內文與產品卡片底" class="case-img-full">
       <p class="case-img-caption">Design Token 三層架構：Primitive → Semantic → Component</p>
 
+      <img loading="lazy" decoding="async" width="1440" height="3290" src="assets/images/Acer Redesign/figma-desktop/components-v2.webp" alt="元件總表：按鈕、比較勾選、比較列已選機型、差異模式開關、比較表儲存格、Tooltip、無結果狀態與骨架卡片" class="case-img-full">
+      <p class="case-img-caption">元件總表 — 每個元件都列出所有狀態</p>
+
+      <img loading="lazy" decoding="async" width="2320" height="1978" src="assets/images/Acer Redesign/figma/acer-states-light-dark.webp" alt="元件狀態總表：同一組元件在淺色與深色模式下的預設、hover、focus、按下、停用與載入狀態" class="case-img-full">
+      <p class="case-img-caption">狀態總表 — 同一組元件，只切換變數模式</p>
+
+      <img loading="lazy" decoding="async" width="2400" height="338" src="assets/images/Acer Redesign/figma/acer-compare-bar-states-desktop.webp" alt="桌機版比較列的兩種狀態：已選 1 件時按鈕停用並提示再選 1 台，已選 2 件時按鈕可按" class="case-img-full">
+      <p class="case-img-caption">比較列的狀態，截自可操作的 HTML Demo：已選 1 件時按鈕停用並提示「再選 1 台即可比較」，2 件以上才能開始比較</p>
+
+      <img loading="lazy" decoding="async" width="1358" height="1115" src="assets/images/Acer Redesign/figma/acer-token-contrast-matrix.webp" alt="Semantic Token 對比驗證矩陣：20 組前景與背景配對在淺色與深色模式下的對比值" class="case-img-full">
+      <p class="case-img-caption">Semantic Token 對比驗證矩陣 — 20 組配對、兩種模式共 40 項檢查</p>
+
+      <h3 class="case-subhead">桌機版</h3>
+      <div class="htrack-wrap" data-htrack>
+        <div class="htrack">
+          <img loading="lazy" decoding="async" width="1440" height="3217" src="assets/images/Acer Redesign/figma-desktop/home-desktop.webp" alt="改版後的首頁，桌機版：用途入口、精選系列帶與規格視覺化" class="case-img">
+          <img loading="lazy" decoding="async" width="1440" height="1727" src="assets/images/Acer Redesign/figma-desktop/laptops-list-desktop.webp" alt="改版後的筆電列表頁，桌機版：卡片直接顯示價格與重量" class="case-img">
+          <img loading="lazy" decoding="async" width="1440" height="802" src="assets/images/Acer Redesign/figma-desktop/compare-overlay-desktop.webp" alt="比較視窗開啟差異模式，桌機版" class="case-img">
+          <img loading="lazy" decoding="async" width="1440" height="4682" src="assets/images/Acer Redesign/figma-desktop/product-detail-desktop.webp" alt="改版後的產品詳細頁，桌機版：規格視覺化、規格表與購買列" class="case-img">
+        </div>
+        <p class="htrack-count" aria-hidden="true">01 / 04</p>
+      </div>
+      <p class="case-img-caption">桌機版四個畫面：首頁、筆電列表、比較視窗與產品詳細頁</p>
+
+      <h3 class="case-subhead">手機版</h3>
       <div class="case-img-grid cols-3">
         <img loading="lazy" decoding="async" width="750" height="4398" src="assets/images/Acer Redesign/Figma Hi-FI/Home — Mobile 375.webp" alt="首頁手機版" class="case-img">
         <img loading="lazy" decoding="async" width="750" height="3150" src="assets/images/Acer Redesign/Figma Hi-FI/Laptops List — Mobile 375.webp" alt="筆電列表頁手機版" class="case-img">
@@ -309,21 +335,11 @@
       </div>
       <p class="case-img-caption">手機版三頁 — Mobile 375</p>
 
-      <img loading="lazy" decoding="async" width="2400" height="983" src="assets/images/Acer Redesign/五個決策的對應畫面（局部裁切）/Decision 01 — 規格不是附錄，是主文.webp" alt="產品卡片把規格提升為主要資訊，不再收在附錄" class="case-img-full">
-      <p class="case-img-caption">規格不是附錄，是主文</p>
-
-      <h3 class="case-subhead">元件與狀態</h3>
-      <img loading="lazy" decoding="async" width="2320" height="1978" src="assets/images/Acer Redesign/figma/acer-states-light-dark.webp" alt="元件狀態總表：同一組元件在淺色與深色模式下的預設、hover、focus、按下、停用與載入狀態" class="case-img-full">
-      <p class="case-img-caption">狀態總表 — 同一組元件，只切換變數模式</p>
-
-      <img loading="lazy" decoding="async" width="1440" height="2785" src="assets/images/Acer Redesign/figma/acer-components.webp" alt="元件總表：按鈕、比較勾選、差異模式開關、比較表儲存格、Tooltip、無結果狀態與骨架卡片" class="case-img-full">
-      <p class="case-img-caption">元件總表</p>
-
-      <img loading="lazy" decoding="async" width="2400" height="338" src="assets/images/Acer Redesign/figma/acer-compare-bar-states-desktop.webp" alt="桌機版比較列的兩種狀態：已選 1 件時按鈕停用並提示再選 1 台，已選 2 件時按鈕可按" class="case-img-full">
-      <p class="case-img-caption">比較列的狀態，截自可操作的 HTML Demo：已選 1 件時按鈕停用並提示「再選 1 台即可比較」，2 件以上才能開始比較</p>
-
-      <img loading="lazy" decoding="async" width="1358" height="1115" src="assets/images/Acer Redesign/figma/acer-token-contrast-matrix.webp" alt="Semantic Token 對比驗證矩陣：20 組前景與背景配對在淺色與深色模式下的對比值" class="case-img-full">
-      <p class="case-img-caption">Semantic Token 對比驗證矩陣 — 20 組配對、兩種模式共 40 項檢查</p>
+      <div class="case-img-grid cols-2">
+        <img loading="lazy" decoding="async" width="814" height="192" src="assets/images/Acer Redesign/figma/acer-compare-bar-mobile.webp" alt="手機版比較列，顯示已選機型與開始比較按鈕" class="case-img">
+        <img loading="lazy" decoding="async" width="750" height="1624" src="assets/images/Acer Redesign/figma/acer-compare-overlay-mobile.webp" alt="手機版比較視窗，差異模式開啟" class="case-img">
+      </div>
+      <p class="case-img-caption">手機版比較列與比較視窗</p>
 
       <h3 class="case-subhead">深色模式</h3>
       <div class="case-img-grid cols-2">
@@ -333,13 +349,6 @@
         <img loading="lazy" decoding="async" width="814" height="192" src="assets/images/Acer Redesign/figma/acer-compare-bar-mobile-dark.webp" alt="深色模式的手機版比較列" class="case-img">
       </div>
       <p class="case-img-caption">深色模式不用另外畫一套，切換變數模式就完成</p>
-
-      <h3 class="case-subhead">手機版比較</h3>
-      <div class="case-img-grid cols-2">
-        <img loading="lazy" decoding="async" width="814" height="192" src="assets/images/Acer Redesign/figma/acer-compare-bar-mobile.webp" alt="手機版比較列，顯示已選機型與開始比較按鈕" class="case-img">
-        <img loading="lazy" decoding="async" width="750" height="1624" src="assets/images/Acer Redesign/figma/acer-compare-overlay-mobile.webp" alt="手機版比較視窗，差異模式開啟" class="case-img">
-      </div>
-      <p class="case-img-caption">手機版比較列與比較視窗</p>
 
       <p>我把比較流程用到的元件整理成一套：主要與次要按鈕、卡片上的「比較」勾選、比較列的已選機型、差異模式開關、比較表儲存格、提示框、無結果畫面與載入中的骨架卡片。每個元件都有預設、hover、focus、按下、停用、載入等狀態；用不到的狀態也寫明原因，例如次要按鈕不送出資料，所以沒有載入狀態。</p>
       <p>顏色分成兩層：底層是色票，上層是依用途命名的語意 token，例如 text/tertiary、compare/better-bg。元件只用語意 token，所以深色模式不用另外畫一套，切換變數模式就完成。每個 token 在淺色與深色模式下都先算過對比，20 組前景與背景配對、兩種模式共 40 項檢查，全部達到 WCAG 2.2 AA。</p>
@@ -435,6 +444,21 @@
         <li>2 位提到文字太小、無法放大，看起來很吃力</li>
         <li>有受訪者建議「篩選欄位直接加入主要用途」</li>
       </ul>
+
+      <h3 class="case-subhead">測試後的調整</h3>
+      <figure class="compare" data-compare style="--compare-ratio: 1440 / 1727;">
+        <div class="compare-frame">
+          <img loading="lazy" decoding="async" width="1440" height="1616" src="assets/images/Acer Redesign/figma-desktop/laptops-list-before.webp" alt="可用性測試使用的筆電列表頁版本" class="compare-img compare-before">
+          <img loading="lazy" decoding="async" width="1440" height="1727" src="assets/images/Acer Redesign/figma-desktop/laptops-list-desktop.webp" alt="測試後調整的筆電列表頁版本，字級放大、重量獨立成一行" class="compare-img compare-after">
+          <span class="compare-label compare-label-before">測試版本</span>
+          <span class="compare-label compare-label-after">調整後</span>
+          <button type="button" class="compare-handle" role="slider"
+                  aria-label="筆電列表頁測試前後對照：左右拖曳或用方向鍵比較"
+                  aria-orientation="horizontal"
+                  aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></button>
+        </div>
+        <figcaption>筆電列表頁：左為可用性測試使用的版本，右為測試後調整的版本 — 字級放大、重量獨立成一行，並補上售價與規格的查證說明</figcaption>
+      </figure>
     </div>
   </div>
 
@@ -499,13 +523,13 @@
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
-<script src="js/main.js?v=20261115u"></script>
-<script src="js/ui.js?v=20261115u"></script>
-<script src="js/menu.js?v=20261115u"></script>
-<script src="js/toc.js?v=20261115u"></script>
-<script src="js/lightbox.js?v=20261115u"></script>
-<script src="js/compare.js?v=20261115u"></script>
-<script src="js/video.js?v=20261115u"></script>
-<script defer src="js/motion.js?v=20261115u"></script>
+<script src="js/main.js?v=20261115z"></script>
+<script src="js/ui.js?v=20261115z"></script>
+<script src="js/menu.js?v=20261115z"></script>
+<script src="js/toc.js?v=20261115z"></script>
+<script src="js/lightbox.js?v=20261115z"></script>
+<script src="js/compare.js?v=20261115z"></script>
+<script src="js/video.js?v=20261115z"></script>
+<script defer src="js/motion.js?v=20261115z"></script>
 </body>
 </html>

@@ -136,7 +136,11 @@
       tl.fromTo(el,
           { clipPath: 'inset(100% 0% 0% 0%)' },
           { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'power3.inOut', clearProps: 'clipPath' })
-        .from(img, { scale: 1.08, duration: 1.1, ease: EASE, clearProps: 'transform' }, 0);
+        /* immediateRender:false 很重要：預設會在建立時就把 scale(1.08) 寫上去，
+           還沒捲到的圖會一直停在放大 8% 的狀態，被外框的 overflow:hidden 裁掉一圈，
+           看起來就是「圖片比那個白色圓角方塊大、邊緣被切掉」。
+           改成觸發時才套用，靜止狀態永遠是 scale(1)。 */
+        .from(img, { scale: 1.08, duration: 1.1, ease: EASE, immediateRender: false, clearProps: 'transform' }, 0);
       if (cap) tl.from(cap, { opacity: 0, y: 8, duration: 0.4 }, 0.1);
     });
   })();
