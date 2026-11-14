@@ -7,7 +7,7 @@
   <meta name="description" content="Michelin Guide 概念重設計 — 餐廳搜尋、列表、詳細頁與三步驟訂位流程。Fuyu Tsai UI/UX Case Study。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261114r">
+  <link rel="stylesheet" href="css/style.css?v=20261114t">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -64,7 +64,7 @@
     <span>Fuyu Tsai © 2026</span>
     <span>
       <a href="mailto:fuyutsaii@gmail.com">fuyutsaii@gmail.com</a>
-      <a href="https://www.linkedin.com/in/leortsai" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/leortsai" target="_blank" rel="noopener">LinkedIn<span class="sr-only">（另開新分頁）</span></a>
     </span>
   </div>
 </div>
@@ -102,7 +102,7 @@
   </div>
   <div class="case-meta-item">
     <div class="case-meta-label">Live</div>
-    <div class="case-meta-value"><a href="https://www.figma.com/proto/nYqGLZ3htsfceenq535lKO/Michelin-Guide-Redesign?node-id=13-46&amp;page-id=0%3A1&amp;t=6Scw4HtXJJTX0Dl7-1" target="_blank" rel="noopener">Figma 原型</a></div>
+    <div class="case-meta-value"><a href="https://www.figma.com/proto/nYqGLZ3htsfceenq535lKO/Michelin-Guide-Redesign?node-id=13-46&amp;page-id=0%3A1&amp;t=6Scw4HtXJJTX0Dl7-1" target="_blank" rel="noopener">Figma 原型<span class="sr-only">（另開新分頁）</span></a></div>
   </div>
 </div>
 
@@ -144,7 +144,7 @@
       <h2 class="case-section-title">使用者</h2>
     </div>
     <div class="case-section-body">
-      <p>米其林官方在<a href="https://guide.michelin.com/en/advertise" target="_blank" rel="noopener">招商頁</a>形容他們的受眾是「高參與度的一般消費者與餐飲業者，都是美食愛好者與老饕」。我以這句話為基礎，再結合自己和親友的使用經驗，把和訂位最相關的使用者分成三類：</p>
+      <p>米其林官方在<a href="https://guide.michelin.com/en/advertise" target="_blank" rel="noopener">招商頁<span class="sr-only">（另開新分頁）</span></a>形容他們的受眾是「高參與度的一般消費者與餐飲業者，都是美食愛好者與老饕」。我以這句話為基礎，再結合自己和親友的使用經驗，把和訂位最相關的使用者分成三類：</p>
       <ul class="case-list">
         <li><strong>高端與商務饕客</strong>　找適合商務宴客、慶生、重要約會的餐廳，最看重三星與二星名單。</li>
         <li><strong>美食愛好者</strong>　把指南當成美食聖經和插旗清單，不只看高價位餐廳，也很關注高性價比的必比登推介。</li>
@@ -255,17 +255,33 @@
       </ul>
 
       <h3 class="case-subhead">修正前後</h3>
-      <div class="case-img-grid cols-2">
-        <img loading="lazy" decoding="async" width="2400" height="3550" src="assets/images/Michelin Guide/figma/michelin-before-home.webp" alt="修正前的首頁，主題特輯卡片文字直接壓在照片上" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-home-desktop.webp" alt="修正後的首頁，主題特輯卡片下半部加上漸層" class="case-img">
-      </div>
-      <p class="case-img-caption">首頁主題特輯：左為修正前，金色副標壓在亮照片上；右為修正後，卡片下半部加漸層</p>
+      <figure class="compare" data-compare style="--compare-ratio: 1440 / 2105;">
+        <div class="compare-frame">
+          <img loading="lazy" decoding="async" width="2400" height="3550" src="assets/images/Michelin Guide/figma/michelin-before-home.webp" alt="修正前的首頁，主題特輯卡片文字直接壓在照片上" class="compare-img compare-before">
+          <img loading="lazy" decoding="async" width="1440" height="2105" src="assets/images/Michelin Guide/figma/michelin-home-desktop.webp" alt="修正後的首頁，主題特輯卡片下半部加上漸層" class="compare-img compare-after">
+          <span class="compare-label compare-label-before">修正前</span>
+          <span class="compare-label compare-label-after">修正後</span>
+          <button type="button" class="compare-handle" role="slider"
+                  aria-label="首頁主題特輯修正前後對照：左右拖曳或用方向鍵比較修正前後"
+                  aria-orientation="horizontal"
+                  aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></button>
+        </div>
+        <figcaption>首頁主題特輯：左為修正前，金色副標壓在亮照片上；右為修正後，卡片下半部加漸層</figcaption>
+      </figure>
 
-      <div class="case-img-grid cols-2">
-        <img loading="lazy" decoding="async" width="2400" height="3550" src="assets/images/Michelin Guide/figma/michelin-before-detail.webp" alt="修正前的餐廳詳細頁，評論只用金色星星表示評分" class="case-img">
-        <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-restaurant-detail-desktop.webp" alt="修正後的餐廳詳細頁，評分同時以數字呈現" class="case-img">
-      </div>
-      <p class="case-img-caption">用餐評論：左為修正前，只有金色星星；右為修正後，補上數字評分</p>
+      <figure class="compare" data-compare style="--compare-ratio: 1440 / 2013;">
+        <div class="compare-frame">
+          <img loading="lazy" decoding="async" width="2400" height="3550" src="assets/images/Michelin Guide/figma/michelin-before-detail.webp" alt="修正前的餐廳詳細頁，評論只用金色星星表示評分" class="compare-img compare-before">
+          <img loading="lazy" decoding="async" width="1440" height="2013" src="assets/images/Michelin Guide/figma/michelin-restaurant-detail-desktop.webp" alt="修正後的餐廳詳細頁，評分同時以數字呈現" class="compare-img compare-after">
+          <span class="compare-label compare-label-before">修正前</span>
+          <span class="compare-label compare-label-after">修正後</span>
+          <button type="button" class="compare-handle" role="slider"
+                  aria-label="餐廳詳細頁修正前後對照：左右拖曳或用方向鍵比較修正前後"
+                  aria-orientation="horizontal"
+                  aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></button>
+        </div>
+        <figcaption>用餐評論：左為修正前，只有金色星星；右為修正後，補上數字評分</figcaption>
+      </figure>
 
       <p>修正後，我將這些規則寫進設計系統，之後新增的畫面都依照同一套標準。</p>
 
@@ -286,7 +302,7 @@
       <p>訂位流程分三步驟，採左側餐廳摘要、右側表單的雙欄版面，讓使用者填寫時仍能看到所選餐廳，降低認知負擔。</p>
 
       <div class="case-links">
-        <a href="https://www.figma.com/proto/nYqGLZ3htsfceenq535lKO/Michelin-Guide-Redesign?node-id=13-46&amp;page-id=0%3A1&amp;t=6Scw4HtXJJTX0Dl7-1" target="_blank" rel="noopener" class="case-link case-link-primary">Figma 原型</a>
+        <a href="https://www.figma.com/proto/nYqGLZ3htsfceenq535lKO/Michelin-Guide-Redesign?node-id=13-46&amp;page-id=0%3A1&amp;t=6Scw4HtXJJTX0Dl7-1" target="_blank" rel="noopener" class="case-link case-link-primary">Figma 原型<span class="sr-only">（另開新分頁）</span></a>
       </div>
 
       <h3 class="case-subhead">訂位流程的各種狀態</h3>
@@ -303,7 +319,7 @@
       <h3 class="case-subhead">訂位流程操作示範（桌機／手機）</h3>
       <div class="case-video-grid">
         <figure class="case-video">
-          <video controls muted playsinline preload="none"
+          <video muted loop playsinline preload="metadata" data-title="桌機版訂位流程操作示範"
                  poster="assets/images/Michelin Guide/figma/michelin-video-poster-desktop.webp"
                  width="1920" height="1440">
             <source src="assets/video/michelin-prototype-desktop.mp4" type="video/mp4">
@@ -311,7 +327,7 @@
           <figcaption>桌機版</figcaption>
         </figure>
         <figure class="case-video">
-          <video controls muted playsinline preload="none"
+          <video muted loop playsinline preload="metadata" data-title="手機版訂位流程操作示範"
                  poster="assets/images/Michelin Guide/figma/michelin-video-poster-phone.webp"
                  width="852" height="1718">
             <source src="assets/video/michelin-prototype-phone.mp4" type="video/mp4">
@@ -351,7 +367,7 @@
   <div class="footer-left" lang="en">Fuyu Tsai © 2026</div>
   <div class="footer-right">
     <a href="mailto:fuyutsaii@gmail.com">Email</a>
-    <a href="https://www.linkedin.com/in/leortsai" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/leortsai" target="_blank" rel="noopener">LinkedIn<span class="sr-only">（另開新分頁）</span></a>
   </div>
 </footer>
 
@@ -359,6 +375,9 @@
 <script src="js/main.js"></script>
 <script src="js/ui.js?v=20261114r"></script>
 <script src="js/menu.js?v=20261114r"></script>
-<script src="js/lightbox.js?v=20261114r"></script>
+<script src="js/toc.js?v=20261114t"></script>
+<script src="js/lightbox.js?v=20261114t"></script>
+<script src="js/compare.js?v=20261114t"></script>
+<script src="js/video.js?v=20261114t"></script>
 </body>
 </html>
