@@ -303,22 +303,12 @@
   })();
 
   /* ============================================================
-     8 下一個專案：封面圖從小卡放大到接近滿版，標題逐字出現
-     點擊才換頁，不自動跳頁。
+     8 下一個專案：標題逐字出現。點擊才換頁，不自動跳頁。
+     （封面圖放大已拿掉——這一區維持左邊專案名稱、右邊箭頭的單排版面。）
      ============================================================ */
   (function nextProject() {
     var next = q('.next-project');
     if (!next) return;
-
-    var cover = next.querySelector('.next-project-cover');
-    if (cover) {
-      gsap.fromTo(cover,
-        { scale: 0.58, borderRadius: '40px' },
-        {
-          scale: 1, borderRadius: '12px', ease: 'none',
-          scrollTrigger: { trigger: next, start: 'top 85%', end: 'bottom 95%', scrub: true }
-        });
-    }
 
     var title = next.querySelector('.next-project-title');
     if (title && !title.querySelector('.ch')) {

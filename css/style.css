@@ -3003,39 +3003,10 @@ body.alt {
   body { transition: none; }
 }
 
-/* 8 下一個專案：封面圖 + 標題逐字 */
-.next-project {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 36px;
-}
-.next-project-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-/* 封面用的是首頁那組正方形情境圖，3:1 會把畫面裁到只剩螢幕底座，
-   所以沿用首頁卡片的 16:10 取景，寬度收在 980px 不讓整塊過高。 */
-.next-project-cover {
-  display: block;
-  width: min(100%, 980px);
-  height: auto;   /* 必須：HTML 有 height 屬性，不歸 auto 的話 aspect-ratio 會被忽略 */
-  margin: 0 auto;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: 50% 42%;
-  border-radius: 12px;
-  transform-origin: 50% 50%;
-}
+/* 8 下一個專案：維持「左邊專案名稱、右邊箭頭」的單排版面，不放封面圖。
+   hover 不換底色（見上面的 .next-project:hover），只有游標轉藍。
+   標題仍然逐字升起。 */
 .next-project-title .ch { display: inline-block; }
-.next-project-cover { transition: opacity var(--dur-base) var(--ease-out); }
-.next-project:hover .next-project-cover { opacity: 0.86; }
-
-@media (max-width: 768px) {
-  .next-project { gap: 24px; }
-  .next-project-cover { aspect-ratio: 4 / 3; }
-}
 
 /* 12 About 經歷大事紀：左側直線 + 年份圓點 */
 .track-list { position: relative; }
