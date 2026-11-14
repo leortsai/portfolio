@@ -53,20 +53,28 @@
     var hero = q('.case-hero');
     if (!media || !hero) return;
 
+    var panel = q('.case-hero-left');
+    var st = { trigger: hero, start: 'top top', end: '+=420', scrub: true };
+
+    /* 左右各自往內縮，展開後在中線接起來，看起來是同一塊整體打開。
+       內縮量用 px 不用 %：左欄的 padding 是 60px，9% 在 1440 寬會變成 65px，
+       會切到「Acer 官網」的字；40px 固定值不管視窗多寬都在 padding 裡面。 */
+    var inL = DESK ? 'inset(48px 0px 48px 40px round 24px)' : 'inset(20px 16px round 16px)';
+    var inR = DESK ? 'inset(48px 40px 48px 0px round 24px)' : 'inset(20px 16px round 16px)';
+
     gsap.fromTo(media,
-      { clipPath: DESK ? 'inset(7% 9% 7% 0% round 24px)' : 'inset(4% 5% 4% 5% round 16px)' },
-      {
-        clipPath: 'inset(0% 0% 0% 0% round 0px)',
-        ease: 'none',
-        scrollTrigger: { trigger: hero, start: 'top top', end: '+=420', scrub: true }
-      });
+      { clipPath: inR },
+      { clipPath: 'inset(0px 0px 0px 0px round 0px)', ease: 'none', scrollTrigger: Object.assign({}, st) });
+
+    if (panel) {
+      gsap.fromTo(panel,
+        { clipPath: inL },
+        { clipPath: 'inset(0px 0px 0px 0px round 0px)', ease: 'none', scrollTrigger: Object.assign({}, st) });
+    }
 
     var left = all('.case-hero-left > *');
     if (left.length) {
-      gsap.to(left, {
-        y: -40, opacity: 0.25, ease: 'none',
-        scrollTrigger: { trigger: hero, start: 'top top', end: '+=420', scrub: true }
-      });
+      gsap.to(left, { y: -40, opacity: 0.25, ease: 'none', scrollTrigger: Object.assign({}, st) });
     }
   })();
 
@@ -211,7 +219,11 @@
 
     if (!seq.length) return;
     gsap.from(seq, {
-      yPercent: 60, opacity: 0, duration: 0.8, ease: EASE, stagger: 0.08, delay: 0.2
+      yPercent: 60, opacity: 0, duration: 0.8, ease: EASE, stagger: 0.08, delay: 0.2,
+      /* 遮罩只在動畫期間需要，留著會把「Fuyu」的 y 下伸部永久切掉 */
+      onComplete: function () {
+        all('.ln-rise', hero).forEach(function (e) { e.classList.add('is-done'); });
+      }
     });
   })();
 

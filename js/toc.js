@@ -107,11 +107,13 @@
     }
     setActive(found);
 
-    /* 目錄只在正文範圍內出現，Hero 與頁尾時收起 */
+    /* 目錄只在正文範圍內出現：Hero 還沒進來、或畫面底部已經碰到
+       正文結尾（下面就是 Next Project）時就收起，不然會疊在封面圖上。 */
     if (panel) {
-      var last = sections[sections.length - 1];
+      var top = docTop(content);
+      var bottom = top + content.offsetHeight;
       var inRange = window.scrollY + window.innerHeight * 0.4 > docTop(sections[0]) &&
-                    window.scrollY < docTop(last) + last.offsetHeight;
+                    window.scrollY + window.innerHeight < bottom + 80;
       panel.classList.toggle('is-on', inRange);
     }
   }

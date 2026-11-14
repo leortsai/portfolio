@@ -780,8 +780,10 @@ footer {
   border-right: 1px solid var(--line);
 }
 
-.case-meta-item:first-child { padding-left: 0; }
-.case-meta-item:last-child { border-right: none; }
+/* 原本第一格 padding-left:0，Role 會貼著視窗左緣。
+   改成 60px，跟 nav 的 logo、Hero 文字與正文欄切齊。 */
+.case-meta-item:first-child { padding-left: 60px; }
+.case-meta-item:last-child { border-right: none; padding-right: 60px; }
 
 .case-meta-label {
   font-size: var(--fs-1);
@@ -1041,7 +1043,8 @@ footer {
   transition: background 0.3s;
 }
 
-.next-project:hover { background: var(--blue); }
+/* hover 不換底色——整塊變藍太重，改成游標轉藍（見 .cursor 規則） */
+.next-project:hover { background: var(--bg); }
 
 .next-project-label {
   font-size: var(--fs-1);
@@ -2348,6 +2351,7 @@ body:has(.menu-panel.is-open) .cursor-ring { border-color: rgba(250, 255, 253, 0
 /* 碰到可放大的圖：游標只剩一顆小藍點。
    不用作品卡那種塞文字的大圓——Lightbox 打開後同一顆點要繼續當滑鼠指示，
    大圓會擋住圖片。外圈與光暈也拿掉，乾淨一點。 */
+body:has(.next-project:hover) .cursor,
 body:has(.zoomable:hover) .cursor,
 body:has(.lightbox:not([hidden])) .cursor {
   width: 12px;
@@ -2357,11 +2361,17 @@ body:has(.lightbox:not([hidden])) .cursor {
   box-shadow: none;
 }
 
+body:has(.next-project:hover) .cursor-ring,
 body:has(.zoomable:hover) .cursor-ring,
 body:has(.lightbox:not([hidden])) .cursor-ring {
   opacity: 0;
 }
 
+/* 深底上用提亮的藍，#0B4FD9 壓在近黑底上幾乎看不見 */
+body.on-dark:has(.next-project:hover) .cursor,
+body.on-dark:has(.zoomable:hover) .cursor { background: var(--blue-lift); }
+
+body:has(.next-project:hover) .cursor-ring::after,
 body:has(.zoomable:hover) .cursor-ring::after,
 body:has(.lightbox:not([hidden])) .cursor-ring::after { content: none; }
 
@@ -2913,8 +2923,11 @@ a[target="_blank"]::after {
 .case-section-num { overflow: hidden; }
 .num-roll { display: inline-block; }
 
-/* 10 首頁大標逐行：每行一個遮罩框 */
+/* 10 首頁大標逐行：每行一個遮罩框。
+   行高是 0.82，遮罩會把「Fuyu」的 y 下伸部切掉，所以只在動畫期間遮，
+   跑完由 motion.js 把 .is-done 掛上來解除。 */
 .ln-rise { display: block; overflow: hidden; }
+.ln-rise.is-done { overflow: visible; }
 .ln-inner { display: block; }
 
 /* 4 畫面橫向展示
@@ -3016,7 +3029,8 @@ body.alt {
   transform-origin: 50% 50%;
 }
 .next-project-title .ch { display: inline-block; }
-.next-project:hover .next-project-cover { opacity: 0.92; }
+.next-project-cover { transition: opacity var(--dur-base) var(--ease-out); }
+.next-project:hover .next-project-cover { opacity: 0.86; }
 
 @media (max-width: 768px) {
   .next-project { gap: 24px; }
