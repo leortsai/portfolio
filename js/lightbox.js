@@ -45,7 +45,9 @@
     '<button type="button" class="lightbox-close" aria-label="關閉放大檢視">&#215;</button>' +
     '<button type="button" class="lightbox-prev" aria-label="上一張">&#8249;</button>' +
     '<button type="button" class="lightbox-next" aria-label="下一張">&#8250;</button>' +
-    '<div class="lightbox-stage"><img alt=""></div>' +
+    /* data-lenis-prevent：Lenis 會攔下 wheel 事件（連 stop() 之後也一樣），
+       沒有這個屬性的話，長圖在面板裡完全捲不動。 */
+    '<div class="lightbox-stage" data-lenis-prevent><img alt=""></div>' +
     '<p class="lightbox-caption"></p>';
   document.body.appendChild(box);
 
@@ -135,6 +137,17 @@
     if (e.key === 'Escape') { e.preventDefault(); close(); return; }
     if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); return; }
     if (e.key === 'ArrowRight') { e.preventDefault(); step(1); return; }
+
+    /* 長圖要能用鍵盤看完：上下鍵捲動面板，左右鍵才是換圖 */
+    var page = Math.max(120, stage.clientHeight * 0.88);
+    var dy = null;
+    if (e.key === 'ArrowDown') dy = 120;
+    else if (e.key === 'ArrowUp') dy = -120;
+    else if (e.key === 'PageDown' || e.key === ' ' || e.key === 'Spacebar') dy = page;
+    else if (e.key === 'PageUp') dy = -page;
+    else if (e.key === 'Home') { e.preventDefault(); stage.scrollTop = 0; return; }
+    else if (e.key === 'End') { e.preventDefault(); stage.scrollTop = stage.scrollHeight; return; }
+    if (dy !== null) { e.preventDefault(); stage.scrollTop += dy; return; }
     if (e.key !== 'Tab') return;
 
     /* 焦點鎖在面板內 */
