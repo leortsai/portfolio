@@ -3164,6 +3164,10 @@ body.alt {
   position: absolute;
   inset: 0;
   width: 100%;
+  /* .zoom-btn 的 margin-bottom:12px 是給正文裡的圖用的。絕對定位又同時指定
+     top:0 / bottom:0 時，這 12px 會從算出來的高度裡扣掉，封面圖就比左邊
+     黑色標題區矮 12px（545 → 533），捲到底看得出右邊少一截。 */
+  margin: 0;
   border-radius: 0;
   box-shadow: none;
   overflow: hidden;
