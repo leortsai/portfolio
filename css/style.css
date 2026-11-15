@@ -2941,10 +2941,18 @@ a[target="_blank"]::after {
 .num-roll { display: inline-block; }
 
 /* 10 首頁大標逐行：每行一個遮罩框。
-   行高是 0.82，遮罩會把「Fuyu」的 y 下伸部切掉，所以只在動畫期間遮，
-   跑完由 motion.js 把 .is-done 掛上來解除。 */
-.ln-rise { display: block; overflow: hidden; }
-.ln-rise.is-done { overflow: visible; }
+   行高 0.82 比字的內容區（約 1.14em）矮，上下各差 0.16em，遮罩會把
+   「Fuyu」的 y 下伸部切掉。原本是等動畫跑完再解除遮罩，但那樣 y 的尾巴
+   會在版面都定了之後才突然冒出來。改成把遮罩框往下撐 0.18em（足夠蓋住
+   那 0.16em），再用等量負邊距把版面推回原位——行距完全不變，y 從頭到尾
+   都在遮罩內，不需要事後解除。
+   下方 .hero-name .rise 的位移量同步加上這 0.18em，遮住的範圍與原本一致。 */
+.ln-rise {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+}
 .ln-inner { display: block; }
 
 /* 4 畫面橫向展示
@@ -3247,8 +3255,11 @@ html.js .rise {
   animation: rise-in 0.8s var(--ease-out) both;
   animation-delay: calc(0.15s + var(--i, 0) * 0.08s);
 }
+/* 大標那兩行的遮罩框往下多了 0.18em，位移量要補上同樣的距離，
+   不然動畫期間被遮住的部分會比原本少一截。 */
+.hero-name .rise { --rise: calc(42px + 0.18em); }
 @keyframes rise-in {
-  from { opacity: 0; transform: translateY(42px); }
+  from { opacity: 0; transform: translateY(var(--rise, 42px)); }
   to   { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
